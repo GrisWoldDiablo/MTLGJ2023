@@ -2,7 +2,7 @@
 Montreal Game Jam 2023 at the ETS, Team Purple
 
 ### Team:
-- Alonson
+- Alonso
 - Alexandre
 - Jeffrey
 - Alejandro
