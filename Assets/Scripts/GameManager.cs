@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Character _player;
 
-    public Character Player => _player;
+	public float RunningDistance { get; private set; } = 0.0f;
+
+	public Character Player => _player;
 
     public bool HasStarted { get; private set; } = false;
 
@@ -31,13 +33,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartGame()
-    {
-        // TODO logic start game.
-        Debug.Log("Start Game");
-        HasStarted = true;
+	public void StartGame()
+	{
+		// TODO logic start game.
+		Debug.Log("Start Game");
+		HasStarted = true;
+		
+		// Start level music loop
+		MusicManager.Get().TransitionToLevelMusic();
+	}
 
-        // Start level music loop
-        MusicManager.Get().TransitionToLevelMusic();
-    }
+	public void IncrementRunningDistance(float value)
+	{
+		RunningDistance += value;
+	}
 }

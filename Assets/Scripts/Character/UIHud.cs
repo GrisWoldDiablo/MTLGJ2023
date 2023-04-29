@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIHud : MonoBehaviour
 {
 	[SerializeField] private GameObject _healthLayout;
 	[SerializeField] private GameObject _healthObject;
+	[SerializeField] private TMP_Text _runningDistance;
 
 	private Stack<GameObject> _usedHealthObjects = new();
 	private Stack<GameObject> _unusedHealthObjects = new();
@@ -14,6 +16,12 @@ public class UIHud : MonoBehaviour
 	{
 		_character = FindObjectOfType<Character>();
 		_character.OnHealthChange += OnHealthChange;
+		_runningDistance.text = "0.0m";
+	}
+
+	private void Update()
+	{
+		_runningDistance.text = $"{GameManager.Get().RunningDistance:F1}m";
 	}
 
 	private void OnHealthChange(int value)
@@ -40,6 +48,5 @@ public class UIHud : MonoBehaviour
 				}
 			}
 		}
-
 	}
 }
