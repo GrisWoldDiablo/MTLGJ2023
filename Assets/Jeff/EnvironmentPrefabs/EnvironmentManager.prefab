@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2095912608864456826}
   - component: {fileID: 6590974928362709214}
+  - component: {fileID: 2035923024879712188}
   m_Layer: 0
   m_Name: EnvironmentManager
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6590974928362709214
 MonoBehaviour:
@@ -46,5 +47,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   environmentObjectList:
   - {fileID: 8971083833398317402, guid: eca2f076d4c92db4cae8611c7d1034f8, type: 3}
-  obstacleObjectList: []
-  numAssetsToSpawnOnLoad: 10
+  obstacleObjectList:
+  - {fileID: 6200705233266992062, guid: c0fbe336a7c642746a5c206dc3c8614f, type: 3}
+  - {fileID: 6200705233266992062, guid: fc817577dac3a7848a123881766d7897, type: 3}
+  numAssetsToSpawnOnLoad: 15
+  numSlicesToSpawnOnRenew: 5
+  minSegmentsBetweenObstacles: 16
+  maxSegmentsBetweenObstacles: 64
+--- !u!114 &2035923024879712188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731130473350794274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d380f8fd6890440b9d498852807bc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EruptionObject: {fileID: 6200705233266992062, guid: c40308c8dd7b9c145a30ff6553d96672, type: 3}
+  minTimeBetweenEvents: 5
+  maxTimeBetweenEvents: 15
