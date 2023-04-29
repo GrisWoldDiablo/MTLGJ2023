@@ -27,11 +27,11 @@ public class Fireball : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		Character player = other.GetComponentInParent<Character>();
-
-        if(player != null)
+		if(player != null)
         {
-            player.ModifyHealth(-damage);
-            transform.position = player.transform.position;
+	        Transform playerTransform = player.gameObject.transform.GetChild(1);
+	        player.ModifyHealth(-damage);
+            transform.position = playerTransform.position;
             Explode();
         }
 
