@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
 	private bool _isSliding = false;
 	public bool IsGrounded => _isGrounded;
 	public bool IsMovingForward => _dirX > 0.0f;
+	public Vector2 Velocity => _body.velocity;
 
 	public bool IsDead { get; set; } = false; // TODO Move dead logic to Player Class
 

@@ -232,7 +232,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2035923024879712188, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
       propertyPath: disableEruption
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2095912608864456826, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
       propertyPath: m_RootOrder
@@ -280,7 +280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6590974928362709214, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
       propertyPath: disableObstacle
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6731130473350794274, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
       propertyPath: m_Name
