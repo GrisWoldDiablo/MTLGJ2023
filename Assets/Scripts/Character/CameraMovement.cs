@@ -12,6 +12,7 @@ public class CameraMovement : MonoBehaviour
 	private bool _allowCameraX = true;
 	private bool _isCameraMovingForward = true;
 	public bool IsCameraMovingForward => _isCameraMovingForward;
+	[SerializeField]
 	private Camera _camera;
 	private Vector2 screenBounds;
 	private float objectWidth;
@@ -22,7 +23,7 @@ public class CameraMovement : MonoBehaviour
 	private void Start()
 	{
 		preframeX = player.transform.position.x;
-		_camera = GetComponent<Camera>();
+		//_camera = GetComponentInChildren<Camera>();
 		screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
 		objectWidth = _spriteRenderer.bounds.size.x / 2;
 		_offset = new Vector2(transform.localPosition.x, transform.localPosition.y);
@@ -48,12 +49,6 @@ public class CameraMovement : MonoBehaviour
 		}
 
 		Vector3 updatePos = new Vector3(newX, newY, newZ);
-
-		if (bIsShaking)
-		{
-			updatePos += shakeTransform;
-		}
-
 		float incrementatedX = transform.position.x;
 		transform.position = updatePos;
 		incrementatedX = transform.position.x - incrementatedX;
@@ -109,40 +104,5 @@ public class CameraMovement : MonoBehaviour
 			}
 		}
 
-	}
-
-
-	bool bIsShaking = false;
-
-	public void DoCameraShake(float shakeDuration, float shakeMagnitude)
-	{
-		StartCoroutine(Shake(shakeDuration, shakeMagnitude));
-    }
-
-	Vector3 shakeTransform = new Vector3();
-    private IEnumerator Shake(float shakeDuration, float shakeMagnitude)
-    {
-		Vector3 initialPosition = transform.localPosition;
-
-		float elapsedTime = 0f;
-
-		while (elapsedTime < shakeDuration)
-		{
-
-			float x = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
-			float y = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
-
-			shakeTransform = new Vector3(x, y, 0f);
-
-
-			elapsedTime += Time.deltaTime;
-
-			bIsShaking = true;
-
-			yield return null;
-		}
-
-		bIsShaking = false;
-		transform.localPosition = initialPosition;
 	}
 }

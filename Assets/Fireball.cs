@@ -50,8 +50,8 @@ public class Fireball : MonoBehaviour
 		col.enabled = false;
 		boom.Play();
 
-        CameraMovement cameraMovement = Camera.main.GetComponent<CameraMovement>();
-        cameraMovement.DoCameraShake(0.33f, 0.07f); //expose these
+        CameraShake camShake = Camera.main.GetComponent<CameraShake>();
+        camShake.DoCameraShake(0.33f, 0.07f); //expose these
 
         Destroy(gameObject, boom.main.duration);
 
