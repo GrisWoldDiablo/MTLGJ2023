@@ -10,7 +10,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CameraMovement _camera; 
     [SerializeField] private ContactFilter2D _contactFilter2D;
     private bool _isGrounded => _body.IsTouching(_contactFilter2D);
-    [SerializeField] private bool _leftAllowed = false;
+
+	public float Speed { get => _speed; set => _speed = value; }
+
+	[SerializeField] private bool _leftAllowed = false;
   
     void Start()
     {

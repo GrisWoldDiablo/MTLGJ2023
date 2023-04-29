@@ -3,10 +3,10 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
 	[SerializeField] private int _health;
-	[SerializeField] private float _speed;
 
 	public int Health { get => _health; set => _health = value; }
-	public float Speed { get => _speed; set => _speed = value; }
+
+	public PlayerMovement PlayerMovement { get => GetComponent<PlayerMovement>(); }
 
 	public void ModifyHealth(int damage)
 	{
@@ -15,6 +15,6 @@ public class Character : MonoBehaviour
 
 	public void ModifySpeed(float modification)
 	{
-		_speed += modification;
+		PlayerMovement.Speed += modification;
 	}
 }
