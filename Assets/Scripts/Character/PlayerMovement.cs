@@ -27,10 +27,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _slidingColliderSize;
     private Vector2 _slidingColliderOffset;
 	
-    private bool _isGrounded => _body.IsTouching(_contactFilter2D);
+    public bool IsGrounded => _body.IsTouching(_contactFilter2D);
     private bool _isSliding = false;
     private bool _isHit = false;
-    public bool IsGrounded => _isGrounded;
     public bool IsMovingForward => _forwardSpeed > 0.0f;
     public Vector2 Velocity => _body.velocity;
 
@@ -76,7 +75,6 @@ public class PlayerMovement : MonoBehaviour
     private float _maxForwardSpeed = 1.1f;
     private float _time = 0;
     private float _slidingTime = 0;
-    private float _dirX;
     private bool _isHittingRoof;
     private bool _isSlidingUnderRoof = false;
 
@@ -100,8 +98,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-		
-        _dirX = Input.GetAxisRaw("Horizontal");
+		float _dirX = Input.GetAxisRaw("Horizontal");
         if (_dirX < 0f)
         {
             if (_forwardSpeed > -0.3f)
@@ -125,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (_forwardSpeed < _maxForwardSpeed)
                 {
-                    _forwardSpeed += Time.deltaTime * _maxForwardSpeed * 5;
+                    _forwardSpeed += Time.deltaTime * _maxForwardSpeed * 5f;
                 }
                 else
                 {

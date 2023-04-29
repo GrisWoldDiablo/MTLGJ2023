@@ -106,7 +106,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.30512303, y: 0.6269299}
+  m_Size: {x: 0.30512303, y: 0.57}
   m_EdgeRadius: 0
 --- !u!114 &4960026455962093882
 MonoBehaviour:
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 3
+  _isInvincible: 0
 --- !u!1 &1096994103094678597
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,7 +471,7 @@ Transform:
   - {fileID: 8069670821243374622}
   - {fileID: 363505896712087593}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2273437925906215858
 PrefabInstance:
