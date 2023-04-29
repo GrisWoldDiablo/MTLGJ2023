@@ -17,7 +17,6 @@ public class CameraMovement : MonoBehaviour
 	private float objectWidth;
 	
 	private Vector2 _offset;
-	private float upperY;
     private void Start()
     {
         
