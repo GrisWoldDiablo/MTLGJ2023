@@ -62,7 +62,6 @@ public class CameraMovement : MonoBehaviour
 		    _isCameraMovingForward = false;
 
 	    }    
-	    Debug.Log("Camera move: " + _isCameraMovingForward);
 	    preframeX = player.transform.position.x;
     }
 
