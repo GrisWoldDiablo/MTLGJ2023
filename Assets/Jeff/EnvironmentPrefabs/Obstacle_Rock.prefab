@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8971083833398317402}
   - component: {fileID: 3864834714018092436}
   - component: {fileID: 8585758951181603374}
-  - component: {fileID: -8493449891931676939}
+  - component: {fileID: 2440798804240605665}
   m_Layer: 0
-  m_Name: EnvironmentSlice_Flat
+  m_Name: Obstacle_Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,8 +87,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5f51e585fcabe784ba4cdce7468999db, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: bdb9feb6ff84c87409581db63689644d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -111,8 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 419e66b5fd8a46b49ac39af236a0f185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!68 &-8493449891931676939
-EdgeCollider2D:
+--- !u!61 &2440798804240605665
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -143,12 +143,16 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.08}
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.8, y: 4.8}
+    newSize: {x: 5.28, y: 2.51}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.7, y: 3}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.006300926, y: 1.0522952}
-  - {x: 4.3036985, y: 1.0522952}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
