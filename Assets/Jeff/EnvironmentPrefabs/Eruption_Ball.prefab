@@ -4929,8 +4929,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  damage: 3
   boom: {fileID: 3707893489227790866}
+  damage: 1
 --- !u!50 &2410617314938337692
 Rigidbody2D:
   serializedVersion: 4

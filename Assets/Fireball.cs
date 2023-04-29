@@ -1,62 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    Rigidbody2D rb;
-    
-    [SerializeField]
-    float speed = 5.0f;
+	Rigidbody2D rb;
 
-    [SerializeField]
-    int damage = 3;
+	[SerializeField] float speed = 5.0f;
 
-    [SerializeField]
-    private ParticleSystem boom;
+	[SerializeField] int damage = 3;
 
-    private SpriteRenderer sprite;
-    private BoxCollider2D col;
+	[SerializeField] private ParticleSystem boom;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        sprite = GetComponent<SpriteRenderer>();
-        col = GetComponent<BoxCollider2D>();
+	private SpriteRenderer sprite;
+	private BoxCollider2D col;
 
-        rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 1;
-        rb.velocity = new Vector2(speed, rb.velocity.y);
-    }
+	// Start is called before the first frame update
+	void Start()
+	{
+		sprite = GetComponent<SpriteRenderer>();
+		col = GetComponent<BoxCollider2D>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+		rb = GetComponent<Rigidbody2D>();
+		rb.gravityScale = 1;
+		rb.velocity = new Vector2(speed, rb.velocity.y);
+	}
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Character player = other.GetComponent<Character>();
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		Character player = other.GetComponentInParent<Character>();
 
-        if(player != null)
-        {
-            player.ModifyHealth(-damage);
-            transform.position = player.transform.position;
-        }
+		if (player != null)
+		{
+			player.ModifyHealth(-damage);
+			transform.position = player.transform.position;
+		}
 
-        Explode();
-        //also destroy when hit the grounds
-    }
+		Explode();
+		//also destroy when hit the grounds
+	}
 
-    void Explode()
-    {
-        sprite.enabled = false;
-        rb.gravityScale = 0;
-        rb.velocity = Vector2.zero;
-        col.enabled = false;
-        boom.Play();
-        Destroy(gameObject,boom.main.duration);
+	void Explode()
+	{
+		sprite.enabled = false;
+		rb.gravityScale = 0;
+		rb.velocity = Vector2.zero;
+		col.enabled = false;
+		boom.Play();
+		Destroy(gameObject, boom.main.duration);
 
-    }
+	}
 }

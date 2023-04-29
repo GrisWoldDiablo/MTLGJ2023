@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1686413451328585185}
   - component: {fileID: 8335459817108765559}
   - component: {fileID: 4960026455962093882}
-  - component: {fileID: 2615703584964486290}
   m_Layer: 0
   m_Name: Body
   m_TagString: Player
@@ -139,20 +138,6 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 89
     maxNormalAngle: 91
---- !u!114 &2615703584964486290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1027289774347639944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f406f06b98542046bae4c365b1e4835, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 3
-  _isInvincible: 0
 --- !u!1 &1096994103094678597
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +211,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_Sprite: {fileID: 253300989, guid: 8d2141f1492723c4fbefd9bc6ae9bd18, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -250,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66764dc9eb9989a4a897017d8e9ba196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 2615703584964486290}
+  _character: {fileID: 8756094238260522967}
   _playerMovement: {fileID: 4960026455962093882}
   _spriteRenderer: {fileID: 2123845683463374832}
   _animationSpeed: 10
@@ -449,6 +434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6526548449313317671}
+  - component: {fileID: 8756094238260522967}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -473,6 +459,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8756094238260522967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6739151661665887860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f406f06b98542046bae4c365b1e4835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startingHeath: 3
+  _isInvincible: 0
 --- !u!1001 &2273437925906215858
 PrefabInstance:
   m_ObjectHideFlags: 0

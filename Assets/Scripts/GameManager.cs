@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
 	public GameObject Player => _player;
 
+	public bool HasStarted { get; private set; } = false;
+
 	private void Awake()
 	{
 		Time.timeScale = 0.0f;
@@ -33,5 +35,6 @@ public class GameManager : MonoBehaviour
 	{
 		// TODO logic start game.
 		Debug.Log("Start Game");
+		HasStarted = true;
 	}
 }

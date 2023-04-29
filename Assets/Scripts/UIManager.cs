@@ -15,7 +15,8 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private CanvasGroup _mainCanvasGroup;
 	[SerializeField] private CanvasGroup _pauseCanvasGroup;
 
-	public bool IsPause { get; private set; } = false;
+	
+	public bool IsPause { get; private set; } = true;
 
 	private void Awake()
 	{
@@ -39,6 +40,11 @@ public class UIManager : MonoBehaviour
 
 	private void Update()
 	{
+		if (!GameManager.Get().HasStarted)
+		{
+			return;
+		}
+		
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			if (!IsPause)
