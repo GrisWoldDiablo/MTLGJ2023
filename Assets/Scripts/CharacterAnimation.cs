@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,9 +9,12 @@ public class CharacterAnimation : MonoBehaviour
 	[Min(1.0f)] [SerializeField] private float _animationSpeed = 100.0f;
 	[SerializeField] private Sprite[] _runSprites;
 	[SerializeField] private Sprite[] _jumpSprites;
+	[SerializeField] private Sprite[] _slideSprites;
 	[SerializeField] private Sprite[] _walkBackSprites;
+	[SerializeField] private Sprite[] _dieSprites;
 
 	private Sprite[] _currentSprites;
+	private bool _isDead = false;
 
 	private void Start()
 	{
@@ -20,20 +24,34 @@ public class CharacterAnimation : MonoBehaviour
 
 	void Update()
 	{
-		if (_playerMovement.IsGrounded)
+		if (_isDead) // TODO Move dead logic to Player Class
 		{
-			_currentSprites = _playerMovement.IsMovingForward ? _runSprites : _walkBackSprites;
+			return;
 		}
-		else
+
+		if (Input.GetKeyDown(KeyCode.P))
 		{
+			_isDead = true;
+		}
+
+		switch (_playerMovement.GetPlayerState())
+		{
+		case PlayerState.Jump:
 			_currentSprites = _jumpSprites;
+			break;
+		case PlayerState.Run:
+			_currentSprites = _playerMovement.IsMovingForward ? _runSprites : _walkBackSprites;
+			break;
+		case PlayerState.Slide:
+			_currentSprites = _playerMovement.IsMovingForward ? _slideSprites : _walkBackSprites;
+			break;
 		}
 	}
 
 	private IEnumerator Animate()
 	{
 		int currentIndex = 0;
-		while (true)
+		while (!_isDead)
 		{
 			yield return new WaitForSeconds(1.0f / _animationSpeed);
 			if (_currentSprites.Length == 0)
@@ -49,5 +67,16 @@ public class CharacterAnimation : MonoBehaviour
 			_spriteRenderer.sprite = _currentSprites[currentIndex];
 			currentIndex++;
 		}
+
+		currentIndex = 0;
+		_currentSprites = _dieSprites;
+		while (currentIndex < _currentSprites.Length)
+		{
+			yield return new WaitForSeconds(1.0f / _animationSpeed);
+			_spriteRenderer.sprite = _currentSprites[currentIndex];
+			currentIndex++;
+		}
+
+		_playerMovement.IsDead = true;
 	}
 }
