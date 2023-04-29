@@ -12,9 +12,18 @@ public class Fireball : MonoBehaviour
     [SerializeField]
     int damage = 3;
 
+    [SerializeField]
+    private ParticleSystem boom;
+
+    private SpriteRenderer sprite;
+    private BoxCollider2D col;
+
     // Start is called before the first frame update
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
+        col = GetComponent<BoxCollider2D>();
+
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 1;
         rb.velocity = new Vector2(speed, rb.velocity.y);
@@ -33,10 +42,21 @@ public class Fireball : MonoBehaviour
         if(player != null)
         {
             player.ModifyHealth(-damage);
-            Destroy(gameObject);
+            transform.position = player.transform.position;
         }
 
-
+        Explode();
         //also destroy when hit the grounds
+    }
+
+    void Explode()
+    {
+        sprite.enabled = false;
+        rb.gravityScale = 0;
+        rb.velocity = Vector2.zero;
+        col.enabled = false;
+        boom.Play();
+        Destroy(gameObject,boom.main.duration);
+
     }
 }
