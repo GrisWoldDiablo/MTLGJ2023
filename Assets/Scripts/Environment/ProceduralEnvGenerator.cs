@@ -63,7 +63,7 @@ public class ProceduralEnvGenerator : MonoBehaviour
         Vector2 spawnPosition = new Vector2(currentSpawnPostitionX, spawnPositionY);
         EnvironmentAsset asset = Instantiate(EnvironmentAsset, spawnPosition, Quaternion.identity, this.gameObject.transform);
         asset.transform.position = new Vector2(spawnPosition.x, spawnPosition.y);
-        float spacing = EnvironmentAsset.GetEnvironmentLength();
+        float spacing = asset.GetEnvironmentLength();
 
         currentSpawnPostitionX += spacing;
         spawnedEnvironmentSlices.Enqueue(asset);
