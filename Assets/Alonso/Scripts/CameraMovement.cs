@@ -10,7 +10,8 @@ public class CameraMovement : MonoBehaviour
 	[SerializeField] private SpriteRenderer _spriteRenderer;
 
 	private bool _allowCameraX = true;
-
+	private bool _isCameraMovingForward = true;
+	public bool IsCameraMovingForward => _isCameraMovingForward;
 	private Camera _camera;
 	private Vector2 screenBounds;
 	private float objectWidth;
@@ -31,11 +32,11 @@ public class CameraMovement : MonoBehaviour
 	
 	void Update()
 	{
+		//Y axis clamping
 		float newX = transform.localPosition.x;
 		float newY = transform.localPosition.y;
 		float newZ = transform.localPosition.z;
-
-
+		
 		//Add effects in vector3 if needed
 		if (_allowCameraX)
 		{
@@ -51,6 +52,7 @@ public class CameraMovement : MonoBehaviour
 
 	void LateUpdate()
 	{
+		//X axis clamping
 		if (!_allowCameraX)
 		{
 			//Clamp player movement when camera is not moving
@@ -70,6 +72,7 @@ public class CameraMovement : MonoBehaviour
 		{
 			tempPlayerPos = player.position;
 			_allowCameraX = false;
+			_isCameraMovingForward = false;
 		}
 
 		if (val && !_allowCameraX)
@@ -79,6 +82,7 @@ public class CameraMovement : MonoBehaviour
 				tempPlayerPos.y = player.position.y;
 				player.position = tempPlayerPos;
 				_allowCameraX = true;
+				_isCameraMovingForward = true;
 			}
 		}
 
