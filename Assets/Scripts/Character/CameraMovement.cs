@@ -33,21 +33,21 @@ public class CameraMovement : MonoBehaviour
     void Update()
 	{
 		//Y axis clamping
-		float newX = transform.localPosition.x;
-		float newY = transform.localPosition.y;
-		float newZ = transform.localPosition.z;
+		float newX = transform.position.x;
+		float newY = transform.position.y;
+		float newZ = transform.position.z;
 		
 		//Add effects in vector3 if needed
 		if (_allowCameraX)
 		{
-			newX = player.localPosition.x + _offset.x;
+			newX = player.position.x + _offset.x;
 		}
-		if (player.localPosition.y > _offset.y + 1f)
+		if (player.position.y > _offset.y + 1f)
 		{
-			newY = player.localPosition.y - 1f;
+			newY = player.position.y - 1f;
 		}
 		
-		transform.localPosition = new Vector3(newX, newY, newZ);
+		transform.position = new Vector3(newX, newY, newZ);
 		
 	}
 

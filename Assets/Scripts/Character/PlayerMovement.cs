@@ -59,6 +59,9 @@ public class PlayerMovement : MonoBehaviour
 	{
 		_body = GetComponent<Rigidbody2D>();
 		_boxCollider2D = GetComponent<BoxCollider2D>();
+		_contactFilter2D.useNormalAngle = true;
+		_contactFilter2D.minNormalAngle = 89;
+		_contactFilter2D.maxNormalAngle = 91;
 		_standingColliderSize = _boxCollider2D.size;
 		_standingColliderOffset = _boxCollider2D.offset;
 		_slidingColliderSize = new Vector2(_standingColliderSize.x,_standingColliderSize.y / 2);
@@ -182,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
 
 		return hit || hit2;
 	}
-
+	
 	private void ResetCollisions()
 	{
 		_boxCollider2D.size = _standingColliderSize;

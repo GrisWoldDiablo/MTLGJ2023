@@ -6090,6 +6090,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4960026455962093882, guid: 1cb407102143fe949ac5b2a9e1809701, type: 3}
+      propertyPath: _slidingDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6526548449313317671, guid: 1cb407102143fe949ac5b2a9e1809701, type: 3}
       propertyPath: m_RootOrder
       value: 1
