@@ -44,7 +44,7 @@ public class SmokeWall : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		Character player = other.GetComponent<Character>();
+		Character player = other.GetComponentInParent<Character>();
 
 		if (player != null)
 		{
