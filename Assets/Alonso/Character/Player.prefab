@@ -119,9 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e5493f285343342bf66290a33b2f2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _leftAllowed: 1
   _speed: 7
   _jumpHeight: 12
+  _timeToReachMaxSpeed: 1
   _camera: {fileID: 1852632079566691348}
   _contactFilter2D:
     useTriggers: 0
@@ -234,12 +234,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66764dc9eb9989a4a897017d8e9ba196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerMovement: {fileID: 4960026455962093882}
   _spriteRenderer: {fileID: 2123845683463374832}
   _animationSpeed: 10
   _runSprites:
   - {fileID: 253300989, guid: 8d2141f1492723c4fbefd9bc6ae9bd18, type: 3}
   - {fileID: -350671971, guid: 8d2141f1492723c4fbefd9bc6ae9bd18, type: 3}
   - {fileID: 1534370312, guid: 8d2141f1492723c4fbefd9bc6ae9bd18, type: 3}
+  _jumpSprites:
+  - {fileID: -1999954465, guid: 718e0c0bba1c29c498d49253ec032aef, type: 3}
+  - {fileID: 709670800, guid: 718e0c0bba1c29c498d49253ec032aef, type: 3}
+  _walkBackSprites:
+  - {fileID: -1339596380, guid: cdf0d0270f6d17144812e1c73801ef14, type: 3}
+  - {fileID: -1339596380, guid: cdf0d0270f6d17144812e1c73801ef14, type: 3}
+  - {fileID: -2133643566, guid: cdf0d0270f6d17144812e1c73801ef14, type: 3}
+  - {fileID: -2133643566, guid: cdf0d0270f6d17144812e1c73801ef14, type: 3}
+  - {fileID: -48670223, guid: cdf0d0270f6d17144812e1c73801ef14, type: 3}
+  - {fileID: -48670223, guid: cdf0d0270f6d17144812e1c73801ef14, type: 3}
 --- !u!1 &1831310884706909835
 GameObject:
   m_ObjectHideFlags: 0
