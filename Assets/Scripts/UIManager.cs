@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -13,8 +14,12 @@ public class UIManager : MonoBehaviour
 
 	[SerializeField] private Button _startButton;
 	[SerializeField] private Button _runButton;
+	[SerializeField] private Button _revertButton;
 	[SerializeField] private CanvasGroup _mainCanvasGroup;
 	[SerializeField] private CanvasGroup _pauseCanvasGroup;
+	[SerializeField] private CanvasGroup _gameoverGroup;
+	[SerializeField] private UIGameover _gameover;
+	[SerializeField] private Character _character;
 	
 	public bool IsPause { get; private set; } = true;
 
@@ -23,7 +28,6 @@ public class UIManager : MonoBehaviour
 		if (!_sInstance)
 		{
 			_sInstance = this;
-			DontDestroyOnLoad(this);
 		}
 		else
 		{
@@ -36,6 +40,23 @@ public class UIManager : MonoBehaviour
 		_mainCanvasGroup.alpha = 1.0f;
 		_pauseCanvasGroup.alpha = 0.0f;
 		_pauseCanvasGroup.blocksRaycasts = false;
+		
+		_gameoverGroup.alpha = 0.0f;
+		_gameoverGroup.blocksRaycasts = false;
+		_revertButton.onClick.AddListener(OnRevertButtonClicked);
+		_character.OnDie += OnCharacterDie;
+	}
+
+	private void OnRevertButtonClicked()
+	{
+		SceneManager.LoadScene("MainScene");
+	}
+
+	private void OnCharacterDie()
+	{
+		_gameoverGroup.alpha = 1.0f;
+		_gameoverGroup.blocksRaycasts = true;
+		_gameover.UpdateScore();
 	}
 
 	private void Update()

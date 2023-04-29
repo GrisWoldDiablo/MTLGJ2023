@@ -30,7 +30,7 @@ public class Character : MonoBehaviour
 
 	private void Update()
 	{
-		if (KILLME)
+		if (KILLME || Input.GetKeyDown(KeyCode.P))
 		{
 			KILLME = false;
 			ModifyHealth(-_health);

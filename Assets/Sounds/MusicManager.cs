@@ -25,7 +25,6 @@ public class MusicManager : MonoBehaviour
         if (!_sInstance)
         {
             _sInstance = this;
-            DontDestroyOnLoad(this);
         }
         else
         {

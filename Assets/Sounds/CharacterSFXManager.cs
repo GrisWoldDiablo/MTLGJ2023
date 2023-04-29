@@ -25,7 +25,6 @@ public class CharacterSFXManager : MonoBehaviour
         if (!_sInstance)
         {
             _sInstance = this;
-            DontDestroyOnLoad(this);
         }
         else
         {
