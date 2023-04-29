@@ -36,5 +36,7 @@ public class Fireball : MonoBehaviour
             Destroy(gameObject);
         }
 
+
+        //also destroy when hit the grounds
     }
 }
