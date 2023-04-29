@@ -545,33 +545,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5794471953484938515, guid: b4fc2bad581c18a4e993faf9ce1c0655, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5794471953484938515, guid: b4fc2bad581c18a4e993faf9ce1c0655, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.44172305
-      objectReference: {fileID: 0}
-    - target: {fileID: 5794471953484938515, guid: b4fc2bad581c18a4e993faf9ce1c0655, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.44172305
-      objectReference: {fileID: 0}
-    - target: {fileID: 5794471953484938515, guid: b4fc2bad581c18a4e993faf9ce1c0655, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.4528302
-      objectReference: {fileID: 0}
     - target: {fileID: 6349324294682667414, guid: b4fc2bad581c18a4e993faf9ce1c0655, type: 3}
       propertyPath: m_Name
       value: WallOfDeath
-      objectReference: {fileID: 0}
-    - target: {fileID: 7162232378609799186, guid: b4fc2bad581c18a4e993faf9ce1c0655, type: 3}
-      propertyPath: m_SortingOrder
-      value: 105
-      objectReference: {fileID: 0}
-    - target: {fileID: 7479324232280371751, guid: b4fc2bad581c18a4e993faf9ce1c0655, type: 3}
-      propertyPath: m_SortingOrder
-      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

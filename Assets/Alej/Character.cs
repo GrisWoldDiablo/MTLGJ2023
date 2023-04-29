@@ -11,6 +11,7 @@ public class Character : MonoBehaviour
 	private bool isDead = false;
 
 	public event Action<int> OnHealthChange;
+	public event Action OnDie;
 	
 	public int Health
 	{
@@ -56,6 +57,7 @@ public class Character : MonoBehaviour
 	{
 		//game manager end game
 		isDead = true;
+		OnDie?.Invoke();
 	}
 
 	public void ModifySpeed(float modification)
