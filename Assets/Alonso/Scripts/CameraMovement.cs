@@ -7,17 +7,18 @@ public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private Vector2 _offset = new (2.0f,2.3f);
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    
     private bool _allowCameraMovement = true;
     private Camera _camera; //be sure to assign this in the inspector to your main camera
     private Vector2 screenBounds;
     private float objectWidth;
 
-
     private void Start()
     {
         _camera = GetComponent<Camera>();
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        objectWidth = player.GetComponent<SpriteRenderer>().bounds.size.x / 2;
+        objectWidth = _spriteRenderer.bounds.size.x / 2;
     }
 
     void Update()
