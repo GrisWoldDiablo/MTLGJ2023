@@ -28,15 +28,20 @@ public class Fireball : MonoBehaviour
 	{
 		Character player = other.GetComponentInParent<Character>();
 
-		if (player != null)
-		{
-			player.ModifyHealth(-damage);
-			transform.position = player.transform.position;
-		}
+        if(player != null)
+        {
+            player.ModifyHealth(-damage);
+            transform.position = player.transform.position;
+            Explode();
+        }
+        if (other.CompareTag("Ground"))
+        {
 
-		Explode();
-		//also destroy when hit the grounds
-	}
+            Invoke(nameof(Explode), 0.2f);
+        }
+
+        //also destroy when hit the grounds
+    }
 
 	void Explode()
 	{
