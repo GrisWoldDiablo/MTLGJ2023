@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Android.Types;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _jumpHeight = 14f;
     [SerializeField] private ContactFilter2D _contactFilter2D;
     private bool _isGrounded => _body.IsTouching(_contactFilter2D);
-
-    // Start is called before the first frame update
+    [SerializeField] private bool _leftAllowed = false;
+  
     void Start()
     {
         _body = GetComponent<Rigidbody2D>();
@@ -25,10 +24,18 @@ public class PlayerMovement : MonoBehaviour
         float dirX = Input.GetAxisRaw("Horizontal");
         if (dirX < 0f)
         {
-            dirX = 0.1f;
+            if (_leftAllowed)
+            {
+                dirX = -0.3f;
+            }
+            else
+            {
+                dirX = 0.1f;
+
+            }
         }else if (dirX >= 0f)
         {
-            dirX = 1f;
+            dirX = 1.1f;
         }
 
         _body.velocity = new Vector2(dirX * _speed, _body.velocity.y);
