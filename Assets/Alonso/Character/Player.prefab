@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4960026455962093882}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 7
   _jumpHeight: 12
-  _timeToReachMaxSpeed: 1
+  _timeOfSlowdown: 3
   _camera: {fileID: 1852632079566691348}
   _contactFilter2D:
     useTriggers: 0
@@ -279,7 +279,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831310884706909835}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1985347, y: 0.1630801, z: -10.41305}
+  m_LocalPosition: {x: 2, y: 2.3, z: -10.41305}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -434,5 +434,5 @@ Transform:
   - {fileID: 8069670821243374622}
   - {fileID: 363505896712087593}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

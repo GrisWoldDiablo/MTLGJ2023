@@ -4113,6 +4113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a8d48c88402614c803902e744dc0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _slowdownRatio: 0.5
 --- !u!61 &143223973
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4233,14 +4234,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1027289774347639944, guid: 1cb407102143fe949ac5b2a9e1809701, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4960026455962093882, guid: 1cb407102143fe949ac5b2a9e1809701, type: 3}
-      propertyPath: _timeToReachMaxSpeed
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6526548449313317671, guid: 1cb407102143fe949ac5b2a9e1809701, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4251,7 +4244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6526548449313317671, guid: 1cb407102143fe949ac5b2a9e1809701, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.04
+      value: -0.62
       objectReference: {fileID: 0}
     - target: {fileID: 6526548449313317671, guid: 1cb407102143fe949ac5b2a9e1809701, type: 3}
       propertyPath: m_LocalPosition.z

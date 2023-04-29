@@ -8,10 +8,11 @@ public class PlayerMovement : MonoBehaviour
 	private Rigidbody2D _body;
 	[Header("Movement")] [SerializeField] private float _speed = 7f;
 	[SerializeField] private float _jumpHeight = 14f;
-	[SerializeField] private float _timeToReachMaxSpeed = 1f;
-
+    [SerializeField] private float _timeOfSlowdown = 3f;
+ 
+   
 	[Header("Camera")] [SerializeField] private CameraMovement _camera;
-
+    
 	[Header("Collisions")] [SerializeField]
 	private ContactFilter2D _contactFilter2D;
 
@@ -42,16 +43,16 @@ public class PlayerMovement : MonoBehaviour
 		if (_dirX < 0f)
 		{
 			_dirX = -0.3f;
-			_camera.AllowCameraMovement(false);
+			_camera.AllowCameraX(false);
 		}
 		else if (_dirX >= 0f)
 		{
 			if (_forwardSpeed < _maxForwardSpeed)
 			{
 				_time += Time.deltaTime;
-				if (_time > 3f)
+				if (_time > _timeOfSlowdown)
 				{
-					_forwardSpeed += Time.deltaTime * (_maxForwardSpeed / _timeToReachMaxSpeed);
+					_forwardSpeed += Time.deltaTime * _maxForwardSpeed;
 				}
 			}
 			else
@@ -60,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 				_forwardSpeed = _maxForwardSpeed;
 			}
 			_dirX = _forwardSpeed;
-			_camera.AllowCameraMovement(true);
+			_camera.AllowCameraX(true);
 		}
 
 		_body.velocity = new Vector2(_dirX * _speed, _body.velocity.y);
@@ -70,8 +71,11 @@ public class PlayerMovement : MonoBehaviour
 		}
 	}
 
-	public void SlowDown()
-	{
-		_forwardSpeed = _maxForwardSpeed / 2;
-	}
+    /// <summary>
+    /// Modifies speed by a ratio. If it's lower, it will return to normal after _timeOfSlowdown seconds, if it's higher it won't change until it is manually changed.
+    /// </summary>
+    public void ModifySpeed(float ratio)
+    {
+        _forwardSpeed = _maxForwardSpeed * 0.5f;
+    }
 }
