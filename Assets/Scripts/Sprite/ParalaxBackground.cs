@@ -22,19 +22,24 @@ public class ParalaxBackground : MonoBehaviour
 
 	private void Update()
 	{
+		if (GameManager.Get().IsGamePaused)
+		{
+			return;
+		}
+
 		if (_spriteRenderer.isVisible && !wasSeen)
 		{
 			wasSeen = true;
 		}
-		
-		if (!_cameraMovement.IsCameraMovingForward || Time.timeScale <= 0.0f)
+
+		if (!_cameraMovement.IsCameraMovingForward)
 		{
 			return;
 		}
 
 		var transformPosition = direction * (_speed * Time.deltaTime * _playerMovement.Speed);
 		gameObject.transform.position += transformPosition;
-		
+
 		if (!_spriteRenderer.isVisible && wasSeen)
 		{
 			wasSeen = false;

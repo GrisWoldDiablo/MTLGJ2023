@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e5493f285343342bf66290a33b2f2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 25
+  _speed: 7
   _jumpHeight: 12
   _timeOfSlowdown: 3
   _slidingDuration: 1
@@ -470,7 +470,7 @@ Transform:
   - {fileID: 8069670821243374622}
   - {fileID: 363505896712087593}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2273437925906215858
 PrefabInstance:
