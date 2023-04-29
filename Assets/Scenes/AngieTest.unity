@@ -227,6 +227,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1748354005564616583, guid: 4cbf4a5a81ac19b48b6c3e0e2cd2199c, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3007045640926987792, guid: 4cbf4a5a81ac19b48b6c3e0e2cd2199c, type: 3}
       propertyPath: audioClipList.Array.size
       value: 0
