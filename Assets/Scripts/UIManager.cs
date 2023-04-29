@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -14,7 +15,6 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private Button _runButton;
 	[SerializeField] private CanvasGroup _mainCanvasGroup;
 	[SerializeField] private CanvasGroup _pauseCanvasGroup;
-
 	
 	public bool IsPause { get; private set; } = true;
 
@@ -72,10 +72,12 @@ public class UIManager : MonoBehaviour
 		Time.timeScale = 1.0f;
 		_pauseCanvasGroup.alpha = 0.0f;
 		_pauseCanvasGroup.blocksRaycasts = false;
+		EventSystem.current.SetSelectedGameObject(null);
 	}
 
 	private void OnStartButtonClicked()
 	{
+		EventSystem.current.SetSelectedGameObject(null);
 		_mainCanvasGroup.alpha = 0.0f;
 		_mainCanvasGroup.blocksRaycasts = false;
 		Time.timeScale = 1.0f;
