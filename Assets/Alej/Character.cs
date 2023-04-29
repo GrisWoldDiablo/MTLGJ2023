@@ -1,33 +1,29 @@
+using System;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-	[SerializeField] private int _health;
+	[SerializeField] private int _startingHeath = 3;
 	[SerializeField] private bool _isInvincible = false;
 
+	private int _health = 0;
 	private bool isDead = false;
 
+	public event Action<int> OnHealthChange;
+	
 	public int Health
 	{
 		get => _health;
 		set => _health = value;
 	}
 
-	public bool IsDead
-	{
-		get => isDead;
-	}
+	public bool IsDead => isDead;
 
+	public PlayerMovement PlayerMovement => GetComponent<PlayerMovement>();
 
-	public PlayerMovement PlayerMovement
+	private void Start()
 	{
-		get => GetComponent<PlayerMovement>();
-	}
-
-	void Die()
-	{
-		//game manager end game
-		isDead = true;
+		ModifyHealth(_startingHeath);
 	}
 
 	public void ModifyHealth(int damage)
@@ -42,8 +38,15 @@ public class Character : MonoBehaviour
 		{
 			Die();
 		}
+		
+		OnHealthChange?.Invoke(damage);
 	}
 
+	void Die()
+	{
+		//game manager end game
+		isDead = true;
+	}
 
 	public void ModifySpeed(float modification)
 	{

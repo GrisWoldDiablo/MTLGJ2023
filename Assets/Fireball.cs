@@ -1,42 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    Rigidbody2D rb;
-    
-    [SerializeField]
-    float speed = 5.0f;
+	Rigidbody2D rb;
 
-    [SerializeField]
-    int damage = 3;
+	[SerializeField] float speed = 5.0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 1;
-        rb.velocity = new Vector2(speed, rb.velocity.y);
-    }
+	[SerializeField] int damage = 3;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	[SerializeField] private ParticleSystem boom;
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Character player = other.GetComponent<Character>();
+	private SpriteRenderer sprite;
+	private BoxCollider2D col;
 
-        if(player != null)
-        {
-            player.ModifyHealth(-damage);
-        }
+	// Start is called before the first frame update
+	void Start()
+	{
+		sprite = GetComponent<SpriteRenderer>();
+		col = GetComponent<BoxCollider2D>();
 
-        //do camera shake
-        CameraMovement cameraMovement = Camera.main.GetComponent<CameraMovement>();
-        cameraMovement.DoCameraShake(0.75f, 0.1f);
-    }
+		rb = GetComponent<Rigidbody2D>();
+		rb.gravityScale = 1;
+		rb.velocity = new Vector2(speed, rb.velocity.y);
+	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		Character player = other.GetComponentInParent<Character>();
+
+		if (player != null)
+		{
+			player.ModifyHealth(-damage);
+			transform.position = player.transform.position;
+		}
+
+		Explode();
+		//also destroy when hit the grounds
+	}
+
+	void Explode()
+	{
+		sprite.enabled = false;
+		rb.gravityScale = 0;
+		rb.velocity = Vector2.zero;
+		col.enabled = false;
+		boom.Play();
+		Destroy(gameObject, boom.main.duration);
+
+	}
 }
