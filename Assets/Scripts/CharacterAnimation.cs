@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
 {
-	[SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private Character _character;
+    [SerializeField] private PlayerMovement _playerMovement;
 	[SerializeField] private SpriteRenderer _spriteRenderer;
 	[Min(1.0f)] [SerializeField] private float _animationSpeed = 100.0f;
 	[SerializeField] private Sprite[] _runSprites;
@@ -14,7 +15,6 @@ public class CharacterAnimation : MonoBehaviour
 	[SerializeField] private Sprite[] _dieSprites;
 
 	private Sprite[] _currentSprites;
-	private bool _isDead = false;
 
 	private void Start()
 	{
@@ -24,14 +24,9 @@ public class CharacterAnimation : MonoBehaviour
 
 	void Update()
 	{
-		if (_isDead) // TODO Move dead logic to Player Class
+		if (_character.IsDead) // TODO Move dead logic to Player Class
 		{
 			return;
-		}
-
-		if (Input.GetKeyDown(KeyCode.P))
-		{
-			_isDead = true;
 		}
 
 		switch (_playerMovement.GetPlayerState())
@@ -51,7 +46,7 @@ public class CharacterAnimation : MonoBehaviour
 	private IEnumerator Animate()
 	{
 		int currentIndex = 0;
-		while (!_isDead)
+		while (!_character.IsDead)
 		{
 			yield return new WaitForSeconds(1.0f / _animationSpeed);
 			if (_currentSprites.Length == 0)
