@@ -11,9 +11,9 @@ public class GameManager : MonoBehaviour
 
 	public bool IsGamePaused => UIManager.Get().IsPause;
 
-	[SerializeField] private GameObject _player;
+	[SerializeField] private Character _player;
 
-	public GameObject Player => _player;
+	public Character Player => _player;
 
 	private void Awake()
 	{

@@ -33,10 +33,10 @@ public class Fireball : MonoBehaviour
         if(player != null)
         {
             player.ModifyHealth(-damage);
-            Destroy(gameObject);
         }
 
-
-        //also destroy when hit the grounds
+        //do camera shake
+        CameraMovement cameraMovement = Camera.main.GetComponent<CameraMovement>();
+        cameraMovement.DoCameraShake(0.75f, 0.1f);
     }
 }

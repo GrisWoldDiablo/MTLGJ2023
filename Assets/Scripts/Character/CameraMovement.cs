@@ -46,8 +46,15 @@ public class CameraMovement : MonoBehaviour
 		{
 			newY = player.position.y - 1f;
 		}
-		
-		transform.position = new Vector3(newX, newY, newZ);
+
+        Vector3 updatePos = new Vector3(newX, newY, newZ);
+
+        if (bIsShaking)
+		{
+            updatePos += shakeTransform;
+        }
+
+		transform.position = updatePos;
 		
 	}
 
@@ -67,8 +74,6 @@ public class CameraMovement : MonoBehaviour
 
     void LateUpdate()
 	{
-		
-		
 		//X axis clamping
 		if (!_allowCameraX)
 		{
@@ -103,4 +108,37 @@ public class CameraMovement : MonoBehaviour
 		}
 
 	}
+
+
+	bool bIsShaking = false;
+
+	public void DoCameraShake(float shakeDuration, float shakeMagnitude)
+	{
+		StartCoroutine(Shake(shakeDuration, shakeMagnitude));
+    }
+
+	Vector3 shakeTransform = new Vector3();
+    private IEnumerator Shake(float shakeDuration, float shakeMagnitude)
+    {
+		Vector3 initialPosition = gameObject.transform.position;
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < shakeDuration)
+        {
+            float x = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
+            float y = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
+
+            shakeTransform = new Vector3(x, y, 0f);
+
+            elapsedTime += Time.deltaTime;
+
+            bIsShaking = true;
+            yield return null;
+        }
+
+		bIsShaking = false;
+        transform.localPosition = initialPosition;
+    }
+
 }
