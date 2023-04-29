@@ -17,20 +17,20 @@ public class CameraMovement : MonoBehaviour
 	private float objectWidth;
 	
 	private Vector2 _offset;
-	private float upperY;
+	private float preframeX;
+
     private void Start()
     {
-        
+	    preframeX = player.transform.position.x;
         _camera = GetComponent<Camera>();
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         objectWidth = _spriteRenderer.bounds.size.x / 2;
         _offset = new Vector2(transform.localPosition.x,transform.localPosition.y);
         transform.position = new Vector3(player.position.x + _offset.x,player.position.y + _offset.y, transform.position.z);
     }
-	
-    
-	
-	void Update()
+
+
+    void Update()
 	{
 		//Y axis clamping
 		float newX = transform.localPosition.x;
@@ -48,10 +48,27 @@ public class CameraMovement : MonoBehaviour
 		}
 		
 		transform.localPosition = new Vector3(newX, newY, newZ);
+		
 	}
 
-	void LateUpdate()
+    private void FixedUpdate()
+    {
+	    if (player.transform.position.x - preframeX > 0 && _allowCameraX)
+	    {
+		    _isCameraMovingForward = true;
+	    }
+	    else
+	    {
+		    _isCameraMovingForward = false;
+
+	    }    
+	    preframeX = player.transform.position.x;
+    }
+
+    void LateUpdate()
 	{
+		
+		
 		//X axis clamping
 		if (!_allowCameraX)
 		{
@@ -62,6 +79,7 @@ public class CameraMovement : MonoBehaviour
 			viewPos.x = Mathf.Clamp(viewPos.x, transform.position.x - (screenBounds.x - transform.position.x) + objectWidth, screenBounds.x - objectWidth);
 			player.position = viewPos;
 		}
+		
 	}
 
 	private Vector3 tempPlayerPos;
@@ -72,7 +90,6 @@ public class CameraMovement : MonoBehaviour
 		{
 			tempPlayerPos = player.position;
 			_allowCameraX = false;
-			_isCameraMovingForward = false;
 		}
 
 		if (val && !_allowCameraX)
@@ -82,7 +99,6 @@ public class CameraMovement : MonoBehaviour
 				tempPlayerPos.y = player.position.y;
 				player.position = tempPlayerPos;
 				_allowCameraX = true;
-				_isCameraMovingForward = true;
 			}
 		}
 

@@ -66,14 +66,14 @@ public class PlayerMovement : MonoBehaviour
 
 	}
 
+	//Speed and time variables
 	private float _forwardSpeed = 1.1f;
 	private float _maxForwardSpeed = 1.1f;
 	private float _time = 0;
 	private float _slidingTime = 0;
 	private float _dirX;
 	private bool _isHittingRoof;
-	private float _bufferSlidingTime = -1f;
-	private float _maxSlidingBufferTime = 0.25f;
+	private bool _isSlidingUnderRoof = false;
 
 	void Update()
 	{
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void MoveLeftRight()
 	{
-		if (_bufferSlidingTime > 0)
+		if (_isSlidingUnderRoof)
 		{
 			return;
 		}
@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
 	private void MoveUpDown()
 	{
 
-		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Jump")) && IsGrounded && _bufferSlidingTime <= 0)
+		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Jump")) && IsGrounded && !_isSlidingUnderRoof)
 		{
 			_body.velocity = new Vector2(_body.velocity.x, _jumpHeight);
 			_isSliding = false;
@@ -152,35 +152,35 @@ public class PlayerMovement : MonoBehaviour
 		{
 			if (_isHittingRoof)
 			{
-				_slidingTime = Mathf.Max(_maxSlidingBufferTime,_slidingTime);
-				_bufferSlidingTime = _maxSlidingBufferTime;
+				_slidingTime -= Time.deltaTime;
+				_isSlidingUnderRoof = true;
+				return;
 			}
 			
 			if (_slidingTime > 0 )
 			{
 				_slidingTime -= Time.deltaTime;
-				_bufferSlidingTime -= Time.deltaTime;
+				_isSlidingUnderRoof = false;
 			}
 			else
 			{
 				_isSliding = false;
+				_isSlidingUnderRoof = false;
 			}
 		}
-		else
-		{
-			_bufferSlidingTime = -1;
-		}
-	}
 
+	}
 	private bool IsHittingRoof()
 	{
-		var hitPos1 = new Vector2(transform.position.x-0.01f,transform.position.y);
-		var hitPos2 = new Vector2(transform.position.x+0.01f,transform.position.y);
-		
-		RaycastHit2D hit = Physics2D.Raycast(hitPos1, Vector2.up,1f);
-		RaycastHit2D hit2 = Physics2D.Raycast(hitPos2, Vector2.up,1f);
+		var hitPos1 = new Vector2(transform.position.x-0.1f,transform.position.y- 0.7f);
+		var hitPos2 = new Vector2(transform.position.x+0.1f,transform.position.y- 0.7f);
+		Debug.DrawLine(hitPos1,hitPos1+ Vector2.up* 0.5f,Color.red);
+		Debug.DrawLine(hitPos2,hitPos2+ Vector2.up* 0.5f,Color.red);
 
-		return hit && hit2;
+		RaycastHit2D hit = Physics2D.Raycast(hitPos1, Vector2.up,0.5f);
+		RaycastHit2D hit2 = Physics2D.Raycast(hitPos2, Vector2.up,0.5f);
+
+		return hit || hit2;
 	}
 
 	private void ResetCollisions()
