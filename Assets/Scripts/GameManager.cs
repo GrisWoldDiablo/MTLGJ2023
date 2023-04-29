@@ -21,4 +21,10 @@ public class GameManager : MonoBehaviour
 			DestroyImmediate(this);
 		}
 	}
+
+	public void StartGame()
+	{
+		// TODO logic start game.
+		Debug.Log("Start Game");
+	}
 }
