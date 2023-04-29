@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	[SerializeField] private int _health;
+	[SerializeField] private float _speed;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public int Health { get => _health; set => _health = value; }
+	public float Speed { get => _speed; set => _speed = value; }
+
+	public void ModifyHealth(int damage)
+	{
+		_health += damage;
+	}
+
+	public void ModifySpeed(float modification)
+	{
+		_speed += modification;
+	}
 }
