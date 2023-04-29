@@ -52,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
                 _time = 0;
                 _forwardSpeed = _maxForwardSpeed;
             }
-            Debug.Log("Speed: " + _forwardSpeed);
             dirX = _forwardSpeed;
             _camera.AllowCameraMovement(true);
         }
