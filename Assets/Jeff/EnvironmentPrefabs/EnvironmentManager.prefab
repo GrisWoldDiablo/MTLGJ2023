@@ -48,7 +48,7 @@ MonoBehaviour:
   environmentObjectList:
   - {fileID: 8971083833398317402, guid: eca2f076d4c92db4cae8611c7d1034f8, type: 3}
   obstacleObjectList:
-  - {fileID: 6200705233266992062, guid: c0fbe336a7c642746a5c206dc3c8614f, type: 3}
+  - {fileID: 6866674086465982657, guid: cf0f8f0598644a440823f63a490c761c, type: 3}
   - {fileID: 3394999792726553591, guid: 334cc50fd0e722947a278b419d5dd42b, type: 3}
   numAssetsToSpawnOnLoad: 15
   numSlicesToSpawnOnRenew: 5
