@@ -19,17 +19,11 @@ public class ProceduralEnvGenerator : MonoBehaviour
 
     [SerializeField]
     public int numAssetsToSpawnOnLoad = 10;
-    //[SerializeField]
-    //public float spacing = 2f;
 
     //keeps track of the X coordinate at which to spawn the next environment slice
     private float currentSpawnPostitionX = 0.0f;
     private float spawnPositionY = 0.0f;
 
-    //might not need to be exposed if flat ground?
-
-    //benefits of EnvironmentSliceClass ? what functionality would this hold
-    
     private EnvironmentAsset GetRandomEnvironmentAsset()
     {
         int randomAssetIndex = Random.Range(0, environmentObjectList.Length);
@@ -41,7 +35,6 @@ public class ProceduralEnvGenerator : MonoBehaviour
         Vector2 spawnPosition = new Vector2(currentSpawnPostitionX, spawnPositionY);
         EnvironmentAsset asset = Instantiate(EnvironmentAsset, spawnPosition, Quaternion.identity, this.gameObject.transform);
         asset.transform.position = new Vector2(spawnPosition.x, spawnPosition.y);
-        //this spacing value should be the length of our chosen slice of environment  (ideally they are all the same)
         float spacing = EnvironmentAsset.GetEnvironmentLength();
 
         currentSpawnPostitionX += spacing;
@@ -51,9 +44,6 @@ public class ProceduralEnvGenerator : MonoBehaviour
     private void Start()
     {
         //set first spawn position to leftmost coordinate of viewpoint
-
-        //currentSpawnPostitionX = this.gameObject.transform.position.x;
-
         currentSpawnPostitionX = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
         spawnPositionY = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
 
