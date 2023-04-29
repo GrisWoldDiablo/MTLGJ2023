@@ -4,7 +4,12 @@ public class GameManager : MonoBehaviour
 {
 	private static GameManager _sInstance;
 
-	public static GameManager Get()
+	[SerializeField] 
+	private GameObject _player;
+
+    public GameObject Player { get => _player;}
+
+    public static GameManager Get()
 	{
 		return _sInstance;
 	}
