@@ -49,6 +49,7 @@ public class EnvironmentAsset : MonoBehaviour
             GameObject segmentObject = new GameObject("Segment " + (i + 1));
             segmentObject.transform.parent = gameObject.transform;
             segmentTransforms[i] = segmentObject.transform;
+            
             segmentTransforms[i].position = new Vector3(gameObject.transform.position.x + (i * obstacleSpacing), gameObject.transform.position.y + GetEnvironmentSprite().bounds.max.y, 0f);
 
             //Generate obstacles for slice
