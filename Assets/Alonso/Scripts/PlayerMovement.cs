@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
 	private float _maxForwardSpeed = 1.1f;
 	private float _time = 0;
 	private float _dirX;
+	private float _dirY;
 
 	void Update()
 	{
@@ -65,7 +66,9 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		_body.velocity = new Vector2(_dirX * _speed, _body.velocity.y);
-		if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+		_dirY = Input.GetAxisRaw("Vertical");
+
+		if ((Input.GetKeyDown(KeyCode.Space) || _dirY > 0) && _isGrounded)
 		{
 			_body.velocity = new Vector2(_body.velocity.x, _jumpHeight);
 		}

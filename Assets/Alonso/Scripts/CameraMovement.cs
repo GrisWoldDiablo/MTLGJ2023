@@ -12,19 +12,18 @@ public class CameraMovement : MonoBehaviour
 
 	private bool _allowCameraX = true;
 
-	private Camera _camera;
-	private Vector2 screenBounds;
-	private float objectWidth;
+    private float centeredY;
+    private void Start()
+    {
+        
+        _camera = GetComponent<Camera>();
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        objectWidth = _spriteRenderer.bounds.size.x / 2;
+        transform.position = new Vector3(player.position.x + _offset.x,player.position.y + _offset.y, transform.position.z);
+        
+        centeredY = transform.position.y;
+    }
 
-	private float centeredY;
-
-	private void Start()
-	{
-		_camera = GetComponent<Camera>();
-		screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-		objectWidth = _spriteRenderer.bounds.size.x / 2;
-		centeredY = transform.position.y;
-	}
 
 	void Update()
 	{
