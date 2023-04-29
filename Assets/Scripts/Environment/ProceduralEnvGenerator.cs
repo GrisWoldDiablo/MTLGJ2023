@@ -12,32 +12,35 @@ using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class ProceduralEnvGenerator : MonoBehaviour
 {
-	[SerializeField] private EnvironmentAsset[] environmentObjectList;
+    private static ProceduralEnvGenerator _sInstance;
 
+    [Header("EnvironmentLists")]
+    [SerializeField] private EnvironmentAsset[] environmentObjectList;
 	[SerializeField] private GameObject[] obstacleObjectList;
-
 	[SerializeField] private int numAssetsToSpawnOnLoad = 10;
-
-	[SerializeField] private Queue<EnvironmentAsset> spawnedEnvironmentSlices;
+	[SerializeField] private int numSlicesToSpawnOnRenew = 5;
 
 	//keeps track of the X coordinate at which to spawn the next environment slice
 	private float currentSpawnPostitionX = 0.0f;
 	private float spawnPositionY = 0.0f;
 
 	//these should be the same
-	[SerializeField] private int numSlicesToSpawnOnRenew = 5;
 
-	//keeps track of expired slices, when this == numSlicesToSpawnOnRenew we generate another batch of the same amount
 	private int expiredSlicesCount = 0;
 
-	private static ProceduralEnvGenerator _sInstance;
+    [Header("Obstacles")]
+    [SerializeField]
+    private int minSegmentsBetweenObstacles = 18;
+    [SerializeField]
+    private int maxSegmentsBetweenObstacles = 64;
+    private float randomizedNumSegmentsBetweenObstacles; //uses range & above value
+    private int numSegmentsSinceLastObstacles = 0;
 
-	public int NumSlicesToSpawnOnRenew
-	{
-		get => numSlicesToSpawnOnRenew;
-	}
+	public int NumSlicesToSpawnOnRenew{ get => numSlicesToSpawnOnRenew; } //does this need to be exposed?
+    public int NumSegmentsSinceLastObstacles { get => numSegmentsSinceLastObstacles; set => numSegmentsSinceLastObstacles = value; }
+    public float RandomizedNumSegmentsBetweenObstacles { get => randomizedNumSegmentsBetweenObstacles;}
 
-	public static ProceduralEnvGenerator Get()
+    public static ProceduralEnvGenerator Get()
 	{
 		return _sInstance;
 	}
@@ -56,19 +59,36 @@ public class ProceduralEnvGenerator : MonoBehaviour
 		int randomAssetIndex = Random.Range(0, environmentObjectList.Length);
 		return environmentObjectList[randomAssetIndex];
 	}
+	public GameObject GetRandomObstacle()
+	{
+        int randomAssetIndex = Random.Range(0, obstacleObjectList.Length);
+        return obstacleObjectList[randomAssetIndex];
+    }
 
-	private void GenerateEnvironmentSlice(EnvironmentAsset EnvironmentAsset)
+	private void RandomizeNumberSegmentsBetweenObstacles()
+	{
+        randomizedNumSegmentsBetweenObstacles = Random.Range(minSegmentsBetweenObstacles, maxSegmentsBetweenObstacles);
+    }
+
+	//called by asset on appropriate segment, maybe better to just contain this in the slice class directly
+	public void GenerateRandomObstacle(Vector2 SpawnPosition, Transform Parent)
+	{
+		RandomizeNumberSegmentsBetweenObstacles();
+        GameObject obstacle = Instantiate(GetRandomObstacle(), SpawnPosition, Quaternion.identity, Parent);
+    }
+
+    private void GenerateEnvironmentSlice(EnvironmentAsset EnvironmentAsset)
 	{
 		Vector2 spawnPosition = new Vector2(currentSpawnPostitionX, spawnPositionY);
-		EnvironmentAsset asset = Instantiate(EnvironmentAsset, spawnPosition, Quaternion.identity, this.gameObject.transform);
-		asset.transform.position = new Vector2(spawnPosition.x, spawnPosition.y);
-		float spacing = asset.GetEnvironmentLength();
+		EnvironmentAsset slice = Instantiate(EnvironmentAsset, spawnPosition, Quaternion.identity, gameObject.transform);
+		
+		float spacing = slice.GetEnvironmentLength();
 
 		currentSpawnPostitionX += spacing;
-		spawnedEnvironmentSlices.Enqueue(asset);
-	}
+    }
 
-	public void IncrementExpired()
+
+    public void IncrementExpired()
 	{
 		expiredSlicesCount++;
 		if (expiredSlicesCount >= NumSlicesToSpawnOnRenew)
@@ -94,7 +114,7 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	// Start is called before the first frame update
 	private void Start()
 	{
-		spawnedEnvironmentSlices = new Queue<EnvironmentAsset>();
+		RandomizeNumberSegmentsBetweenObstacles();
 
 		//set first spawn position to leftmost coordinate of viewpoint
 		currentSpawnPostitionX = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
