@@ -22,6 +22,7 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
+        //Add effects in vector3 if needed
         if (_allowCameraMovement)
         {
             transform.position = new Vector3(player.position.x + _offset.x, player.position.y + _offset.y, transform.position.z);

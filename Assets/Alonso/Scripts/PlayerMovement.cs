@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private bool _leftAllowed = false;
 
     private Rigidbody2D _body;
     [Header("Movement")]
     [SerializeField] private float _speed = 7f;
     [SerializeField] private float _jumpHeight = 14f;
-    
+    [SerializeField] private float _timeToReachMaxSpeed = 1f;
+        
     [Header("Camera")]
     [SerializeField] private CameraMovement _camera; 
     
@@ -26,24 +26,34 @@ public class PlayerMovement : MonoBehaviour
         _body = GetComponent<Rigidbody2D>();
     }
 
+    private float _forwardSpeed = 1.1f;
+    private float _maxForwardSpeed = 1.1f;
+    private float _time = 0;
+
     void Update()
     {
         float dirX = Input.GetAxisRaw("Horizontal");
         if (dirX < 0f)
         {
-            if (_leftAllowed)
+            dirX = -0.3f;
+            _camera.AllowCameraMovement(false);
+        }else if (dirX >= 0f)
+        {
+            if (_forwardSpeed < _maxForwardSpeed)
             {
-                dirX = -0.3f;
-                _camera.AllowCameraMovement(false);
+                _time += Time.deltaTime;
+                if (_time > 3f)
+                {
+                    _forwardSpeed += Time.deltaTime * (_maxForwardSpeed / _timeToReachMaxSpeed);
+                }
             }
             else
             {
-                dirX = 0.1f;
-
+                _time = 0;
+                _forwardSpeed = _maxForwardSpeed;
             }
-        }else if (dirX >= 0f)
-        {
-            dirX = 1.1f;
+            Debug.Log("Speed: " + _forwardSpeed);
+            dirX = _forwardSpeed;
             _camera.AllowCameraMovement(true);
         }
 
@@ -54,4 +64,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void SlowDown()
+    {
+        _forwardSpeed = _maxForwardSpeed / 2;
+    }
 }
