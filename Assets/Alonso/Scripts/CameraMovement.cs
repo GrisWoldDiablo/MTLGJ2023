@@ -12,6 +12,10 @@ public class CameraMovement : MonoBehaviour
 
 	private bool _allowCameraX = true;
 
+	private Camera _camera;
+	private Vector2 screenBounds;
+	private float objectWidth;
+	
     private float centeredY;
     private void Start()
     {
