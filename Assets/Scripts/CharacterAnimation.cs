@@ -1,12 +1,14 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
 {
+	[SerializeField] private PlayerMovement _playerMovement;
 	[SerializeField] private SpriteRenderer _spriteRenderer;
 	[Min(1.0f)] [SerializeField] private float _animationSpeed = 100.0f;
 	[SerializeField] private Sprite[] _runSprites;
+	[SerializeField] private Sprite[] _jumpSprites;
+	[SerializeField] private Sprite[] _walkBackSprites;
 
 	private Sprite[] _currentSprites;
 
@@ -16,7 +18,17 @@ public class CharacterAnimation : MonoBehaviour
 		StartCoroutine(Animate());
 	}
 
-	void Update() { }
+	void Update()
+	{
+		if (_playerMovement.IsGrounded)
+		{
+			_currentSprites = _playerMovement.IsMovingForward ? _runSprites : _walkBackSprites;
+		}
+		else
+		{
+			_currentSprites = _jumpSprites;
+		}
+	}
 
 	private IEnumerator Animate()
 	{
@@ -28,7 +40,7 @@ public class CharacterAnimation : MonoBehaviour
 			{
 				continue;
 			}
-			
+
 			if (currentIndex >= _currentSprites.Length)
 			{
 				currentIndex = 0;
