@@ -7,7 +7,6 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
 	[SerializeField] private Transform player;
-	[SerializeField] private Vector2 _offset = new(2.0f, 2.3f);
 	[SerializeField] private SpriteRenderer _spriteRenderer;
 
 	private bool _allowCameraX = true;
@@ -16,37 +15,38 @@ public class CameraMovement : MonoBehaviour
 	private Vector2 screenBounds;
 	private float objectWidth;
 	
-    private float centeredY;
+	private Vector2 _offset;
+	private float upperY;
     private void Start()
     {
         
         _camera = GetComponent<Camera>();
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         objectWidth = _spriteRenderer.bounds.size.x / 2;
+        _offset = new Vector2(transform.localPosition.x,transform.localPosition.y);
         transform.position = new Vector3(player.position.x + _offset.x,player.position.y + _offset.y, transform.position.z);
-        
-        centeredY = transform.position.y;
     }
-
-
+	
+    
+	
 	void Update()
 	{
-		float newX = transform.position.x;
-		float newY = centeredY;
-		float newZ = transform.position.z;
+		float newX = transform.localPosition.x;
+		float newY = transform.localPosition.y;
+		float newZ = transform.localPosition.z;
 
 
 		//Add effects in vector3 if needed
 		if (_allowCameraX)
 		{
-			newX = player.position.x + _offset.x;
+			newX = player.localPosition.x + _offset.x;
 		}
-		if (player.position.y > centeredY + 0.2f)
+		if (player.localPosition.y > _offset.y + 1f)
 		{
-			newY = player.position.y;
+			newY = player.localPosition.y - 1f;
 		}
-
-		transform.position = new Vector3(newX, newY, newZ);
+		
+		transform.localPosition = new Vector3(newX, newY, newZ);
 	}
 
 	void LateUpdate()
