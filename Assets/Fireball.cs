@@ -50,7 +50,10 @@ public class Fireball : MonoBehaviour
 		rb.velocity = Vector2.zero;
 		col.enabled = false;
 		boom.Play();
-		Destroy(gameObject, boom.main.duration);
+        CameraMovement cameraMovement = Camera.main.GetComponent<CameraMovement>();
+        cameraMovement.DoCameraShake(0.75f, 0.1f);
+
+        Destroy(gameObject, boom.main.duration);
 
 	}
 }
