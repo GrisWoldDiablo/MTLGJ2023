@@ -109,26 +109,20 @@ public class CameraMovement : MonoBehaviour
 			}
 		}
 
-	}
-
-
-	bool bIsShaking = false;
-
-
-	public void DoCameraShake(float shakeDuration, float shakeMagnitude)
-
-	{
-
-		StartCoroutine(Shake(shakeDuration, shakeMagnitude));
-
-	}
-
-
-	Vector3 shakeTransform = new Vector3();
-
-	private IEnumerator Shake(float shakeDuration, float shakeMagnitude)
-	{
-		Vector3 initialPosition = gameObject.transform.position;
+	}
+
+
+	bool bIsShaking = false;
+
+	public void DoCameraShake(float shakeDuration, float shakeMagnitude)
+	{
+		StartCoroutine(Shake(shakeDuration, shakeMagnitude));
+    }
+
+	Vector3 shakeTransform = new Vector3();
+    private IEnumerator Shake(float shakeDuration, float shakeMagnitude)
+    {
+		Vector3 initialPosition = transform.localPosition;
 
 		float elapsedTime = 0f;
 
