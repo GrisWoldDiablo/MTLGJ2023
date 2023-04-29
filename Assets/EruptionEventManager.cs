@@ -14,6 +14,9 @@ public class EruptionEventManager : MonoBehaviour
 
     private float randomTimeRequired = 0.0f;
     private float timeSinceLastEvent = 0.0f;
+    
+    [Header("Debug")]
+    [SerializeField] private bool disableEruption;
 
     private void SpawnEruptionEvent()
     {
@@ -55,6 +58,11 @@ public class EruptionEventManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (disableEruption)
+        {
+            return;
+        }
+
         if(timeSinceLastEvent < randomTimeRequired)
         {
             timeSinceLastEvent += Time.deltaTime;

@@ -28,13 +28,16 @@ public class ProceduralEnvGenerator : MonoBehaviour
 
 	private int expiredSlicesCount = 0;
 
-    [Header("Obstacles")]
+	[Header("Obstacles")]
     [SerializeField]
     private int minSegmentsBetweenObstacles = 18;
     [SerializeField]
     private int maxSegmentsBetweenObstacles = 64;
     private float randomizedNumSegmentsBetweenObstacles; //uses range & above value
     private int numSegmentsSinceLastObstacles = 0;
+	[Header("Debug")]
+	[SerializeField]
+	bool disableObstacle = false;
 
 	public int NumSlicesToSpawnOnRenew{ get => numSlicesToSpawnOnRenew; } //does this need to be exposed?
     public int NumSegmentsSinceLastObstacles { get => numSegmentsSinceLastObstacles; set => numSegmentsSinceLastObstacles = value; }
@@ -73,7 +76,11 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	//called by asset on appropriate segment, maybe better to just contain this in the slice class directly
 	public void GenerateRandomObstacle(Vector2 SpawnPosition, Transform Parent)
 	{
-		RandomizeNumberSegmentsBetweenObstacles();
+        if (disableObstacle)
+        {
+            return;
+        }
+        RandomizeNumberSegmentsBetweenObstacles();
         GameObject obstacle = Instantiate(GetRandomObstacle(), SpawnPosition, Quaternion.identity, Parent);
     }
 
@@ -114,6 +121,7 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	// Start is called before the first frame update
 	private void Start()
 	{
+
 		RandomizeNumberSegmentsBetweenObstacles();
 
 		//set first spawn position to leftmost coordinate of viewpoint
