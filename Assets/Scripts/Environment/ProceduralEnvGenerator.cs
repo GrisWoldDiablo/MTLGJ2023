@@ -8,6 +8,7 @@ using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 using UnityEngine.UIElements;
 using UnityEngine.U2D;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class ProceduralEnvGenerator : MonoBehaviour
 {
@@ -18,11 +19,38 @@ public class ProceduralEnvGenerator : MonoBehaviour
     private GameObject[] obstacleObjectList;
 
     [SerializeField]
-    public int numAssetsToSpawnOnLoad = 10;
+    private int numAssetsToSpawnOnLoad = 10;
+
+    [SerializeField]
+    private Queue<EnvironmentAsset> spawnedEnvironmentSlices;
 
     //keeps track of the X coordinate at which to spawn the next environment slice
     private float currentSpawnPostitionX = 0.0f;
     private float spawnPositionY = 0.0f;
+
+    //these should be the same
+    [SerializeField]
+    private int numSlicesToSpawnOnRenew = 5;
+
+    //keeps track of expired slices, when this == numSlicesToSpawnOnRenew we generate another batch of the same amount
+    private int expiredSlicesCount = 0;
+
+    private static ProceduralEnvGenerator _sInstance;
+
+    public int NumSlicesToSpawnOnRenew { get => numSlicesToSpawnOnRenew;}
+    public static ProceduralEnvGenerator Get()
+    {
+        return _sInstance;
+    }
+
+    public void SpawnEnvironmentSlices(int numSlices)
+    {
+        for (int i = 0; i < numSlices; i++)
+        {
+            EnvironmentAsset RandomEnvironmentSlice = GetRandomEnvironmentAsset();
+            GenerateEnvironmentSlice(RandomEnvironmentSlice);
+        }
+    }
 
     private EnvironmentAsset GetRandomEnvironmentAsset()
     {
@@ -38,25 +66,42 @@ public class ProceduralEnvGenerator : MonoBehaviour
         float spacing = EnvironmentAsset.GetEnvironmentLength();
 
         currentSpawnPostitionX += spacing;
+        spawnedEnvironmentSlices.Enqueue(asset);
+    }
+
+    public void IncrementExpired()
+    {
+        expiredSlicesCount++;
+        if (expiredSlicesCount >= NumSlicesToSpawnOnRenew)
+        {
+            expiredSlicesCount = 0;
+            SpawnEnvironmentSlices(NumSlicesToSpawnOnRenew);
+        }
+    }
+
+    private void Awake()
+    {
+        if (!_sInstance)
+        {
+            _sInstance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            DestroyImmediate(this);
+        }
     }
 
     // Start is called before the first frame update
     private void Start()
     {
+        spawnedEnvironmentSlices = new Queue<EnvironmentAsset>();
+
         //set first spawn position to leftmost coordinate of viewpoint
         currentSpawnPostitionX = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
         spawnPositionY = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
 
-        for (int i = 0; i < numAssetsToSpawnOnLoad; i++)
-        {
-            EnvironmentAsset RandomEnvironmentSlice = GetRandomEnvironmentAsset();
-            GenerateEnvironmentSlice(RandomEnvironmentSlice);
-        }
+        SpawnEnvironmentSlices(numAssetsToSpawnOnLoad);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
