@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6731130473350794274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.27, y: -2.1, z: 0.04555471}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48,4 +48,3 @@ MonoBehaviour:
   - {fileID: 8971083833398317402, guid: eca2f076d4c92db4cae8611c7d1034f8, type: 3}
   obstacleObjectList: []
   numAssetsToSpawnOnLoad: 10
-  EnvironmentHeight: 2
