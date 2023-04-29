@@ -18,7 +18,9 @@ public class GameManager : MonoBehaviour
 	public Character Player => _player;
 
     public bool HasStarted { get; private set; } = false;
-
+	
+	public bool CanReceiveInput = true;
+	
     private void Awake()
     {
         Time.timeScale = 0.0f;

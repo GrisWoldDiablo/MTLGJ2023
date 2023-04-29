@@ -33,8 +33,8 @@ public class PlayerMovement : MonoBehaviour
     public bool IsMovingForward => _forwardSpeed > 0.0f;
     public Vector2 Velocity => _body.velocity;
 
-    public bool IsDead { get; set; } = false; // TODO Move dead logic to Player Class
-
+    public bool CanMove = true;
+        
     public PlayerState GetPlayerState()
     {
         if (!IsGrounded)
@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         _isHittingRoof = IsHittingRoof();
-        if (IsDead) // TODO Move dead logic to Player Class
+        if (!CanMove) // TODO Move dead logic to Player Class
         {
             _body.velocity = Vector2.zero;
             return;
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-		float _dirX = Input.GetAxisRaw("Horizontal");
+        float _dirX = GameManager.Get().CanReceiveInput ? Input.GetAxisRaw("Horizontal") : 0.0f;
         if (_dirX < 0f)
         {
             if (_forwardSpeed > -0.3f)
@@ -144,7 +144,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 		
-		
         _body.velocity = new Vector2(_forwardSpeed * _speed, _body.velocity.y);
         if (!_isSliding)
         {
@@ -155,20 +154,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveUpDown()
     {
-
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Jump")) && IsGrounded && !_isSlidingUnderRoof)
+        if (GameManager.Get().CanReceiveInput)
         {
-            _body.velocity = new Vector2(_body.velocity.x, _jumpHeight);
-            _isSliding = false;
-        }
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Jump")) && IsGrounded && !_isSlidingUnderRoof)
+            {
+                _body.velocity = new Vector2(_body.velocity.x, _jumpHeight);
+                _isSliding = false;
+            }
 
-        if (Input.GetButtonDown("Slide") && !_isSliding && IsGrounded && _forwardSpeed > 0)
-        {
-            _isSliding = true;
-            _slidingTime = _slidingDuration;
-            _boxCollider2D.size = _slidingColliderSize;
-            _boxCollider2D.offset = _slidingColliderOffset;
-
+            if (Input.GetButtonDown("Slide") && !_isSliding && IsGrounded && _forwardSpeed > 0)
+            {
+                _isSliding = true;
+                _slidingTime = _slidingDuration;
+                _boxCollider2D.size = _slidingColliderSize;
+                _boxCollider2D.offset = _slidingColliderOffset;
+            }
         }
 
         if (_isSliding)

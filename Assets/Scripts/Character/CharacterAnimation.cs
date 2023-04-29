@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
 {
-    [SerializeField] private Character _character;
-    [SerializeField] private PlayerMovement _playerMovement;
+	[SerializeField] private Character _character;
+	[SerializeField] private PlayerMovement _playerMovement;
 	[SerializeField] private SpriteRenderer _spriteRenderer;
 	[Min(1.0f)] [SerializeField] private float _animationSpeed = 100.0f;
 	[SerializeField] private Sprite[] _runSprites;
@@ -62,7 +61,9 @@ public class CharacterAnimation : MonoBehaviour
 			_spriteRenderer.sprite = _currentSprites[currentIndex];
 			currentIndex++;
 		}
-
+		
+		GameManager.Get().CanReceiveInput = false;
+		
 		currentIndex = 0;
 		_currentSprites = _dieSprites;
 		while (currentIndex < _currentSprites.Length)
@@ -72,6 +73,6 @@ public class CharacterAnimation : MonoBehaviour
 			currentIndex++;
 		}
 
-		_playerMovement.IsDead = true;
+		_playerMovement.CanMove = false;
 	}
 }

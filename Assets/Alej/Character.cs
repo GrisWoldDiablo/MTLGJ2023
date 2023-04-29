@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+	public bool KILLME = false;
 	[SerializeField] private int _startingHeath = 3;
 	[SerializeField] private bool _isInvincible = false;
 
@@ -26,9 +27,18 @@ public class Character : MonoBehaviour
 		ModifyHealth(_startingHeath);
 	}
 
+	private void Update()
+	{
+		if (KILLME)
+		{
+			KILLME = false;
+			ModifyHealth(-_health);
+		}
+	}
+
 	public void ModifyHealth(int damage)
 	{
-		if (_isInvincible)
+		if (_isInvincible || isDead)
 		{
 			return;
 		}
