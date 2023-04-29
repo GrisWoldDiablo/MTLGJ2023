@@ -4,15 +4,16 @@ public class GameManager : MonoBehaviour
 {
 	private static GameManager _sInstance;
 
-	[SerializeField] 
-	private GameObject _player;
-
-    public GameObject Player { get => _player;}
-
-    public static GameManager Get()
+	public static GameManager Get()
 	{
 		return _sInstance;
 	}
+
+	public bool IsGamePaused => UIManager.Get().IsPause;
+
+	[SerializeField] private GameObject _player;
+
+	public GameObject Player => _player;
 
 	private void Awake()
 	{
