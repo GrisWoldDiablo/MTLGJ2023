@@ -16,14 +16,19 @@ public class PlayerMovement : MonoBehaviour
 	[Header("Movement")] [SerializeField] private float _speed = 7f;
 	[SerializeField] private float _jumpHeight = 14f;
 	[SerializeField] private float _timeOfSlowdown = 3f;
-
+	[SerializeField] private float _slidingDuration = 2f;
 	[Header("Camera")] [SerializeField] private CameraMovement _camera;
 
 	[Header("Collisions")] [SerializeField]
 	private ContactFilter2D _contactFilter2D;
-
+	private BoxCollider2D _boxCollider2D;
+	private Vector2 _standingColliderSize;
+	private Vector2 _standingColliderOffset;
+	private Vector2 _slidingColliderSize;
+	private Vector2 _slidingColliderOffset;
+	
 	private bool _isGrounded => _body.IsTouching(_contactFilter2D);
-
+	private bool _isSliding = false;
 	public bool IsGrounded => _isGrounded;
 	public bool IsMovingForward => _dirX > 0.0f;
 
@@ -36,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 			return PlayerState.Jump;
 		}
 
-		if (_dirY < 0.0f)
+		if (_isSliding)
 		{
 			return PlayerState.Slide;
 		}
@@ -53,27 +58,50 @@ public class PlayerMovement : MonoBehaviour
 	void Start()
 	{
 		_body = GetComponent<Rigidbody2D>();
+		_boxCollider2D = GetComponent<BoxCollider2D>();
+		_standingColliderSize = _boxCollider2D.size;
+		_standingColliderOffset = _boxCollider2D.offset;
+		_slidingColliderSize = new Vector2(_standingColliderSize.x,_standingColliderSize.y / 2);
+		_slidingColliderOffset = new Vector2(_boxCollider2D.offset.x,_boxCollider2D.offset.y * 2);
+
 	}
 
 	private float _forwardSpeed = 1.1f;
 	private float _maxForwardSpeed = 1.1f;
 	private float _time = 0;
+	private float _slidingTime = 0;
 	private float _dirX;
-	private float _dirY;
+	private bool _isHittingRoof;
+	private float _bufferSlidingTime = -1f;
+	private float _maxSlidingBufferTime = 0.25f;
 
 	void Update()
 	{
+		_isHittingRoof = IsHittingRoof();
 		if (IsDead) // TODO Move dead logic to Player Class
 		{
 			_body.velocity = Vector2.zero;
 			return;
 		}
 
+		MoveLeftRight();
+		MoveUpDown();
+	}
+
+	private void MoveLeftRight()
+	{
+		if (_bufferSlidingTime > 0)
+		{
+			return;
+		}
+		
 		_dirX = Input.GetAxisRaw("Horizontal");
 		if (_dirX < 0f)
 		{
 			_dirX = -0.3f;
 			_camera.AllowCameraX(false);
+			_isSliding = false;
+
 		}
 		else if (_dirX >= 0f)
 		{
@@ -93,14 +121,72 @@ public class PlayerMovement : MonoBehaviour
 			_dirX = _forwardSpeed;
 			_camera.AllowCameraX(true);
 		}
-
 		_body.velocity = new Vector2(_dirX * _speed, _body.velocity.y);
-		_dirY = Input.GetAxisRaw("Vertical");
+		
+		if (!_isSliding)
+		{
+			ResetCollisions();
+		}
+	}
 
-		if ((Input.GetKeyDown(KeyCode.Space) || _dirY > 0) && _isGrounded)
+
+	private void MoveUpDown()
+	{
+
+		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Jump")) && IsGrounded && _bufferSlidingTime <= 0)
 		{
 			_body.velocity = new Vector2(_body.velocity.x, _jumpHeight);
+			_isSliding = false;
 		}
+
+		if (Input.GetButtonDown("Slide") && !_isSliding && IsGrounded && _dirX > 0)
+		{
+			_isSliding = true;
+			_slidingTime = _slidingDuration;
+			_boxCollider2D.size = _slidingColliderSize;
+			_boxCollider2D.offset = _slidingColliderOffset;
+
+		}
+
+		if (_isSliding)
+		{
+			if (_isHittingRoof)
+			{
+				_slidingTime = Mathf.Max(_maxSlidingBufferTime,_slidingTime);
+				_bufferSlidingTime = _maxSlidingBufferTime;
+			}
+			
+			if (_slidingTime > 0 )
+			{
+				_slidingTime -= Time.deltaTime;
+				_bufferSlidingTime -= Time.deltaTime;
+			}
+			else
+			{
+				_isSliding = false;
+			}
+		}
+		else
+		{
+			_bufferSlidingTime = -1;
+		}
+	}
+
+	private bool IsHittingRoof()
+	{
+		var hitPos1 = new Vector2(transform.position.x-0.01f,transform.position.y);
+		var hitPos2 = new Vector2(transform.position.x+0.01f,transform.position.y);
+		
+		RaycastHit2D hit = Physics2D.Raycast(hitPos1, Vector2.up,1f);
+		RaycastHit2D hit2 = Physics2D.Raycast(hitPos2, Vector2.up,1f);
+
+		return hit && hit2;
+	}
+
+	private void ResetCollisions()
+	{
+		_boxCollider2D.size = _standingColliderSize;
+		_boxCollider2D.offset = _standingColliderOffset;
 	}
 
 	/// <summary>
