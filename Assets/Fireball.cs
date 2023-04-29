@@ -34,13 +34,12 @@ public class Fireball : MonoBehaviour
             transform.position = player.transform.position;
             Explode();
         }
+
         if (other.CompareTag("Ground"))
         {
-
-            Invoke(nameof(Explode), 0.2f);
+            Invoke(nameof(Explode), 0.08f);
         }
 
-        //also destroy when hit the grounds
     }
 
 	void Explode()
@@ -50,8 +49,9 @@ public class Fireball : MonoBehaviour
 		rb.velocity = Vector2.zero;
 		col.enabled = false;
 		boom.Play();
+
         CameraMovement cameraMovement = Camera.main.GetComponent<CameraMovement>();
-        cameraMovement.DoCameraShake(0.75f, 0.1f);
+        cameraMovement.DoCameraShake(0.33f, 0.07f); //expose these
 
         Destroy(gameObject, boom.main.duration);
 

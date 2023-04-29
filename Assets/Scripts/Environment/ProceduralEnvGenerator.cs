@@ -126,7 +126,7 @@ public class ProceduralEnvGenerator : MonoBehaviour
 
 		//set first spawn position to leftmost coordinate of viewpoint
 		currentSpawnPostitionX = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
-		spawnPositionY = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
+		spawnPositionY = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).y - 0.7f; //expose this
 
 		SpawnEnvironmentSlices(numAssetsToSpawnOnLoad);
 	}
