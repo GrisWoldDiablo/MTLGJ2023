@@ -13,6 +13,8 @@ public class Character : MonoBehaviour
 
     private int _health = 0;
     private bool _isDead = false;
+    public bool IsDead { get => _isDead; set => _isDead = value; }
+
     [SerializeField] private bool _hasHammer = false;
     public bool HasHammer => _hasHammer;
     public event Action<int> OnHealthChange;
@@ -59,11 +61,12 @@ public class Character : MonoBehaviour
 
     private PlayerMovement _playerMove;
     public PlayerMovement PlayerMovement => _playerMove;
-	
-	void Die()
+
+
+    void Die()
 	{
 		//game manager end game
-		_isDead = true;
+		IsDead = true;
 		OnDie?.Invoke();
         CharacterSFXManager.Get().PlayDieSFX();
 	}
@@ -71,7 +74,7 @@ public class Character : MonoBehaviour
 
     public void ModifyHealth(int damage)
     {
-        if (_isInvincible || _isDead)
+        if (_isInvincible || IsDead)
         {
             return;
         }
