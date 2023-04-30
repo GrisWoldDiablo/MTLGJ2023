@@ -20,6 +20,7 @@ public class Biome
     [SerializeField] private GameObject[] obstacleObjectList;
 	[SerializeField] private GameObject parallax;
 
+    [SerializeField] float wallSpeedInBiome = 6.75f;
 	[SerializeField] float distanceToSpawnNext = 1000.0f;
 
     public EBiomeType BiomeType
@@ -53,6 +54,11 @@ public class Biome
 	{ 
 		get => distanceToSpawnNext;
 	}
+    public float WallSpeedInBiome 
+	{ 
+		get => wallSpeedInBiome; 
+		set => wallSpeedInBiome = value; 
+	}
 }
 
 public class ProceduralEnvGenerator : MonoBehaviour
@@ -60,7 +66,9 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	private static ProceduralEnvGenerator _sInstance;
 	[SerializeField] private bool cheat_NEXTBIOME = false;
 
-	[Header("EnvironmentLists")] [SerializeField]
+	[SerializeField] private SmokeWall smokeWall;
+
+    [Header("EnvironmentLists")] [SerializeField]
 	List<Biome> biomeList = new List<Biome>();
 	private Biome currentBiome;
 
@@ -168,6 +176,8 @@ public class ProceduralEnvGenerator : MonoBehaviour
 
 	private void InitializeBiome()
 	{
+		smokeWall.Speed = GetCurrentBiome().WallSpeedInBiome;
+
 		UpdateExistingSliceArt();
 
         var newParallax = Instantiate(currentBiome.Parallax, Camera.main.transform).GetComponent<Parallax>();
