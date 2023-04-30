@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 		HasStarted = true;
 		
 		// Start level music loop
-		MusicManager.Get().TransitionToLevelMusic();
+		//MusicManager.Get().TransitionToLevelMusic();
 	}
 
 	public void IncrementRunningDistance(float value)
