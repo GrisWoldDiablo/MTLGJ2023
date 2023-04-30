@@ -17,7 +17,7 @@ public class Parallax : MonoBehaviour
 	private float sizeX;
 	private float sizeY;
 
-	void Start()
+	void Awake()
 	{
 		_camera = Camera.main.transform;
 
@@ -37,7 +37,7 @@ public class Parallax : MonoBehaviour
 		}
 	}
 	
-	void Update()
+	public void Update()
 	{
 		for (int i = 0; i < Layer_Objects.Length; i++)
 		{

@@ -58,7 +58,7 @@ public class ProceduralEnvGenerator : MonoBehaviour
 
 	[SerializeField] private int numAssetsToSpawnOnLoad = 10;
 	[SerializeField] private int numSlicesToSpawnOnRenew = 5;
-	private GameObject parallax;
+	private Parallax parallax;
 
 	private Biome currentBiome;
 
@@ -110,7 +110,25 @@ public class ProceduralEnvGenerator : MonoBehaviour
 
 	private void InitializeBiome()
 	{
-        parallax = Instantiate(currentBiome.Parallax, Camera.main.transform);
+		var newParallax = Instantiate(currentBiome.Parallax, Camera.main.transform).GetComponent<Parallax>();
+		newParallax.transform.localPosition = Vector3.zero;
+
+		if (parallax)
+		{
+			var startPosX = parallax.StartPosX;
+			var startPosY = parallax.StartPosY;
+			for (var i = 0; i < parallax.Layer_Objects.Length; i++)
+			{
+				newParallax.Layer_Objects[i].transform.localPosition = parallax.Layer_Objects[i].transform.localPosition;
+			}
+
+			newParallax.StartPosX = startPosX;
+			newParallax.StartPosY = startPosY;
+
+			Destroy(parallax.gameObject, 1.0f);
+			newParallax.Update();
+		}
+		parallax = newParallax;
 
 		//handle spawning of special slice if exists
 		if(currentBiome.BiomeInitSlice != null)
@@ -120,19 +138,12 @@ public class ProceduralEnvGenerator : MonoBehaviour
         }
     }
 
-
     private Biome GetandAdvanceToNextBiome()
 	{
 		_currentBiomeIndex++;
 		currentBiome = GetCurrentBiome();
-		
-		if (parallax)
-		{
-			Destroy(parallax);
-		}
 
 		InitializeBiome();
-
 		return currentBiome;
 	}
 

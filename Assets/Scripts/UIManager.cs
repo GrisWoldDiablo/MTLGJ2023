@@ -79,7 +79,7 @@ public class UIManager : MonoBehaviour
 		}
 	}
 
-	private void Pause()
+	public void Pause()
 	{
 		IsPause = true;
 		Time.timeScale = 0.0f;

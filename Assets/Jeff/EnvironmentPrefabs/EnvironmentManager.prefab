@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 4847786274769207459}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6590974928362709214
 MonoBehaviour:
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a10b2b057321754b95ee8f3597fe266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cheat_NEXTBIOME: 0
   biomeList:
   - biomeType: 0
     environmentObjectList:
@@ -58,19 +59,17 @@ MonoBehaviour:
     environmentObjectList:
     - {fileID: 8971083833398317402, guid: 339d68e0cbf904c41ba3e74a558b5efd, type: 3}
     obstacleObjectList: []
-    parallax: {fileID: 5900863799802694701, guid: 515dd015473ced549900729eb7db8cc1, type: 3}
+    parallax: {fileID: 5900863799802694701, guid: bfb12e1a836ba9e4cb2398039c033985, type: 3}
   - biomeType: 1
     environmentObjectList: []
     obstacleObjectList: []
-    parallax: {fileID: 5900863799802694701, guid: b22f696d75b222742a95b6808da8a19f, type: 3}
+    parallax: {fileID: 5900863799802694701, guid: bfb12e1a836ba9e4cb2398039c033985, type: 3}
   numAssetsToSpawnOnLoad: 25
   numSlicesToSpawnOnRenew: 5
-  parallax: {fileID: 0}
   minSegmentsBetweenObstacles: 16
   maxSegmentsBetweenObstacles: 64
   disableObstacle: 0
   ySpawnModifier: -1
-  cheat_NEXTBIOME: 0
 --- !u!114 &2035923024879712188
 MonoBehaviour:
   m_ObjectHideFlags: 0
