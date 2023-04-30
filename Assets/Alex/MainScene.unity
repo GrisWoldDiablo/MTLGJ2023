@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &324795491 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1659848657142549706, guid: b4fc2bad581c18a4e993faf9ce1c0655, type: 3}
+  m_PrefabInstance: {fileID: 3820613986977349925}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95bfe8286a0478540808cfb2ad06f338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &690099200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -174,6 +185,14 @@ PrefabInstance:
     - target: {fileID: 2095912608864456826, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6590974928362709214, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
+      propertyPath: smokeWall
+      value: 
+      objectReference: {fileID: 324795491}
+    - target: {fileID: 6590974928362709214, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
+      propertyPath: biomeList.Array.data[0].wallSpeedInBiome
+      value: 6.75
       objectReference: {fileID: 0}
     - target: {fileID: 6731130473350794274, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
       propertyPath: m_Name
