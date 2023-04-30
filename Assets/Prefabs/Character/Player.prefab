@@ -375,6 +375,10 @@ MonoBehaviour:
   KILLME: 0
   _startingHeath: 3
   _isInvincible: 0
+  _possibleItems:
+  - {fileID: 21300000, guid: e3ff488e6a97b1a488f576b20065254f, type: 3}
+  itemSlot: {fileID: 0}
+  _hasHammer: 0
 --- !u!1 &8528628419391925129
 GameObject:
   m_ObjectHideFlags: 0

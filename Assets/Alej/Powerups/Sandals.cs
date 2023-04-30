@@ -9,13 +9,6 @@ public class Sandals : Powerup
 	public override void PickUp(Character character)
 	{
 		character.ModifySpeed(speedBuff);
-		StartCoroutine(StopBuff(character));
-	}
-
-	private IEnumerator StopBuff(Character character)
-	{
-		yield return new WaitForSeconds(timer);
-		character.ModifySpeed(-speedBuff);
 	}
 
 	private void OnDestroy()

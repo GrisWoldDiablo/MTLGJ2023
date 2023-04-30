@@ -11,7 +11,6 @@ public class HouseGeneration : MonoBehaviour
 
    [SerializeField] private Sprite[] _possibleBottomParts;
    
-   private Sprite[] _houseBotParts;
    public int test = 0;
    void Start()
    {
@@ -21,7 +20,7 @@ public class HouseGeneration : MonoBehaviour
 
    private void InitializeBottom(int i)
    {
-      _houseBotParts = new Sprite[i + 3];
+       Sprite[] _houseBotParts = new Sprite[i + 3];
       _houseBotParts[0] = _possibleBottomParts[0];
       _houseBotParts[i/2 + 1] = _possibleBottomParts[2];
       _houseBotParts[i + 2] = _possibleBottomParts[4];
