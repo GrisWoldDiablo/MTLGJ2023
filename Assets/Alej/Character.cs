@@ -141,9 +141,8 @@ public class Character : MonoBehaviour
 
                 break;
             case PowerUp.Hammer:
-                itemSlot.sprite = _possibleItems[0];
+                //itemSlot.sprite = _possibleItems[0];
                 _hasHammer = true;
-
                 break;
             case PowerUp.Fan:
 

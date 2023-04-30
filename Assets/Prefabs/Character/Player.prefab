@@ -328,9 +328,16 @@ MonoBehaviour:
   - {fileID: 253300989, guid: 8d2141f1492723c4fbefd9bc6ae9bd18, type: 3}
   - {fileID: -350671971, guid: 8d2141f1492723c4fbefd9bc6ae9bd18, type: 3}
   - {fileID: 1534370312, guid: 8d2141f1492723c4fbefd9bc6ae9bd18, type: 3}
+  _runSpritesHammer:
+  - {fileID: -764180515, guid: 1c34a0fe54279ab4da093ffdf831b036, type: 3}
+  - {fileID: 815511998, guid: 1c34a0fe54279ab4da093ffdf831b036, type: 3}
+  - {fileID: -145586599, guid: 1c34a0fe54279ab4da093ffdf831b036, type: 3}
   _jumpSprites:
   - {fileID: -1999954465, guid: 718e0c0bba1c29c498d49253ec032aef, type: 3}
   - {fileID: 709670800, guid: 718e0c0bba1c29c498d49253ec032aef, type: 3}
+  _jumpSpritesHammer:
+  - {fileID: -1111078506, guid: 97e2ebea2687eb54caf5208eeac8d6ec, type: 3}
+  - {fileID: -550651391, guid: 97e2ebea2687eb54caf5208eeac8d6ec, type: 3}
   _slideSprites:
   - {fileID: 1617482508, guid: 43b66aea6709b65489fb043a4cc307bb, type: 3}
   - {fileID: -289875151, guid: 43b66aea6709b65489fb043a4cc307bb, type: 3}
@@ -342,6 +349,10 @@ MonoBehaviour:
   - {fileID: -2133643566, guid: cdf0d0270f6d17144812e1c73801ef14, type: 3}
   - {fileID: -48670223, guid: cdf0d0270f6d17144812e1c73801ef14, type: 3}
   - {fileID: -48670223, guid: cdf0d0270f6d17144812e1c73801ef14, type: 3}
+  _walkBackSpritesHammer:
+  - {fileID: 125918871, guid: d653832832b479b458997f1f0b4176f1, type: 3}
+  - {fileID: 838532589, guid: d653832832b479b458997f1f0b4176f1, type: 3}
+  - {fileID: 1957129716, guid: d653832832b479b458997f1f0b4176f1, type: 3}
   _dieSprites:
   - {fileID: 1566193706, guid: 9e99e954c96db8142a2cad38533c8504, type: 3}
   - {fileID: 959181624, guid: 9e99e954c96db8142a2cad38533c8504, type: 3}
