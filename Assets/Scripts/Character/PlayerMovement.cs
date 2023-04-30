@@ -101,13 +101,13 @@ public class PlayerMovement : MonoBehaviour
         float _dirX = GameManager.Get().CanReceiveInput ? Input.GetAxisRaw("Horizontal") : 0.0f;
         if (_dirX < 0f)
         {
-            if (_forwardSpeed > -0.3f)
+            if (_forwardSpeed > -0.5f)
             {
                 _forwardSpeed += Time.deltaTime * -5f;
             }
             else
             {
-                _forwardSpeed = -0.3f;
+                _forwardSpeed = -0.5f;
             }
             if (_forwardSpeed < 0)
             {
@@ -222,7 +222,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void ModifySpeed(float ratio, float timer)
     {
-        _maxForwardSpeed *= ratio;
+        _maxForwardSpeed = 1.1f * ratio;
         _isHit = true;
         _buffTimer = timer;
     }
