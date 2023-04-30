@@ -34,15 +34,18 @@ public class MusicManager : MonoBehaviour
 
         if (m_audioSource1 && m_audioSource2)
         {
-            // For main menu first, then level
             m_audioSource1.playOnAwake = false;
             m_audioSource1.loop = true;
 
-            // For transition
-            m_audioSource2.playOnAwake = false;
-            m_audioSource2.loop = false;
+            //// For main menu first, then level
+            //m_audioSource1.playOnAwake = false;
+            //m_audioSource1.loop = true;
 
-            PlayMainMenuMusic();
+            //// For transition
+            //m_audioSource2.playOnAwake = false;
+            //m_audioSource2.loop = false;
+
+            //PlayMainMenuMusic();
         }
         else
         {

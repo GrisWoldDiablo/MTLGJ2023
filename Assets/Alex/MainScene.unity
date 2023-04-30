@@ -678,6 +678,17 @@ CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 3565530355011873525, guid: 347264d2685759c419f16b491bbf3230, type: 3}
   m_PrefabInstance: {fileID: 4578265530271296024}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4578265530271296026 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6345707566224076929, guid: 347264d2685759c419f16b491bbf3230, type: 3}
+  m_PrefabInstance: {fileID: 4578265530271296024}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5664738800516616316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -698,6 +709,10 @@ PrefabInstance:
       propertyPath: _runButton
       value: 
       objectReference: {fileID: 1218612372}
+    - target: {fileID: 2038363289769213726, guid: dad2306d1e384f2429e142bf9cc0b96c, type: 3}
+      propertyPath: _quitButton
+      value: 
+      objectReference: {fileID: 4578265530271296026}
     - target: {fileID: 2038363289769213726, guid: dad2306d1e384f2429e142bf9cc0b96c, type: 3}
       propertyPath: _startButton
       value: 

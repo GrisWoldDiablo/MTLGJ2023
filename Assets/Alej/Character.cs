@@ -46,19 +46,6 @@ public class Character : MonoBehaviour
 		}
 	}
 	
-	public void GetHit(int damage)
-	{
-		if (HasHammer)
-		{
-			itemSlot.sprite = null;
-			_hasHammer = false;
-		}
-		else
-		{
-			ModifyHealth(-damage);
-		}
-	}
-
     private PlayerMovement _playerMove;
     public PlayerMovement PlayerMovement => _playerMove;
 
@@ -77,18 +64,26 @@ public class Character : MonoBehaviour
         {
             return;
         }
-
+        
+        if(damage < 0)
+        {
+	        CharacterSFXManager.Get().PlayHurtSFX();
+	      
+	        ApplyStatusEffects();
+	        if (HasHammer)
+	        {
+		        _hasHammer = false;
+		        return;
+	        }
+        }
+        
         _health += damage;
         
         if (_health <= 0)
         {
             Die();
         }
-        else if(damage < 0)
-        {
-	        CharacterSFXManager.Get().PlayHurtSFX();
-	        ApplyStatusEffects();
-        }
+       
         
         if (_health > _startingHealth)
         {
