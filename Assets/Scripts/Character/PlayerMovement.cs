@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")] [SerializeField] private float _speed = 7f;
     [SerializeField] private float _jumpHeight = 14f;
     [SerializeField] private float _slidingDuration = 2f;
+    
     [Header("Camera")] [SerializeField] private CameraMovement _camera;
 
     [Header("Collisions")] [SerializeField]
@@ -76,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
     //Speed and time variables
     private float _forwardSpeed = 1.1f;
     private float _maxForwardSpeed = 1.1f;
+
     private float _time = 0;
     private float _slidingTime = 0;
     private bool _isHittingRoof;
@@ -151,7 +153,11 @@ public class PlayerMovement : MonoBehaviour
                 _maxForwardSpeed = 1.1f;
             }
         }
-        
+        else
+        {
+            _maxForwardSpeed = 1.1f;
+        }
+
         _body.velocity = new Vector2(_forwardSpeed * _speed, _body.velocity.y);
         if (!_isSliding)
         {

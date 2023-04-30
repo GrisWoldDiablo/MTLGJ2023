@@ -7,7 +7,7 @@ public class PowerUpSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject spawnPoint;
     [Range(0,1)]
-    [SerializeField] private float _powerUpChance = 0.7f;
+    [SerializeField] private float _powerUpChance = 0.8f;
     [Range(0,1)]
     [SerializeField] private float _sandalsChance = 0.5f;
 
@@ -20,8 +20,11 @@ public class PowerUpSpawner : MonoBehaviour
       
         _generator =  Object.FindObjectOfType<ProceduralEnvGenerator>();
         _sandalsChance = _generator.CurrentBiomeIndex/(float)_generator.BiomeCount;
+        if (_sandalsChance > 0.8)
+        {
+            _sandalsChance = 0.8f;
+        }
         SpawnItem();
-        print("Index: " + _generator.CurrentBiomeIndex + "  Count:"+ _generator.BiomeCount+  " = "+ _sandalsChance);
     }
 
     public void SpawnItem()
