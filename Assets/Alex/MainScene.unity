@@ -336,6 +336,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cb407102143fe949ac5b2a9e1809701, type: 3}
+--- !u!1 &1694734336 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1027289774347639944, guid: 1cb407102143fe949ac5b2a9e1809701, type: 3}
+  m_PrefabInstance: {fileID: 1694734335}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1721799545 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8756094238260522967, guid: 1cb407102143fe949ac5b2a9e1809701, type: 3}
@@ -506,6 +511,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1721799545}
+    - target: {fileID: 1659848657142549706, guid: b4fc2bad581c18a4e993faf9ce1c0655, type: 3}
+      propertyPath: playerBody
+      value: 
+      objectReference: {fileID: 1694734336}
     - target: {fileID: 5652548578179191194, guid: b4fc2bad581c18a4e993faf9ce1c0655, type: 3}
       propertyPath: m_RootOrder
       value: 10
