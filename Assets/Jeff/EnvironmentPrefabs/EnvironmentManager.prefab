@@ -81,7 +81,7 @@ MonoBehaviour:
     - {fileID: 3394999792726553591, guid: 06a1ecdd49039c943bdd85f1b84a1162, type: 3}
     - {fileID: 6866674086465982657, guid: 2c8b23bb4f3385a489c5f40e702e706c, type: 3}
     parallax: {fileID: 5900863799802694701, guid: 0abd30bda70957b4e82e93453298e8dc, type: 3}
-    wallSpeedInBiome: 6.95
+    wallSpeedInBiome: 6.98
     distanceToSpawnNext: 1000
   - biomeType: 2
     environmentObjectList:
@@ -91,13 +91,14 @@ MonoBehaviour:
     - {fileID: 3479520894607849086, guid: 7806210979bbf8d46a6c3b533d595c26, type: 3}
     - {fileID: 7797186090377375619, guid: 303527e1826f4c74899781fab8951f8f, type: 3}
     - {fileID: 5738901331718316001, guid: 7dcca91b85ab508428b6e2c686f69dc1, type: 3}
+    - {fileID: 3394999792726553591, guid: 334cc50fd0e722947a278b419d5dd42b, type: 3}
     parallax: {fileID: 5900863799802694701, guid: 3f42921fb6821304c8e6564125eb3b94, type: 3}
-    wallSpeedInBiome: 9
+    wallSpeedInBiome: 8.2
     distanceToSpawnNext: 1500
   numAssetsToSpawnOnLoad: 25
   numSlicesToSpawnOnRenew: 5
   minSegmentsBetweenObstacles: 16
-  maxSegmentsBetweenObstacles: 36
+  maxSegmentsBetweenObstacles: 32
   disableObstacle: 0
   ySpawnModifier: -1
 --- !u!114 &2035923024879712188
@@ -114,8 +115,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultEruptionObject: {fileID: 6200705233266992062, guid: c40308c8dd7b9c145a30ff6553d96672, type: 3}
   RockEruptionObject: {fileID: 6200705233266992062, guid: 3ecccdc51f7b7ea4494484669ba5f49a, type: 3}
-  minTimeBetweenEvents: 4
-  maxTimeBetweenEvents: 8
+  minTimeBetweenEvents: 3
+  maxTimeBetweenEvents: 7
   disableEruption: 0
 --- !u!114 &5646188152942743039
 MonoBehaviour:
