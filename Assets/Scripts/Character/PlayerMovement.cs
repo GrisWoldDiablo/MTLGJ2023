@@ -7,7 +7,8 @@ public enum PlayerState
 {
     Jump,
     Run,
-    Slide
+    Slide,
+    RunFast
 }
 
 public class PlayerMovement : MonoBehaviour
@@ -45,7 +46,10 @@ public class PlayerMovement : MonoBehaviour
         {
             return PlayerState.Slide;
         }
-
+        if (_forwardSpeed > 1.2f)
+        {
+            return PlayerState.RunFast;
+        }
         return PlayerState.Run;
     }
 
@@ -147,6 +151,7 @@ public class PlayerMovement : MonoBehaviour
                 _maxForwardSpeed = 1.1f;
             }
         }
+        
         _body.velocity = new Vector2(_forwardSpeed * _speed, _body.velocity.y);
         if (!_isSliding)
         {
