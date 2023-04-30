@@ -4,7 +4,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
 	public bool KILLME = false;
-	[SerializeField] private int _startingHeath = 3;
+	[SerializeField] private int _startingHealth = 3;
 	[SerializeField] private bool _isInvincible = false;
 	[SerializeField] private Sprite[] _possibleItems;
 	[SerializeField] private SpriteRenderer itemSlot;
@@ -29,7 +29,7 @@ public class Character : MonoBehaviour
 	private void Start()
 	{
 		_playerMove = GetComponentInChildren<PlayerMovement>();
-		ModifyHealth(_startingHeath);
+		ModifyHealth(_startingHealth);
 	}
 	
 	private void Update()
@@ -46,7 +46,7 @@ public class Character : MonoBehaviour
 		}
 	}
 	
-	public void GetHit()
+	public void GetHit(int damage)
 	{
 		if (HasHammer)
 		{
@@ -55,7 +55,7 @@ public class Character : MonoBehaviour
 		}
 		else
 		{
-			ModifyHealth(-1);
+			ModifyHealth(-damage);
 		}
 	}
 
@@ -71,7 +71,10 @@ public class Character : MonoBehaviour
 		{
 			Die();
 		}
-		
+		if (_health > _startingHealth)
+		{
+			_health = _startingHealth;
+		}
 		OnHealthChange?.Invoke(damage);
 	}
 	

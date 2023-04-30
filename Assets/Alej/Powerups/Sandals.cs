@@ -9,6 +9,7 @@ public class Sandals : Powerup
 	public override void PickUp(Character character)
 	{
 		character.ModifySpeed(speedBuff,timer);
+		character.ModifyHealth(1);
 		Destroy(gameObject.transform.parent.gameObject);
 	}
 

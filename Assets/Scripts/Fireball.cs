@@ -6,7 +6,7 @@ public class Fireball : MonoBehaviour
 
 	[SerializeField] float speed = 5.0f;
 
-	[SerializeField] int damage = 3;
+	[SerializeField] int damage = 1;
 
 	[SerializeField] private ParticleSystem boom;
 
@@ -30,7 +30,7 @@ public class Fireball : MonoBehaviour
 		if(player != null)
         {
 	        Transform playerTransform = player.gameObject.transform.GetChild(1);
-	        player.ModifyHealth(-damage);
+	        player.GetHit(damage);
             transform.position = playerTransform.position;
             Explode();
         }
