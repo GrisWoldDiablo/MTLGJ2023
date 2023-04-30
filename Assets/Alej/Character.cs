@@ -111,11 +111,13 @@ public class Character : MonoBehaviour
         _playerMove.Speed = savedSpeed;
     }
 
+
+    [SerializeField] Color blinkColor;
     private IEnumerator BlinkSprite()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
-            playerSprite.color = Color.red;//new Color(255, 134, 134f);
+            playerSprite.color = blinkColor;
             yield return new WaitForSeconds(0.1f);
             playerSprite.color = Color.white;
             yield return new WaitForSeconds(0.1f);
