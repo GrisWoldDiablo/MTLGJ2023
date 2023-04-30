@@ -23,6 +23,7 @@ public class EruptionEventManager : MonoBehaviour
         if (EruptionObject != null)
         {
             Instantiate(EruptionObject, GetRandomSpawnPos(), Quaternion.identity, gameObject.transform);
+            EruptionSFXManager.Get().PlaySFX();
         }
     }
     float GetRandomTimeForSpawn()
