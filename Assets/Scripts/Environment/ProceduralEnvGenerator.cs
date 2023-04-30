@@ -84,6 +84,8 @@ public class ProceduralEnvGenerator : MonoBehaviour
 
 	private int _currentBiomeIndex = -1;
 
+	private List<EnvironmentAsset> existingSlices = new List<EnvironmentAsset>();
+
 	public int NumSlicesToSpawnOnRenew
 	{
 		get => numSlicesToSpawnOnRenew;
@@ -99,8 +101,9 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	{
 		get => randomizedNumSegmentsBetweenObstacles;
 	}
-	
-	public EBiomeType GetCurrentBiomeType()
+    public List<EnvironmentAsset> ExistingSlices { get => existingSlices; set => existingSlices = value; }
+
+    public EBiomeType GetCurrentBiomeType()
 	{
 		return GetCurrentBiome().BiomeType;
 	}
@@ -110,6 +113,32 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	{
 		return biomeList[_currentBiomeIndex];
 	}
+
+	//When we swap biomes change the existing slices to the new biome art
+	private void UpdateExistingSliceArt()
+	{
+		List<EnvironmentAsset> existingSliceCopy = new List<EnvironmentAsset>(existingSlices);
+		List<EnvironmentAsset> markedForAdd = new List<EnvironmentAsset>();
+
+        foreach (var oldSlice in existingSliceCopy)
+		{
+            //replace with new biome slices in same positions and then delete
+			EnvironmentAsset RandomEnvironmentSlice = GetRandomEnvironmentAsset();
+
+			Vector2 spawnPosition = new Vector2(oldSlice.transform.position.x, oldSlice.transform.position.y);
+			EnvironmentAsset newSlice = Instantiate(RandomEnvironmentSlice, spawnPosition, Quaternion.identity, gameObject.transform);
+			markedForAdd.Add(newSlice);
+			Destroy(oldSlice.gameObject);
+        }
+
+		existingSlices.Clear();
+
+		foreach(var slice in markedForAdd)
+		{
+			existingSlices.Add(slice);
+		}
+
+    }
 
 	private void Update()
 	{
@@ -136,7 +165,9 @@ public class ProceduralEnvGenerator : MonoBehaviour
 
 	private void InitializeBiome()
 	{
-		var newParallax = Instantiate(currentBiome.Parallax, Camera.main.transform).GetComponent<Parallax>();
+		UpdateExistingSliceArt();
+
+        var newParallax = Instantiate(currentBiome.Parallax, Camera.main.transform).GetComponent<Parallax>();
 		newParallax.transform.localPosition = Vector3.zero;
 
 		if (parallax)
@@ -157,12 +188,14 @@ public class ProceduralEnvGenerator : MonoBehaviour
 		}
 		parallax = newParallax;
 
-		//handle spawning of special slice if exists
+		//handle spawning of special slice if exists (can probably depreciate we have moved from this idea)
 		if(currentBiome.BiomeInitSlice != null)
 		{
             EnvironmentAsset slice = currentBiome.BiomeInitSlice;
             GenerateEnvironmentSlice(slice);
         }
+
+
     }
 
     private Biome GetandAdvanceToNextBiome()
@@ -223,14 +256,17 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	{
 		Vector2 spawnPosition = new Vector2(currentSpawnPostitionX, spawnPositionY);
 		EnvironmentAsset slice = Instantiate(EnvironmentAsset, spawnPosition, Quaternion.identity, gameObject.transform);
+		
+		ExistingSlices.Add(slice);
 
-		float spacing = slice.GetEnvironmentLength();
+        float spacing = slice.GetEnvironmentLength();
 
 		currentSpawnPostitionX += spacing;
 	}
 
-	public void IncrementExpired()
+	public void IncrementExpired(EnvironmentAsset slice)
 	{
+		existingSlices.Remove(slice);
 		expiredSlicesCount++;
 		if (expiredSlicesCount >= NumSlicesToSpawnOnRenew)
 		{

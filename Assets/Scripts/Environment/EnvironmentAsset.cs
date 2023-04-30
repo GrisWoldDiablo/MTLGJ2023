@@ -77,7 +77,7 @@ public class EnvironmentAsset : MonoBehaviour
 
 		if (transform.position.x < screenLeft)
 		{
-			envGenerator.IncrementExpired();
+			envGenerator.IncrementExpired(this);
 			Destroy(gameObject);
 		}
 
