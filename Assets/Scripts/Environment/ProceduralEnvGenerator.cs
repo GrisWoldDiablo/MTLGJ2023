@@ -125,8 +125,9 @@ public class ProceduralEnvGenerator : MonoBehaviour
 			newParallax.StartPosX = startPosX;
 			newParallax.StartPosY = startPosY;
 
-			Destroy(parallax.gameObject, 1.0f);
+			Destroy(parallax.gameObject);
 			newParallax.Update();
+			UIManager.Get().SwapBiome();
 		}
 		parallax = newParallax;
 

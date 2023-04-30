@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private CanvasGroup _gameoverGroup;
 	[SerializeField] private UIGameover _gameover;
 	[SerializeField] private Character _character;
+	[SerializeField] private UISwapBiome _uiSwapBiome;
 	
 	public bool IsPause { get; private set; } = true;
 
@@ -104,5 +105,10 @@ public class UIManager : MonoBehaviour
 		Time.timeScale = 1.0f;
 		GameManager.Get().StartGame();
 		IsPause = false;
+	}
+
+	public void SwapBiome()
+	{
+		_uiSwapBiome.gameObject.SetActive(true);
 	}
 }
