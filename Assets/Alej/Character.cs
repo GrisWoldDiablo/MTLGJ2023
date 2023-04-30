@@ -60,7 +60,7 @@ public class Character : MonoBehaviour
 
     public void ModifyHealth(int damage)
     {
-        if (_isInvincible || IsDead)
+        if (_isInvincible || IsDead )
         {
             return;
         }
@@ -69,12 +69,16 @@ public class Character : MonoBehaviour
         {
 	        CharacterSFXManager.Get().PlayHurtSFX();
 	      
-	        ApplyStatusEffects();
 	        if (HasHammer)
 	        {
 		        _hasHammer = false;
 		        return;
 	        }
+            else
+            {
+	             ApplyStatusEffects();
+
+            }
         }
         
         _health += damage;
