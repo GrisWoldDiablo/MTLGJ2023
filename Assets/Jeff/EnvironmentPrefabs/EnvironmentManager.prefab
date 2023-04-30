@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2095912608864456826}
   - component: {fileID: 6590974928362709214}
   - component: {fileID: 2035923024879712188}
+  - component: {fileID: 5646188152942743039}
   m_Layer: 0
   m_Name: EnvironmentManager
   m_TagString: Untagged
@@ -53,8 +54,7 @@ MonoBehaviour:
     - {fileID: 8971083833398317402, guid: eca2f076d4c92db4cae8611c7d1034f8, type: 3}
     biomeInitSlice: {fileID: 0}
     obstacleObjectList:
-    - {fileID: 6866674086465982657, guid: cf0f8f0598644a440823f63a490c761c, type: 3}
-    - {fileID: 3394999792726553591, guid: 334cc50fd0e722947a278b419d5dd42b, type: 3}
+    - {fileID: 3394999792726553591, guid: 06a1ecdd49039c943bdd85f1b84a1162, type: 3}
     parallax: {fileID: 5900863799802694701, guid: bfb12e1a836ba9e4cb2398039c033985, type: 3}
     distanceToSpawnNext: 100
   - biomeType: 3
@@ -72,7 +72,6 @@ MonoBehaviour:
     biomeInitSlice: {fileID: 0}
     obstacleObjectList:
     - {fileID: 6866674086465982657, guid: 2301c49a100d24a4a986b7d0917eeb38, type: 3}
-    - {fileID: 6866674086465982657, guid: 2c8b23bb4f3385a489c5f40e702e706c, type: 3}
     - {fileID: 3394999792726553591, guid: 06a1ecdd49039c943bdd85f1b84a1162, type: 3}
     parallax: {fileID: 5900863799802694701, guid: 0abd30bda70957b4e82e93453298e8dc, type: 3}
     distanceToSpawnNext: 300
@@ -109,6 +108,21 @@ MonoBehaviour:
   minTimeBetweenEvents: 5
   maxTimeBetweenEvents: 15
   disableEruption: 0
+--- !u!114 &5646188152942743039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731130473350794274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edf861f9c19106a4081523f2aecd294e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  batPrefab: {fileID: 3711392607649069977, guid: 959b93e69702ae244ac5ace5e2a2b999, type: 3}
+  minTimeBetweenBats: 5
+  maxTimeBetweenBats: 10
 --- !u!1001 &5948060557493773423
 PrefabInstance:
   m_ObjectHideFlags: 0
