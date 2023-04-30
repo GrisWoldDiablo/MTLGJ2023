@@ -21,7 +21,7 @@ public class PowerUpSpawner : MonoBehaviour
         {
             return;
         }
-        int r = Random.Range(0,5);
+        int r = Random.Range(1,5);
         if (r == 3)
         {
             var item = Resources.Load<GameObject>("Hammer");
