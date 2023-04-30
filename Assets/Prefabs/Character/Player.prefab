@@ -121,7 +121,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 7
   _jumpHeight: 12
-  _timeOfSlowdown: 3
   _slidingDuration: 1
   _camera: {fileID: 1852632079566691348}
   _contactFilter2D:
@@ -358,7 +357,7 @@ Transform:
   - {fileID: 8069670821243374622}
   - {fileID: 363505896712087593}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8756094238260522967
 MonoBehaviour:
@@ -373,11 +372,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KILLME: 0
-  _startingHeath: 3
+  _startingHealth: 3
   _isInvincible: 0
   _possibleItems:
   - {fileID: 21300000, guid: e3ff488e6a97b1a488f576b20065254f, type: 3}
   itemSlot: {fileID: 0}
+  playerSprite: {fileID: 2123845683463374832}
   _hasHammer: 0
 --- !u!1 &8528628419391925129
 GameObject:
