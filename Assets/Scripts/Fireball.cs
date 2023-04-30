@@ -31,7 +31,7 @@ public class Fireball : MonoBehaviour
 		if(player != null)
         {
 	        Transform playerTransform = player.gameObject.transform.GetChild(1);
-	        player.GetHit(damage);
+	        player.ModifyHealth(-damage);
             transform.position = playerTransform.position;
             Explode();
         }
