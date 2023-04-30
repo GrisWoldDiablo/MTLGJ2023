@@ -22,18 +22,12 @@ public class EruptionEventManager : MonoBehaviour
 
     private GameObject GetEventForBiome()
     {
-        GameObject SpawnedEvent = null;
+        GameObject SpawnedEvent = DefaultEruptionObject;
         EBiomeType currentBiome = ProceduralEnvGenerator.Get().GetCurrentBiomeType();
         switch (currentBiome)
         {
-            case EBiomeType.VolcanoArea:
-                SpawnedEvent = DefaultEruptionObject;
-                break;
             case EBiomeType.Cave:
                 SpawnedEvent = RockEruptionObject;
-                break;
-            case EBiomeType.NightSky:
-                SpawnedEvent = DefaultEruptionObject;
                 break;
         }
         return SpawnedEvent;

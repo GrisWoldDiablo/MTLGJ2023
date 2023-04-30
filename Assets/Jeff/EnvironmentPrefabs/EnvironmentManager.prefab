@@ -48,16 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cheat_NEXTBIOME: 0
   biomeList:
-  - biomeType: 1
-    environmentObjectList:
-    - {fileID: 8971083833398317402, guid: 1ef84ea6b3b49f94b8cefb348a9180fb, type: 3}
-    biomeInitSlice: {fileID: 0}
-    obstacleObjectList:
-    - {fileID: 6866674086465982657, guid: 2301c49a100d24a4a986b7d0917eeb38, type: 3}
-    - {fileID: 3394999792726553591, guid: 06a1ecdd49039c943bdd85f1b84a1162, type: 3}
-    - {fileID: 6866674086465982657, guid: 2c8b23bb4f3385a489c5f40e702e706c, type: 3}
-    parallax: {fileID: 5900863799802694701, guid: 0abd30bda70957b4e82e93453298e8dc, type: 3}
-    distanceToSpawnNext: 500
   - biomeType: 0
     environmentObjectList:
     - {fileID: 8971083833398317402, guid: eca2f076d4c92db4cae8611c7d1034f8, type: 3}
@@ -67,11 +57,33 @@ MonoBehaviour:
     - {fileID: 3394999792726553591, guid: 334cc50fd0e722947a278b419d5dd42b, type: 3}
     parallax: {fileID: 5900863799802694701, guid: bfb12e1a836ba9e4cb2398039c033985, type: 3}
     distanceToSpawnNext: 100
+  - biomeType: 3
+    environmentObjectList:
+    - {fileID: 8971083833398317402, guid: eca2f076d4c92db4cae8611c7d1034f8, type: 3}
+    biomeInitSlice: {fileID: 0}
+    obstacleObjectList:
+    - {fileID: 6866674086465982657, guid: cf0f8f0598644a440823f63a490c761c, type: 3}
+    - {fileID: 3394999792726553591, guid: 334cc50fd0e722947a278b419d5dd42b, type: 3}
+    parallax: {fileID: 5900863799802694701, guid: 4ffc7fd974dccc54a918db74d66ff17e, type: 3}
+    distanceToSpawnNext: 200
+  - biomeType: 1
+    environmentObjectList:
+    - {fileID: 8971083833398317402, guid: 1ef84ea6b3b49f94b8cefb348a9180fb, type: 3}
+    biomeInitSlice: {fileID: 0}
+    obstacleObjectList:
+    - {fileID: 6866674086465982657, guid: 2301c49a100d24a4a986b7d0917eeb38, type: 3}
+    - {fileID: 6866674086465982657, guid: 2c8b23bb4f3385a489c5f40e702e706c, type: 3}
+    - {fileID: 3394999792726553591, guid: 06a1ecdd49039c943bdd85f1b84a1162, type: 3}
+    parallax: {fileID: 5900863799802694701, guid: 0abd30bda70957b4e82e93453298e8dc, type: 3}
+    distanceToSpawnNext: 300
   - biomeType: 2
     environmentObjectList:
     - {fileID: 8971083833398317402, guid: 339d68e0cbf904c41ba3e74a558b5efd, type: 3}
     biomeInitSlice: {fileID: 0}
-    obstacleObjectList: []
+    obstacleObjectList:
+    - {fileID: 3479520894607849086, guid: 7806210979bbf8d46a6c3b533d595c26, type: 3}
+    - {fileID: 7797186090377375619, guid: 303527e1826f4c74899781fab8951f8f, type: 3}
+    - {fileID: 5738901331718316001, guid: 7dcca91b85ab508428b6e2c686f69dc1, type: 3}
     parallax: {fileID: 5900863799802694701, guid: 3f42921fb6821304c8e6564125eb3b94, type: 3}
     distanceToSpawnNext: 1000
   numAssetsToSpawnOnLoad: 25

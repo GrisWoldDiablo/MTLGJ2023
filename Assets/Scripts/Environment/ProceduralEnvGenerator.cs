@@ -5,9 +5,10 @@ using Random = UnityEngine.Random;
 
 public enum EBiomeType
 {
-	VolcanoArea = 0,
+	Plain = 0,
 	Cave = 1,
-	NightSky = 2
+	City = 2,
+	Forest = 3
 };
 
 [System.Serializable]
