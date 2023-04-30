@@ -9,6 +9,7 @@ public class Fireball : MonoBehaviour
 	[SerializeField] int damage = 1;
 
 	[SerializeField] private ParticleSystem boom;
+	[SerializeField] private ParticleSystem constant;
 
 	private SpriteRenderer sprite;
 	private BoxCollider2D col;
@@ -49,6 +50,10 @@ public class Fireball : MonoBehaviour
 		rb.velocity = Vector2.zero;
 		col.enabled = false;
 		boom.Play();
+		if (constant != null)
+		{
+			constant.Stop();
+		}
 
         CameraShake camShake = Camera.main.GetComponent<CameraShake>();
         camShake.DoCameraShake(0.33f, 0.07f); //expose these
