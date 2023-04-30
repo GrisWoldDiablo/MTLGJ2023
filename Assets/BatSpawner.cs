@@ -20,6 +20,7 @@ public class BatSpawner : MonoBehaviour
     {
         gm = GameManager.Get();
         env = ProceduralEnvGenerator.Get();
+        timeToSpawn = GetRandomTimeToSpawn();
     }
 
     float GetRandomTimeToSpawn()
