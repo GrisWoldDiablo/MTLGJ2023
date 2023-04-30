@@ -53,6 +53,7 @@ public class EnvironmentAsset : MonoBehaviour
 
 			//Generate obstacles for slice
 			//keep a count of segments between slices, ensure that there's at least X segments between obstacles
+
 			if (envGenerator.NumSegmentsSinceLastObstacles >= envGenerator.RandomizedNumSegmentsBetweenObstacles)
 			{
 				//eventually something to prevent same obstacle from spawning in  
