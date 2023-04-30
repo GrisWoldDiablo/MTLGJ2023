@@ -48,7 +48,14 @@ public class CharacterAnimation : MonoBehaviour
 			_animationSpeed = 10f;
 			break;
 		case PlayerState.RunFast:
-			_currentSprites = _playerMovement.IsMovingForward ? _runSprites : _walkBackSprites;
+			if (_playerMovement.IsMovingForward)
+			{
+				_currentSprites = _character.HasHammer ? _runSpritesHammer : _runSprites;
+			}
+			else
+			{
+				_currentSprites = _character.HasHammer ? _walkBackSpritesHammer : _walkBackSprites;
+			}
 			_animationSpeed = 20f;
 			break;
 		case PlayerState.Slide:
