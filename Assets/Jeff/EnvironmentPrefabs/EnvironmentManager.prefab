@@ -60,7 +60,7 @@ MonoBehaviour:
     distanceToSpawnNext: 100
   - biomeType: 3
     environmentObjectList:
-    - {fileID: 8971083833398317402, guid: eca2f076d4c92db4cae8611c7d1034f8, type: 3}
+    - {fileID: 8971083833398317402, guid: c3ff573bd51064f44b2f96ed76b96d77, type: 3}
     biomeInitSlice: {fileID: 0}
     obstacleObjectList:
     - {fileID: 6866674086465982657, guid: cf0f8f0598644a440823f63a490c761c, type: 3}
