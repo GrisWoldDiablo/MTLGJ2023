@@ -52,7 +52,8 @@ MonoBehaviour:
     environmentObjectList:
     - {fileID: 8971083833398317402, guid: 1ef84ea6b3b49f94b8cefb348a9180fb, type: 3}
     biomeInitSlice: {fileID: 0}
-    obstacleObjectList: []
+    obstacleObjectList:
+    - {fileID: 6866674086465982657, guid: 2301c49a100d24a4a986b7d0917eeb38, type: 3}
     parallax: {fileID: 5900863799802694701, guid: 0abd30bda70957b4e82e93453298e8dc, type: 3}
     distanceToSpawnNext: 500
   - biomeType: 0
