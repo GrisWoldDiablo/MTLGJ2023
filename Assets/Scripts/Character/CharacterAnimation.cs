@@ -6,7 +6,7 @@ public class CharacterAnimation : MonoBehaviour
 	[SerializeField] private Character _character;
 	[SerializeField] private PlayerMovement _playerMovement;
 	[SerializeField] private SpriteRenderer _spriteRenderer;
-	[Min(1.0f)] [SerializeField] private float _animationSpeed = 100.0f;
+	[Min(1.0f)] [SerializeField] private float _animationSpeed = 10.0f;
 	[SerializeField] private Sprite[] _runSprites;
 	[SerializeField] private Sprite[] _jumpSprites;
 	[SerializeField] private Sprite[] _slideSprites;
@@ -35,6 +35,11 @@ public class CharacterAnimation : MonoBehaviour
 			break;
 		case PlayerState.Run:
 			_currentSprites = _playerMovement.IsMovingForward ? _runSprites : _walkBackSprites;
+			_animationSpeed = 10f;
+			break;
+		case PlayerState.RunFast:
+			_currentSprites = _playerMovement.IsMovingForward ? _runSprites : _walkBackSprites;
+			_animationSpeed = 20f;
 			break;
 		case PlayerState.Slide:
 			_currentSprites = _playerMovement.IsMovingForward ? _slideSprites : _walkBackSprites;

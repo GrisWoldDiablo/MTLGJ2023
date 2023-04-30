@@ -21,16 +21,23 @@ public class PowerUpSpawner : MonoBehaviour
         {
             return;
         }
-        int r = Random.Range(1,5);
-        if (r == 3)
+        int r = Random.Range(0,5);
+        
+        switch (r)
         {
-            var item = Resources.Load<GameObject>("Hammer");
-            Instantiate(item,spawnPoint.transform);
-        }
-        if (r == 4)
-        {
-            var item = Resources.Load<GameObject>("Sandals");
-            Instantiate(item,spawnPoint.transform);
+            case 1 or 2:
+            {
+                var item = Resources.Load<GameObject>("Hammer");
+                Instantiate(item,spawnPoint.transform);
+               break;
+            }
+            case 3 or 4:
+            {
+             var item = Resources.Load<GameObject>("Sandals");
+             Instantiate(item,spawnPoint.transform);
+                break;
+
+            }
         }
     }
 
