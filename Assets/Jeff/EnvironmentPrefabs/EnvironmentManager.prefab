@@ -59,6 +59,7 @@ MonoBehaviour:
     - {fileID: 3394999792726553591, guid: 334cc50fd0e722947a278b419d5dd42b, type: 3}
     - {fileID: 3394999792726553591, guid: 14874b345f497b843a0ac480eb6c32fe, type: 3}
     parallax: {fileID: 5900863799802694701, guid: bfb12e1a836ba9e4cb2398039c033985, type: 3}
+    textToDiplay: Dawn
     wallSpeedInBiome: 6.75
     distanceToSpawnNext: 300
   - biomeType: 3
@@ -70,6 +71,7 @@ MonoBehaviour:
     - {fileID: 3394999792726553591, guid: 7ef5761da811c444f9f3c470aefe42ec, type: 3}
     - {fileID: 3394999792726553591, guid: 6bde88e35b2317b4f9d0aa436554d996, type: 3}
     parallax: {fileID: 5900863799802694701, guid: 4ffc7fd974dccc54a918db74d66ff17e, type: 3}
+    textToDiplay: Morning
     wallSpeedInBiome: 6.85
     distanceToSpawnNext: 600
   - biomeType: 1
@@ -81,6 +83,7 @@ MonoBehaviour:
     - {fileID: 3394999792726553591, guid: 06a1ecdd49039c943bdd85f1b84a1162, type: 3}
     - {fileID: 6866674086465982657, guid: 2c8b23bb4f3385a489c5f40e702e706c, type: 3}
     parallax: {fileID: 5900863799802694701, guid: 0abd30bda70957b4e82e93453298e8dc, type: 3}
+    textToDiplay: Afternoon
     wallSpeedInBiome: 6.98
     distanceToSpawnNext: 1000
   - biomeType: 2
@@ -93,6 +96,7 @@ MonoBehaviour:
     - {fileID: 5738901331718316001, guid: 7dcca91b85ab508428b6e2c686f69dc1, type: 3}
     - {fileID: 3394999792726553591, guid: 334cc50fd0e722947a278b419d5dd42b, type: 3}
     parallax: {fileID: 5900863799802694701, guid: 3f42921fb6821304c8e6564125eb3b94, type: 3}
+    textToDiplay: Evening
     wallSpeedInBiome: 8.2
     distanceToSpawnNext: 1500
   numAssetsToSpawnOnLoad: 25

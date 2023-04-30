@@ -19,6 +19,7 @@ public class Biome
 	[SerializeField] private EnvironmentAsset biomeInitSlice;
 	[SerializeField] private GameObject[] obstacleObjectList;
 	[SerializeField] private GameObject parallax;
+	[SerializeField] private string textToDiplay = "";
 
 	[SerializeField] float wallSpeedInBiome = 6.75f;
 	[SerializeField] float distanceToSpawnNext = 1000.0f;
@@ -62,6 +63,8 @@ public class Biome
 		get => wallSpeedInBiome;
 		set => wallSpeedInBiome = value;
 	}
+
+	public string TextToDisplay => textToDiplay;
 }
 
 public class ProceduralEnvGenerator : MonoBehaviour
@@ -209,7 +212,7 @@ public class ProceduralEnvGenerator : MonoBehaviour
 
 			Destroy(parallax.gameObject);
 			newParallax.Update();
-			UIManager.Get().SwapBiome();
+			UIManager.Get().SwapBiome(currentBiome.TextToDisplay);
 		}
 		parallax = newParallax;
 

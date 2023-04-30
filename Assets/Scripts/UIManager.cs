@@ -71,7 +71,7 @@ public class UIManager : MonoBehaviour
 	{
 		_gameoverGroup.alpha = 1.0f;
 		_gameoverGroup.blocksRaycasts = true;
-		_gameover.UpdateScore();
+		_gameover.UpdateScore(ProceduralEnvGenerator.Get().GetCurrentBiome().TextToDisplay);
 	}
 
 	private void Update()
@@ -121,8 +121,8 @@ public class UIManager : MonoBehaviour
 		IsPause = false;
 	}
 
-	public void SwapBiome()
+	public void SwapBiome(string textToDiplay)
 	{
-		_uiSwapBiome.gameObject.SetActive(true);
+		_uiSwapBiome.Go(textToDiplay);
 	}
 }

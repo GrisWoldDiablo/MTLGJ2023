@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,8 +6,15 @@ public class UISwapBiome : MonoBehaviour
 {
 	[SerializeField] private float _fadeSpeed = 1.0f;
 	[SerializeField] private Image _fadePanelImage;
+	[SerializeField] private TMP_Text _textToDisplay;
 	private float _lerpvalue = 0.0f;
 
+	public void Go(string textToDisplay)
+	{
+		_textToDisplay.text = $"{textToDisplay}...";
+		gameObject.SetActive(true);
+	}
+	
 	private void OnEnable()
 	{
 		_fadePanelImage.color = Color.black;
