@@ -24,16 +24,62 @@ public class Character : MonoBehaviour
         set => _health = value;
     }
 
-    public bool IsDead => _isDead;
+	private void Start()
+	{
+		_playerMove = GetComponentInChildren<PlayerMovement>();
+		ModifyHealth(_startingHealth);
+	}
+	
+	private void Update()
+	{
+		if (KILLME || Input.GetKeyDown(KeyCode.P))
+		{
+			KILLME = false;
+			ModifyHealth(-_health);
+		}
+		if (HasHammer)
+		{
+			float angle = Mathf.PingPong(Time.time*50, 30)-30;
+			itemSlot.gameObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		}
+	}
+	
+	public void GetHit(int damage)
+	{
+		if (HasHammer)
+		{
+			itemSlot.sprite = null;
+			_hasHammer = false;
+		}
+		else
+		{
+			ModifyHealth(-damage);
+            CharacterSFXManager.Get().PlayHurtSFX();
+		}
+	}
 
     private PlayerMovement _playerMove;
     public PlayerMovement PlayerMovement => _playerMove;
 
-    private void Start()
-    {
-        _playerMove = GetComponentInChildren<PlayerMovement>();
-        ModifyHealth(_startingHealth);
-    }
+		_health += damage;
+		if (_health <= 0)
+		{
+			Die();
+		}
+		if (_health > _startingHealth)
+		{
+			_health = _startingHealth;
+		}
+		OnHealthChange?.Invoke(damage);
+	}
+	
+	void Die()
+	{
+		//game manager end game
+		_isDead = true;
+		OnDie?.Invoke();
+        CharacterSFXManager.Get().PlayDieSFX();
+	}
 
     private void Update()
     {
