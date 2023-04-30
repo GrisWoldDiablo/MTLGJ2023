@@ -163,6 +163,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 _body.velocity = new Vector2(_body.velocity.x, _jumpHeight);
                 _isSliding = false;
+                CharacterSFXManager.Get().PlayJumpSFX();
             }
 
             if (Input.GetButtonDown("Slide") && !_isSliding && IsGrounded && _forwardSpeed > 0)
@@ -171,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
                 _slidingTime = _slidingDuration;
                 _boxCollider2D.size = _slidingColliderSize;
                 _boxCollider2D.offset = _slidingColliderOffset;
+                CharacterSFXManager.Get().PlaySlideSFX();
             }
         }
 

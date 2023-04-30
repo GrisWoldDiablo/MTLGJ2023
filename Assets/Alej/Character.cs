@@ -56,6 +56,7 @@ public class Character : MonoBehaviour
 		else
 		{
 			ModifyHealth(-damage);
+            CharacterSFXManager.Get().PlayHurtSFX();
 		}
 	}
 
@@ -83,6 +84,7 @@ public class Character : MonoBehaviour
 		//game manager end game
 		_isDead = true;
 		OnDie?.Invoke();
+        CharacterSFXManager.Get().PlayDieSFX();
 	}
 
 	public enum PowerUp 
