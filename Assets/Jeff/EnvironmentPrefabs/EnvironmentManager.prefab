@@ -55,6 +55,10 @@ MonoBehaviour:
   - biomeType: 1
     environmentObjectList: []
     obstacleObjectList: []
+  - biomeType: 2
+    environmentObjectList:
+    - {fileID: 8971083833398317402, guid: 339d68e0cbf904c41ba3e74a558b5efd, type: 3}
+    obstacleObjectList: []
   numAssetsToSpawnOnLoad: 25
   numSlicesToSpawnOnRenew: 5
   minSegmentsBetweenObstacles: 16

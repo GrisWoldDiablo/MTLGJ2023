@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 4460099907408252812}
   - component: {fileID: 3701019266631810997}
   m_Layer: 0
-  m_Name: Parallax One
+  m_Name: Parallax City
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

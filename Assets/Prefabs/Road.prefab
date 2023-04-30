@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: 282818580, guid: 4eb641f25e0f9974394936ecfb95d11b, type: 3}
+  m_Sprite: {fileID: -721250207, guid: 1374d450b89ef2749a0acf446be1730c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2169c315a85cca04ba269a0072c8a308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spritesSheetScriptable: {fileID: 11400000, guid: 30736d5fa38a5b34194d5948099a4d93, type: 2}
+  _spritesSheetScriptable: {fileID: 11400000, guid: 2a62a0eeb36324b4c9a3b4a4b297b97f, type: 2}
 --- !u!68 &9088661991904722043
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -150,7 +150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5416270844990209852}
   m_Layer: 0
-  m_Name: Grass
+  m_Name: Road
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
