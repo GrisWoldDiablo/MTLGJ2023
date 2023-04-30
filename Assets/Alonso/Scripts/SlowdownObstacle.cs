@@ -12,7 +12,6 @@ public class SlowdownObstacle : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             other.GetComponent<PlayerMovement>().ModifySpeed(_slowdownRatio, 2f);
-            Destroy(gameObject);
         }
     }
 }
