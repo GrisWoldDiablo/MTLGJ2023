@@ -60,18 +60,6 @@ public class Character : MonoBehaviour
 
     private PlayerMovement _playerMove;
     public PlayerMovement PlayerMovement => _playerMove;
-
-		_health += damage;
-		if (_health <= 0)
-		{
-			Die();
-		}
-		if (_health > _startingHealth)
-		{
-			_health = _startingHealth;
-		}
-		OnHealthChange?.Invoke(damage);
-	}
 	
 	void Die()
 	{
@@ -81,32 +69,6 @@ public class Character : MonoBehaviour
         CharacterSFXManager.Get().PlayDieSFX();
 	}
 
-    private void Update()
-    {
-        if (KILLME || Input.GetKeyDown(KeyCode.P))
-        {
-            KILLME = false;
-            ModifyHealth(-_health);
-        }
-        if (HasHammer)
-        {
-            float angle = Mathf.PingPong(Time.time * 50, 30) - 30;
-            itemSlot.gameObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
-    }
-
-    public void GetHit(int damage)
-    {
-        if (HasHammer)
-        {
-            itemSlot.sprite = null;
-            _hasHammer = false;
-        }
-        else
-        {
-            ModifyHealth(-damage);
-        }
-    }
 
     public void ModifyHealth(int damage)
     {
@@ -130,13 +92,6 @@ public class Character : MonoBehaviour
             _health = _startingHealth;
         }
         OnHealthChange?.Invoke(damage);
-    }
-
-    void Die()
-    {
-        //game manager end game
-        _isDead = true;
-        OnDie?.Invoke();
     }
 
     private void ApplyStatusEffects()
