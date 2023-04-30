@@ -16,14 +16,14 @@ public class Biome
 {
 	[SerializeField] EBiomeType biomeType;
 	[SerializeField] private EnvironmentAsset[] environmentObjectList;
-    [SerializeField] private EnvironmentAsset biomeInitSlice;
-    [SerializeField] private GameObject[] obstacleObjectList;
+	[SerializeField] private EnvironmentAsset biomeInitSlice;
+	[SerializeField] private GameObject[] obstacleObjectList;
 	[SerializeField] private GameObject parallax;
 
-    [SerializeField] float wallSpeedInBiome = 6.75f;
+	[SerializeField] float wallSpeedInBiome = 6.75f;
 	[SerializeField] float distanceToSpawnNext = 1000.0f;
 
-    public EBiomeType BiomeType
+	public EBiomeType BiomeType
 	{
 		get => biomeType;
 		set => biomeType = value;
@@ -45,19 +45,22 @@ public class Biome
 	{
 		get => parallax;
 		set => parallax = value;
-    }
-    public EnvironmentAsset BiomeInitSlice
-    {
-        get => biomeInitSlice;
-    }
-    public float DistanceToSpawnNext 
-	{ 
+	}
+
+	public EnvironmentAsset BiomeInitSlice
+	{
+		get => biomeInitSlice;
+	}
+
+	public float DistanceToSpawnNext
+	{
 		get => distanceToSpawnNext;
 	}
-    public float WallSpeedInBiome 
-	{ 
-		get => wallSpeedInBiome; 
-		set => wallSpeedInBiome = value; 
+
+	public float WallSpeedInBiome
+	{
+		get => wallSpeedInBiome;
+		set => wallSpeedInBiome = value;
 	}
 }
 
@@ -68,8 +71,9 @@ public class ProceduralEnvGenerator : MonoBehaviour
 
 	[SerializeField] private SmokeWall smokeWall;
 
-    [Header("EnvironmentLists")] [SerializeField]
+	[Header("EnvironmentLists")] [SerializeField]
 	List<Biome> biomeList = new List<Biome>();
+
 	private Biome currentBiome;
 
 	[SerializeField] private int numAssetsToSpawnOnLoad = 10;
@@ -97,9 +101,9 @@ public class ProceduralEnvGenerator : MonoBehaviour
 
 	private List<EnvironmentAsset> existingSlices = new List<EnvironmentAsset>();
 
-    public event Action OnBiomeChange;
+	public event Action OnBiomeChange;
 
-    public int NumSlicesToSpawnOnRenew
+	public int NumSlicesToSpawnOnRenew
 	{
 		get => numSlicesToSpawnOnRenew;
 	} //does this need to be exposed?
@@ -114,9 +118,14 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	{
 		get => randomizedNumSegmentsBetweenObstacles;
 	}
-    public List<EnvironmentAsset> ExistingSlices { get => existingSlices; set => existingSlices = value; }
 
-    public EBiomeType GetCurrentBiomeType()
+	public List<EnvironmentAsset> ExistingSlices
+	{
+		get => existingSlices;
+		set => existingSlices = value;
+	}
+
+	public EBiomeType GetCurrentBiomeType()
 	{
 		return GetCurrentBiome().BiomeType;
 	}
@@ -133,26 +142,26 @@ public class ProceduralEnvGenerator : MonoBehaviour
 		List<EnvironmentAsset> existingSliceCopy = new List<EnvironmentAsset>(existingSlices);
 		List<EnvironmentAsset> markedForAdd = new List<EnvironmentAsset>();
 
-        foreach (var oldSlice in existingSliceCopy)
+		foreach (var oldSlice in existingSliceCopy)
 		{
-            //replace with new biome slices in same positions and then delete
+			//replace with new biome slices in same positions and then delete
 			EnvironmentAsset RandomEnvironmentSlice = GetRandomEnvironmentAsset();
 
 			Vector2 spawnPosition = new Vector2(oldSlice.transform.position.x, oldSlice.transform.position.y);
 			EnvironmentAsset newSlice = Instantiate(RandomEnvironmentSlice, spawnPosition, Quaternion.identity, gameObject.transform);
 			newSlice.DontSpawnObstacles = true;
-			
+
 			markedForAdd.Add(newSlice);
 			Destroy(oldSlice.gameObject);
-        }
+		}
 
 		existingSlices.Clear();
 
-		foreach(var slice in markedForAdd)
+		foreach (var slice in markedForAdd)
 		{
 			existingSlices.Add(slice);
 		}
-    }
+	}
 
 	private void Update()
 	{
@@ -164,13 +173,13 @@ public class ProceduralEnvGenerator : MonoBehaviour
 
 		if (ShouldAdvanceBiome())
 		{
-            GetandAdvanceToNextBiome();
-        }
-    }
+			GetandAdvanceToNextBiome();
+		}
+	}
 
 	bool ShouldAdvanceBiome()
 	{
-		if(_currentBiomeIndex < biomeList.Count - 1 && gm.RunningDistance >= currentBiome.DistanceToSpawnNext)
+		if (_currentBiomeIndex < biomeList.Count - 1 && gm.RunningDistance >= currentBiome.DistanceToSpawnNext)
 		{
 			return true;
 		}
@@ -183,7 +192,7 @@ public class ProceduralEnvGenerator : MonoBehaviour
 
 		UpdateExistingSliceArt();
 
-        var newParallax = Instantiate(currentBiome.Parallax, Camera.main.transform).GetComponent<Parallax>();
+		var newParallax = Instantiate(currentBiome.Parallax, Camera.main.transform).GetComponent<Parallax>();
 		newParallax.transform.localPosition = Vector3.zero;
 
 		if (parallax)
@@ -205,16 +214,16 @@ public class ProceduralEnvGenerator : MonoBehaviour
 		parallax = newParallax;
 
 		//handle spawning of special slice if exists (can probably depreciate we have moved from this idea)
-		if(currentBiome.BiomeInitSlice != null)
+		if (currentBiome.BiomeInitSlice != null)
 		{
-            EnvironmentAsset slice = currentBiome.BiomeInitSlice;
-            GenerateEnvironmentSlice(slice);
-        }
+			EnvironmentAsset slice = currentBiome.BiomeInitSlice;
+			GenerateEnvironmentSlice(slice);
+		}
 
 
-    }
+	}
 
-    private Biome GetandAdvanceToNextBiome()
+	private Biome GetandAdvanceToNextBiome()
 	{
 		_currentBiomeIndex++;
 		currentBiome = GetCurrentBiome();
@@ -247,11 +256,27 @@ public class ProceduralEnvGenerator : MonoBehaviour
 		return currentBiome.EnvironmentObjectList[randomAssetIndex];
 	}
 
+	private HashSet<int> randomObjects = new HashSet<int>();
+
 	public GameObject GetRandomObstacle()
 	{
-		int randomAssetIndex = Random.Range(0, currentBiome.ObstacleObjectList.Length);
-		return currentBiome.ObstacleObjectList[randomAssetIndex];
+
+		GameObject randomO = null;
+		if (randomObjects.Count == currentBiome.ObstacleObjectList.Length)
+		{
+			randomObjects.Clear();
+		}
+
+		do
+		{
+			int randomAssetIndex = Random.Range(0, currentBiome.ObstacleObjectList.Length);
+			randomO = currentBiome.ObstacleObjectList[randomAssetIndex];
+		} while (randomObjects.Contains(randomO.GetInstanceID()));
+		randomObjects.Add(randomO.GetInstanceID());
+
+		return randomO;
 	}
+
 	private void RandomizeNumberSegmentsBetweenObstacles()
 	{
 		randomizedNumSegmentsBetweenObstacles = Random.Range(minSegmentsBetweenObstacles, maxSegmentsBetweenObstacles);
@@ -276,10 +301,10 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	{
 		Vector2 spawnPosition = new Vector2(currentSpawnPostitionX, spawnPositionY);
 		EnvironmentAsset slice = Instantiate(EnvironmentAsset, spawnPosition, Quaternion.identity, gameObject.transform);
-		
+
 		ExistingSlices.Add(slice);
 
-        float spacing = slice.GetEnvironmentLength();
+		float spacing = slice.GetEnvironmentLength();
 
 		currentSpawnPostitionX += spacing;
 	}
