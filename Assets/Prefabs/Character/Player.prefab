@@ -374,7 +374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KILLME: 0
   _startingHeath: 3
-  _isInvincible: 1
+  _isInvincible: 0
 --- !u!1 &8528628419391925129
 GameObject:
   m_ObjectHideFlags: 0

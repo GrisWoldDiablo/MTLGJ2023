@@ -124,7 +124,11 @@ public class PlayerMovement : MonoBehaviour
                 {
                     _forwardSpeed += Time.deltaTime * _maxForwardSpeed * 5f;
                 }
-                else
+                else if(_forwardSpeed > _maxForwardSpeed)
+                {
+                    _forwardSpeed -= Time.deltaTime * _maxForwardSpeed * 5f;
+                }
+                if(Mathf.Abs(_forwardSpeed - _maxForwardSpeed) > 0.01f)
                 {
                     _forwardSpeed = _maxForwardSpeed;
                 }
@@ -133,7 +137,6 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                _forwardSpeed = 0.5f;
                 _time += Time.deltaTime;
                 if (_time > _timeOfSlowdown)
                 {
@@ -218,9 +221,6 @@ public class PlayerMovement : MonoBehaviour
     public void ModifySpeed(float ratio)
     {
         _forwardSpeed = _maxForwardSpeed * 0.5f;
-        if (ratio < 1)
-        {
-            _isHit = true;
-        }
+        _isHit = true;
     }
 }
