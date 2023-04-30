@@ -1,3 +1,6 @@
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -15,6 +18,7 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private Button _startButton;
 	[SerializeField] private Button _runButton;
 	[SerializeField] private Button _revertButton;
+	[SerializeField] private Button _quitButton;
 	[SerializeField] private CanvasGroup _mainCanvasGroup;
 	[SerializeField] private CanvasGroup _pauseCanvasGroup;
 	[SerializeField] private CanvasGroup _gameoverGroup;
@@ -46,6 +50,16 @@ public class UIManager : MonoBehaviour
 		_gameoverGroup.blocksRaycasts = false;
 		_revertButton.onClick.AddListener(OnRevertButtonClicked);
 		_character.OnDie += OnCharacterDie;
+
+		_quitButton.onClick.AddListener(OnQuitButtonClicked);
+	}
+
+	private void OnQuitButtonClicked()
+	{
+		Application.Quit();
+#if UNITY_EDITOR
+		EditorApplication.isPlaying = false;
+#endif
 	}
 
 	private void OnRevertButtonClicked()
