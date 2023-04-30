@@ -74,7 +74,7 @@ public class CameraMovement : MonoBehaviour
 			screenBounds = _camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, _camera.transform.position.z));
 
 			Vector3 viewPos = player.position;
-			viewPos.x = Mathf.Clamp(viewPos.x, transform.position.x - (screenBounds.x - transform.position.x) + objectWidth, screenBounds.x - objectWidth);
+			viewPos.x = Mathf.Clamp(viewPos.x, transform.position.x - (screenBounds.x - transform.position.x) + 0.46f, screenBounds.x - objectWidth);
 			player.position = viewPos;
 		}
 
