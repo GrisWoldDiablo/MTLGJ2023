@@ -60,7 +60,7 @@ MonoBehaviour:
   minSegmentsBetweenObstacles: 16
   maxSegmentsBetweenObstacles: 64
   disableObstacle: 0
-  ySpawnModifier: 0
+  ySpawnModifier: -1
 --- !u!114 &2035923024879712188
 MonoBehaviour:
   m_ObjectHideFlags: 0
