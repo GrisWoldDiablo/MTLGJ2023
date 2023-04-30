@@ -7,7 +7,7 @@ public class PowerUpSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject spawnPoint;
     [Range(0,1)]
-    [SerializeField] private float _powerUpChance = 0.8f;
+    [SerializeField] private float _powerUpChance = 0.7f;
     [Range(0,1)]
     [SerializeField] private float _sandalsChance = 0.5f;
 
