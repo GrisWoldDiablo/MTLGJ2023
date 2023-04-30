@@ -57,6 +57,7 @@ MonoBehaviour:
     obstacleObjectList:
     - {fileID: 6866674086465982657, guid: cf0f8f0598644a440823f63a490c761c, type: 3}
     - {fileID: 3394999792726553591, guid: 334cc50fd0e722947a278b419d5dd42b, type: 3}
+    - {fileID: 3394999792726553591, guid: 14874b345f497b843a0ac480eb6c32fe, type: 3}
     parallax: {fileID: 5900863799802694701, guid: bfb12e1a836ba9e4cb2398039c033985, type: 3}
     wallSpeedInBiome: 6.75
     distanceToSpawnNext: 100
