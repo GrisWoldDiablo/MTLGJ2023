@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _body;
     [Header("Movement")] [SerializeField] private float _speed = 7f;
     [SerializeField] private float _jumpHeight = 14f;
-    [SerializeField] private float _timeOfSlowdown = 3f;
     [SerializeField] private float _slidingDuration = 2f;
     [Header("Camera")] [SerializeField] private CameraMovement _camera;
 
@@ -76,7 +75,8 @@ public class PlayerMovement : MonoBehaviour
     private float _time = 0;
     private float _slidingTime = 0;
     private bool _isHittingRoof;
-    private bool _isSlidingUnderRoof = false;
+    private bool _isSlidingUnderRoof = false; 
+    private float _buffTimer = 3f;
 
     void Update()
     {
@@ -118,8 +118,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (!_isHit)
-            {
+            
                 if (_forwardSpeed < _maxForwardSpeed)
                 {
                     _forwardSpeed += Time.deltaTime * _maxForwardSpeed * 5f;
@@ -133,20 +132,21 @@ public class PlayerMovement : MonoBehaviour
                     _forwardSpeed = _maxForwardSpeed;
                 }
 
+                
                 _camera.AllowCameraX(true);
-            }
-            else
+            
+        }
+        
+        if (_isHit)
+        {
+            _time += Time.deltaTime;
+            if (_time > _buffTimer)
             {
-                _time += Time.deltaTime;
-                if (_time > _timeOfSlowdown)
-                {
-                    _isHit = false;
-                    _time = 0;
-                }
-                _camera.AllowCameraX(true);
+                _isHit = false;
+                _time = 0;
+                _maxForwardSpeed = 1.1f;
             }
         }
-		
         _body.velocity = new Vector2(_forwardSpeed * _speed, _body.velocity.y);
         if (!_isSliding)
         {
@@ -218,9 +218,10 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Modifies speed by a ratio. If it's lower, it will return to normal after _timeOfSlowdown seconds, if it's higher it won't change until it is manually changed.
     /// </summary>
-    public void ModifySpeed(float ratio)
+    public void ModifySpeed(float ratio, float timer)
     {
-        _forwardSpeed = _maxForwardSpeed * 0.5f;
+        _maxForwardSpeed *= ratio;
         _isHit = true;
+        _buffTimer = timer;
     }
 }

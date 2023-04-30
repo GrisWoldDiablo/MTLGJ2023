@@ -23,10 +23,12 @@ public class Character : MonoBehaviour
 
 	public bool IsDead => _isDead;
 
-	public PlayerMovement PlayerMovement => GetComponent<PlayerMovement>();
+	private PlayerMovement _playerMove;
+	public PlayerMovement PlayerMovement => _playerMove;
 
 	private void Start()
 	{
+		_playerMove = GetComponentInChildren<PlayerMovement>();
 		ModifyHealth(_startingHeath);
 	}
 	
@@ -82,15 +84,12 @@ public class Character : MonoBehaviour
 
 	public enum PowerUp 
 	 {
-		Sandals,Bread,Hammer,Fan
+		Bread,Hammer,Fan
 	 }
 	 public void ReceivePowerUp(PowerUp power)
 	{
 		switch (power)
 		{
-			case PowerUp.Sandals:
-				
-				break;
 			case PowerUp.Bread:
 				
 				break;
@@ -105,8 +104,8 @@ public class Character : MonoBehaviour
 		}
 	}
 
-	public void ModifySpeed(float modification)
+	public void ModifySpeed(float modification,float timer)
 	{
-		PlayerMovement.Speed += modification;
+		PlayerMovement.ModifySpeed(modification,timer);
 	}
 }
