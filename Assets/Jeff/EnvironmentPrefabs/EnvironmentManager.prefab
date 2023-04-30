@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 4847786274769207459}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6590974928362709214
 MonoBehaviour:
@@ -54,12 +54,13 @@ MonoBehaviour:
     - {fileID: 8971083833398317402, guid: eca2f076d4c92db4cae8611c7d1034f8, type: 3}
     biomeInitSlice: {fileID: 0}
     obstacleObjectList:
-    - {fileID: 3394999792726553591, guid: 06a1ecdd49039c943bdd85f1b84a1162, type: 3}
+    - {fileID: 6866674086465982657, guid: cf0f8f0598644a440823f63a490c761c, type: 3}
+    - {fileID: 3394999792726553591, guid: 334cc50fd0e722947a278b419d5dd42b, type: 3}
     parallax: {fileID: 5900863799802694701, guid: bfb12e1a836ba9e4cb2398039c033985, type: 3}
     distanceToSpawnNext: 100
   - biomeType: 3
     environmentObjectList:
-    - {fileID: 8971083833398317402, guid: eca2f076d4c92db4cae8611c7d1034f8, type: 3}
+    - {fileID: 8971083833398317402, guid: c3ff573bd51064f44b2f96ed76b96d77, type: 3}
     biomeInitSlice: {fileID: 0}
     obstacleObjectList:
     - {fileID: 6866674086465982657, guid: cf0f8f0598644a440823f63a490c761c, type: 3}
@@ -73,6 +74,7 @@ MonoBehaviour:
     obstacleObjectList:
     - {fileID: 6866674086465982657, guid: 2301c49a100d24a4a986b7d0917eeb38, type: 3}
     - {fileID: 3394999792726553591, guid: 06a1ecdd49039c943bdd85f1b84a1162, type: 3}
+    - {fileID: 6866674086465982657, guid: 2c8b23bb4f3385a489c5f40e702e706c, type: 3}
     parallax: {fileID: 5900863799802694701, guid: 0abd30bda70957b4e82e93453298e8dc, type: 3}
     distanceToSpawnNext: 300
   - biomeType: 2
