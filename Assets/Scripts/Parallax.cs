@@ -10,9 +10,9 @@ public class Parallax : MonoBehaviour
 	public GameObject[] Layer_Objects;
 
 	private Transform _camera;
-	private float[] startPosX;
+	public float[] StartPosX { get; set; }
 	private float boundSizeX;
-	private float[] startPosY;
+	public float[] StartPosY { get; set; }
 	private float boundSizeY;
 	private float sizeX;
 	private float sizeY;
@@ -23,20 +23,20 @@ public class Parallax : MonoBehaviour
 
 		sizeX = Layer_Objects[0].transform.localScale.x;
 		boundSizeX = Layer_Objects[0].GetComponent<SpriteRenderer>().sprite.bounds.size.x;
-		startPosX = new float[Layer_Objects.Length];
+		StartPosX = new float[Layer_Objects.Length];
 
 		sizeY = Layer_Objects[0].transform.localScale.y;
 		boundSizeY = Layer_Objects[0].GetComponent<SpriteRenderer>().sprite.bounds.size.y;
-		startPosY = new float[Layer_Objects.Length];
+		StartPosY = new float[Layer_Objects.Length];
 
 		var cameraPosition = _camera.position;
 		for (int i = 0; i < Layer_Objects.Length; i++)
 		{
-			startPosX[i] = cameraPosition.x;
-			startPosY[i] = cameraPosition.y;
+			StartPosX[i] = cameraPosition.x;
+			StartPosY[i] = cameraPosition.y;
 		}
 	}
-
+	
 	void Update()
 	{
 		for (int i = 0; i < Layer_Objects.Length; i++)
@@ -46,26 +46,26 @@ public class Parallax : MonoBehaviour
 			float distance = cameraPosition.x * Layer_SpeedX[i];
 			float distanceY = cameraPosition.y * Layer_SpeedY[i];
 
-			Layer_Objects[i].transform.position = new Vector2(startPosX[i] + distance, startPosY[i] + distanceY);
+			Layer_Objects[i].transform.position = new Vector2(StartPosX[i] + distance, StartPosY[i] + distanceY);
 
-			if (temp > startPosX[i] + boundSizeX * sizeX)
+			if (temp > StartPosX[i] + boundSizeX * sizeX)
 			{
-				startPosX[i] += boundSizeX * sizeX;
+				StartPosX[i] += boundSizeX * sizeX;
 			}
-			else if (temp < startPosX[i] - boundSizeX * sizeX)
+			else if (temp < StartPosX[i] - boundSizeX * sizeX)
 			{
-				startPosX[i] -= boundSizeX * sizeX;
+				StartPosX[i] -= boundSizeX * sizeX;
 			}
 
 			temp = _camera.position.y * (1 - Layer_SpeedY[i]);
 
-			if (temp > startPosY[i] + boundSizeY * sizeY)
+			if (temp > StartPosY[i] + boundSizeY * sizeY)
 			{
-				startPosY[i] += boundSizeY * sizeY;
+				StartPosY[i] += boundSizeY * sizeY;
 			}
-			else if (temp < startPosY[i] - boundSizeY * sizeY)
+			else if (temp < StartPosY[i] - boundSizeY * sizeY)
 			{
-				startPosY[i] -= boundSizeY * sizeY;
+				StartPosY[i] -= boundSizeY * sizeY;
 			}
 		}
 	}

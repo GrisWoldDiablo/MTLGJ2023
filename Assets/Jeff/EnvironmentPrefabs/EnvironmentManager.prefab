@@ -53,16 +53,16 @@ MonoBehaviour:
     obstacleObjectList:
     - {fileID: 6866674086465982657, guid: cf0f8f0598644a440823f63a490c761c, type: 3}
     - {fileID: 3394999792726553591, guid: 334cc50fd0e722947a278b419d5dd42b, type: 3}
-    parallax: {fileID: 0}
-  - biomeType: 1
-    environmentObjectList: []
-    obstacleObjectList: []
-    parallax: {fileID: 0}
+    parallax: {fileID: 5900863799802694701, guid: bfb12e1a836ba9e4cb2398039c033985, type: 3}
   - biomeType: 2
     environmentObjectList:
     - {fileID: 8971083833398317402, guid: 339d68e0cbf904c41ba3e74a558b5efd, type: 3}
     obstacleObjectList: []
-    parallax: {fileID: 0}
+    parallax: {fileID: 5900863799802694701, guid: 515dd015473ced549900729eb7db8cc1, type: 3}
+  - biomeType: 1
+    environmentObjectList: []
+    obstacleObjectList: []
+    parallax: {fileID: 5900863799802694701, guid: b22f696d75b222742a95b6808da8a19f, type: 3}
   numAssetsToSpawnOnLoad: 25
   numSlicesToSpawnOnRenew: 5
   parallax: {fileID: 0}

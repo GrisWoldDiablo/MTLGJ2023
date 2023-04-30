@@ -46,13 +46,14 @@ public class Biome
 public class ProceduralEnvGenerator : MonoBehaviour
 {
 	private static ProceduralEnvGenerator _sInstance;
+	[SerializeField] private bool cheat_NEXTBIOME = false;
 
 	[Header("EnvironmentLists")] [SerializeField]
 	List<Biome> biomeList = new List<Biome>();
 
 	[SerializeField] private int numAssetsToSpawnOnLoad = 10;
 	[SerializeField] private int numSlicesToSpawnOnRenew = 5;
-	[SerializeField] private GameObject parallax;
+	private GameObject parallax;
 
 	private Biome currentBiome;
 
@@ -71,7 +72,7 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	[Header("Debug")] [SerializeField] bool disableObstacle = false;
 	[SerializeField] float ySpawnModifier = -1.0f;
 
-	[SerializeField] private bool cheat_NEXTBIOME = false;
+	private int _currentBiomeIndex = -1;
 
 	public int NumSlicesToSpawnOnRenew
 	{
@@ -92,7 +93,7 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	//cycle through available biomes and find the one that matches our set biome
 	private Biome GetCurrentBiome()
 	{
-		return biomeList[0];
+		return biomeList[_currentBiomeIndex];
 	}
 
 	private void Update()
@@ -100,17 +101,21 @@ public class ProceduralEnvGenerator : MonoBehaviour
 		if (cheat_NEXTBIOME)
 		{
 			cheat_NEXTBIOME = false;
-			AdvanceToNextBiome();
+			GetandAdvanceToNextBiome();
 		}
 	}
 
-	private void AdvanceToNextBiome()
+	private Biome GetandAdvanceToNextBiome()
 	{
-		biomeList.Remove(currentBiome);
+		_currentBiomeIndex++;
 		currentBiome = GetCurrentBiome();
-		var newParallax = Instantiate(currentBiome.Parallax, parallax.transform.parent);
-		Destroy(parallax);
-		parallax = newParallax;
+		
+		if (parallax)
+		{
+			Destroy(parallax);
+		}
+		parallax = Instantiate(currentBiome.Parallax, Camera.main.transform);
+		return currentBiome;
 	}
 
 	public static ProceduralEnvGenerator Get()
@@ -194,7 +199,7 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	// Start is called before the first frame update
 	private void Start()
 	{
-		currentBiome = GetCurrentBiome();
+		currentBiome = GetandAdvanceToNextBiome();
 
 		RandomizeNumberSegmentsBetweenObstacles();
 
