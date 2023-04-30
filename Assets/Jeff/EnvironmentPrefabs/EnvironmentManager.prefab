@@ -48,6 +48,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cheat_NEXTBIOME: 0
   biomeList:
+  - biomeType: 1
+    environmentObjectList:
+    - {fileID: 8971083833398317402, guid: 1ef84ea6b3b49f94b8cefb348a9180fb, type: 3}
+    biomeInitSlice: {fileID: 0}
+    obstacleObjectList: []
+    parallax: {fileID: 5900863799802694701, guid: 0abd30bda70957b4e82e93453298e8dc, type: 3}
+    distanceToSpawnNext: 500
   - biomeType: 0
     environmentObjectList:
     - {fileID: 8971083833398317402, guid: eca2f076d4c92db4cae8611c7d1034f8, type: 3}
@@ -57,13 +64,6 @@ MonoBehaviour:
     - {fileID: 3394999792726553591, guid: 334cc50fd0e722947a278b419d5dd42b, type: 3}
     parallax: {fileID: 5900863799802694701, guid: bfb12e1a836ba9e4cb2398039c033985, type: 3}
     distanceToSpawnNext: 100
-  - biomeType: 1
-    environmentObjectList:
-    - {fileID: 8971083833398317402, guid: 1ef84ea6b3b49f94b8cefb348a9180fb, type: 3}
-    biomeInitSlice: {fileID: 0}
-    obstacleObjectList: []
-    parallax: {fileID: 5900863799802694701, guid: 0abd30bda70957b4e82e93453298e8dc, type: 3}
-    distanceToSpawnNext: 500
   - biomeType: 2
     environmentObjectList:
     - {fileID: 8971083833398317402, guid: 339d68e0cbf904c41ba3e74a558b5efd, type: 3}
@@ -89,7 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d380f8fd6890440b9d498852807bc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EruptionObject: {fileID: 6200705233266992062, guid: c40308c8dd7b9c145a30ff6553d96672, type: 3}
+  DefaultEruptionObject: {fileID: 6200705233266992062, guid: c40308c8dd7b9c145a30ff6553d96672, type: 3}
+  RockEruptionObject: {fileID: 6200705233266992062, guid: 3ecccdc51f7b7ea4494484669ba5f49a, type: 3}
   minTimeBetweenEvents: 5
   maxTimeBetweenEvents: 15
   disableEruption: 0

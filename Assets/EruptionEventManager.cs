@@ -6,7 +6,9 @@ using UnityEngine;
 //Potentially leave pool of lava on the ground?
 public class EruptionEventManager : MonoBehaviour
 {
-    [SerializeField] GameObject EruptionObject;
+    [SerializeField] GameObject DefaultEruptionObject;
+    [SerializeField] GameObject RockEruptionObject;
+
 
     //potentially have a formula based on elapsed game time (happens more frequently as we progress?)
     [SerializeField] float minTimeBetweenEvents = 5.0f;
@@ -18,11 +20,31 @@ public class EruptionEventManager : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool disableEruption;
 
+    private GameObject GetEventForBiome()
+    {
+        GameObject SpawnedEvent = null;
+        EBiomeType currentBiome = ProceduralEnvGenerator.Get().GetCurrentBiomeType();
+        switch (currentBiome)
+        {
+            case EBiomeType.VolcanoArea:
+                SpawnedEvent = DefaultEruptionObject;
+                break;
+            case EBiomeType.Cave:
+                SpawnedEvent = RockEruptionObject;
+                break;
+            case EBiomeType.NightSky:
+                SpawnedEvent = DefaultEruptionObject;
+                break;
+        }
+        return SpawnedEvent;
+    }
+
     private void SpawnEruptionEvent()
     {
-        if (EruptionObject != null)
+        if (DefaultEruptionObject != null)
         {
-            Instantiate(EruptionObject, GetRandomSpawnPos(), Quaternion.identity, gameObject.transform);
+            GameObject BiomeEvent = GetEventForBiome();
+            GameObject Event = Instantiate(BiomeEvent, GetRandomSpawnPos(), Quaternion.identity, gameObject.transform);
             EruptionSFXManager.Get().PlaySFX();
         }
     }

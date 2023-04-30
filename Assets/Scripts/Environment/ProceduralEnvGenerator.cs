@@ -99,9 +99,14 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	{
 		get => randomizedNumSegmentsBetweenObstacles;
 	}
+	
+	public EBiomeType GetCurrentBiomeType()
+	{
+		return GetCurrentBiome().BiomeType;
+	}
 
 	//cycle through available biomes and find the one that matches our set biome
-	private Biome GetCurrentBiome()
+	public Biome GetCurrentBiome()
 	{
 		return biomeList[_currentBiomeIndex];
 	}
