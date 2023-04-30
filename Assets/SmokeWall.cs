@@ -50,9 +50,9 @@ public class SmokeWall : MonoBehaviour
 		}
 		else
 		{
+			//move wall towards the player at a constant rate
 			transform.Translate(Vector3.right * Speed * Time.deltaTime);
 		}
-		//move wall towards the player at a constant rate
 	}
 
 	void OnTriggerEnter2D(Collider2D other)

@@ -148,7 +148,6 @@ public class ProceduralEnvGenerator : MonoBehaviour
 		{
 			existingSlices.Add(slice);
 		}
-
     }
 
 	private void Update()
