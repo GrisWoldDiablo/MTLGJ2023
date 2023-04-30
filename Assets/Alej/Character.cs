@@ -49,9 +49,10 @@ public class Character : MonoBehaviour
     private PlayerMovement _playerMove;
     public PlayerMovement PlayerMovement => _playerMove;
 
-    void Die()
+    public void Die()
 	{
 		//game manager end game
+		_health = 0;
 		IsDead = true;
 		OnDie?.Invoke();
         CharacterSFXManager.Get().PlayDieSFX();
@@ -86,6 +87,7 @@ public class Character : MonoBehaviour
         if (_health <= 0)
         {
             Die();
+            return;
         }
        
         

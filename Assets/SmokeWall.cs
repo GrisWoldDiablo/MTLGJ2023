@@ -58,7 +58,7 @@ public class SmokeWall : MonoBehaviour
 
 		if (player != null)
 		{
-			player.ModifyHealth(-10);
+			player.Die();
 
 		}
 	}
