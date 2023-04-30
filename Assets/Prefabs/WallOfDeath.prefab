@@ -9690,7 +9690,7 @@ Transform:
   - {fileID: 3802433849683179281}
   - {fileID: 1800236606137232077}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1659848657142549706
 MonoBehaviour:
@@ -9705,10 +9705,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  playerBody: {fileID: 0}
+  maxDistanceToPlayer: 25
   _particleSystems:
   - {fileID: 5794471953484938515}
   - {fileID: 5196917272695848110}
-  speed: 6.75
+  speed: 7.05
 --- !u!212 &7162232378609799186
 SpriteRenderer:
   m_ObjectHideFlags: 0

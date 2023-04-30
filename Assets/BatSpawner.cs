@@ -63,8 +63,6 @@ public class BatSpawner : MonoBehaviour
     {
         if(env.GetCurrentBiomeType() == EBiomeType.Cave)
         {
-            Debug.Log(elapsedTime);
-
             elapsedTime += Time.deltaTime;
             if (bShouldSpawnBats())
             {

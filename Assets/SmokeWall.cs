@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class SmokeWall : MonoBehaviour
 {
 	[SerializeField] private Character player;
-	[SerializeField] private float maxDistanceToPlayer = 30.0f;
+    [SerializeField] private GameObject playerBody;
+
+    [SerializeField] private float maxDistanceToPlayer = 20.0f;
 
     [SerializeField] ParticleSystem[] _particleSystems;
 
 	int[] numWallSections = new int[3];
 
-	[SerializeField] float speed = 5f;
+	private float speed = 5f;
 
     public float Speed { get => speed; set => speed = value; }
 
@@ -43,16 +41,15 @@ public class SmokeWall : MonoBehaviour
 			return;
 		}
 
-		float distanceToPlayer = Mathf.Abs(gameObject.transform.position.x - player.gameObject.transform.position.x);
-		if (distanceToPlayer >= maxDistanceToPlayer)
+		//Debug.Log(gameObject.transform.position.x + playerBody.gameObject.transform.position.x);
+
+		if (gameObject.transform.position.x + maxDistanceToPlayer < playerBody.gameObject.transform.position.x)
 		{
-			transform.position = new Vector3(player.gameObject.transform.position.x + maxDistanceToPlayer, transform.position.y, transform.position.z);
+			transform.position = new Vector3(playerBody.transform.position.x - maxDistanceToPlayer, transform.position.y, transform.position.z);
 		}
-		else
-		{
-			//move wall towards the player at a constant rate
-			transform.Translate(Vector3.right * Speed * Time.deltaTime);
-		}
+
+		transform.Translate(Vector3.right * Speed * Time.deltaTime);
+		
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
