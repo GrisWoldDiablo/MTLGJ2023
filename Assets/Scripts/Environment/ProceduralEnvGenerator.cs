@@ -92,6 +92,8 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	[SerializeField] float ySpawnModifier = -1.0f;
 
 	private int _currentBiomeIndex = -1;
+	public int CurrentBiomeIndex => _currentBiomeIndex;
+	public int BiomeCount => biomeList.Count;
 
 	private List<EnvironmentAsset> existingSlices = new List<EnvironmentAsset>();
 
