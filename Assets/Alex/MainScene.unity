@@ -175,38 +175,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6590974928362709214, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
-      propertyPath: biomeList.Array.data[0].obstacleObjectList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6590974928362709214, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
-      propertyPath: biomeList.Array.data[1].obstacleObjectList.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6590974928362709214, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
-      propertyPath: biomeList.Array.data[2].obstacleObjectList.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6590974928362709214, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
-      propertyPath: biomeList.Array.data[0].obstacleObjectList.Array.data[0]
-      value: 
-      objectReference: {fileID: 3394999792726553591, guid: 06a1ecdd49039c943bdd85f1b84a1162, type: 3}
-    - target: {fileID: 6590974928362709214, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
-      propertyPath: biomeList.Array.data[1].obstacleObjectList.Array.data[2]
-      value: 
-      objectReference: {fileID: 3394999792726553591, guid: 334cc50fd0e722947a278b419d5dd42b, type: 3}
-    - target: {fileID: 6590974928362709214, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
-      propertyPath: biomeList.Array.data[2].obstacleObjectList.Array.data[0]
-      value: 
-      objectReference: {fileID: 3479520894607849086, guid: 7806210979bbf8d46a6c3b533d595c26, type: 3}
-    - target: {fileID: 6590974928362709214, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
-      propertyPath: biomeList.Array.data[2].obstacleObjectList.Array.data[1]
-      value: 
-      objectReference: {fileID: 7797186090377375619, guid: 303527e1826f4c74899781fab8951f8f, type: 3}
-    - target: {fileID: 6590974928362709214, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
-      propertyPath: biomeList.Array.data[2].obstacleObjectList.Array.data[2]
-      value: 
-      objectReference: {fileID: 5738901331718316001, guid: 7dcca91b85ab508428b6e2c686f69dc1, type: 3}
     - target: {fileID: 6731130473350794274, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
       propertyPath: m_Name
       value: EnvironmentManager
