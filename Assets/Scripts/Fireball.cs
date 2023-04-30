@@ -11,16 +11,18 @@ public class Fireball : MonoBehaviour
 	[SerializeField] private ParticleSystem boom;
 	[SerializeField] private ParticleSystem constant;
 
+	private EruptionEventManager eruptionManager;
+
 	private SpriteRenderer sprite;
 	private BoxCollider2D col;
 
-	// Start is called before the first frame update
-	void Start()
+    // Start is called before the first frame update
+    void Start()
 	{
 		sprite = GetComponent<SpriteRenderer>();
 		col = GetComponent<BoxCollider2D>();
-
-		rb = GetComponent<Rigidbody2D>();
+		eruptionManager = EruptionEventManager.Get();
+        rb = GetComponent<Rigidbody2D>();
 		rb.gravityScale = 1;
 		rb.velocity = new Vector2(speed, rb.velocity.y);
 	}
@@ -58,6 +60,7 @@ public class Fireball : MonoBehaviour
         CameraShake camShake = Camera.main.GetComponent<CameraShake>();
         camShake.DoCameraShake(0.33f, 0.07f); //expose these
 
+		eruptionManager.ActiveEruptions.Remove(gameObject);
         Destroy(gameObject, boom.main.duration);
 
 	}

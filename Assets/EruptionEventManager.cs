@@ -1,14 +1,18 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 //Class to periodically spawn lava fire balls from the sky
 //Potentially leave pool of lava on the ground?
 public class EruptionEventManager : MonoBehaviour
 {
+
+    private static EruptionEventManager _sInstance;
+
     [SerializeField] GameObject DefaultEruptionObject;
     [SerializeField] GameObject RockEruptionObject;
-
+    
+    private List<GameObject> activeEruptions = new List<GameObject>();
 
     //potentially have a formula based on elapsed game time (happens more frequently as we progress?)
     [SerializeField] float minTimeBetweenEvents = 5.0f;
@@ -16,9 +20,15 @@ public class EruptionEventManager : MonoBehaviour
 
     private float randomTimeRequired = 0.0f;
     private float timeSinceLastEvent = 0.0f;
-    
+
     [Header("Debug")]
     [SerializeField] private bool disableEruption;
+
+    public List<GameObject> ActiveEruptions { get => activeEruptions; set => activeEruptions = value; }
+    public static EruptionEventManager Get()
+    {
+        return _sInstance;
+    }
 
     private GameObject GetEventForBiome()
     {
@@ -33,6 +43,15 @@ public class EruptionEventManager : MonoBehaviour
         return SpawnedEvent;
     }
 
+    private void OnBiomeChanged()
+    {
+        //destroy active eruptions as we switch biomes
+        foreach(var eruption in ActiveEruptions){
+            Destroy(eruption.gameObject);
+        }
+        ActiveEruptions.Clear();
+    }
+
     private void SpawnEruptionEvent()
     {
         if (DefaultEruptionObject != null)
@@ -40,6 +59,7 @@ public class EruptionEventManager : MonoBehaviour
             GameObject BiomeEvent = GetEventForBiome();
             GameObject Event = Instantiate(BiomeEvent, GetRandomSpawnPos(), Quaternion.identity, gameObject.transform);
             EruptionSFXManager.Get().PlaySFX();
+            ActiveEruptions.Add(Event);
         }
     }
     float GetRandomTimeForSpawn()
@@ -66,10 +86,26 @@ public class EruptionEventManager : MonoBehaviour
         return randomPosition;
     }
 
+    private void Awake()
+    {
+        if (!_sInstance)
+        {
+            _sInstance = this;
+        }
+        else
+        {
+            DestroyImmediate(this);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         randomTimeRequired = GetRandomTimeForSpawn();
+        ProceduralEnvGenerator Gen = ProceduralEnvGenerator.Get();
+
+        Gen.OnBiomeChange += OnBiomeChanged;
+
     }
 
     // Update is called once per frame

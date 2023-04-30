@@ -97,7 +97,9 @@ public class ProceduralEnvGenerator : MonoBehaviour
 
 	private List<EnvironmentAsset> existingSlices = new List<EnvironmentAsset>();
 
-	public int NumSlicesToSpawnOnRenew
+    public event Action OnBiomeChange;
+
+    public int NumSlicesToSpawnOnRenew
 	{
 		get => numSlicesToSpawnOnRenew;
 	} //does this need to be exposed?
@@ -218,6 +220,10 @@ public class ProceduralEnvGenerator : MonoBehaviour
 		currentBiome = GetCurrentBiome();
 
 		InitializeBiome();
+
+		OnBiomeChange.Invoke();
+
+		//broadcast we swapped biome
 		return currentBiome;
 	}
 
