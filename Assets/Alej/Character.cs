@@ -79,7 +79,7 @@ public class Character : MonoBehaviour
         }
 
         _health += damage;
-
+        
         if (_health <= 0)
         {
             Die();
@@ -89,9 +89,11 @@ public class Character : MonoBehaviour
 	        CharacterSFXManager.Get().PlayHurtSFX();
 	        ApplyStatusEffects();
         }
+        
         if (_health > _startingHealth)
         {
             _health = _startingHealth;
+            return;
         }
         OnHealthChange?.Invoke(damage);
     }
