@@ -106,8 +106,8 @@ public class Character : MonoBehaviour
     private IEnumerator SlowDown()
     {
         float savedSpeed = _playerMove.Speed;
-        _playerMove.Speed = 3.0f;
-        yield return new WaitForSeconds(1.0f);
+        _playerMove.Speed = 2.5f;
+        yield return new WaitForSeconds(1.55f);
         _playerMove.Speed = savedSpeed;
     }
 
