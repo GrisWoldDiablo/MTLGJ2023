@@ -4,7 +4,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
 	public bool KILLME = false;
-	[SerializeField] private int _startingHeath = 3;
+	[SerializeField] private int _startingHealth = 3;
 	[SerializeField] private bool _isInvincible = false;
 	[SerializeField] private Sprite[] _possibleItems;
 	[SerializeField] private SpriteRenderer itemSlot;
@@ -23,11 +23,13 @@ public class Character : MonoBehaviour
 
 	public bool IsDead => _isDead;
 
-	public PlayerMovement PlayerMovement => GetComponent<PlayerMovement>();
+	private PlayerMovement _playerMove;
+	public PlayerMovement PlayerMovement => _playerMove;
 
 	private void Start()
 	{
-		ModifyHealth(_startingHeath);
+		_playerMove = GetComponentInChildren<PlayerMovement>();
+		ModifyHealth(_startingHealth);
 	}
 	
 	private void Update()
@@ -44,7 +46,7 @@ public class Character : MonoBehaviour
 		}
 	}
 	
-	public void GetHit()
+	public void GetHit(int damage)
 	{
 		if (HasHammer)
 		{
@@ -53,7 +55,7 @@ public class Character : MonoBehaviour
 		}
 		else
 		{
-			ModifyHealth(-1);
+			ModifyHealth(-damage);
 		}
 	}
 
@@ -69,7 +71,10 @@ public class Character : MonoBehaviour
 		{
 			Die();
 		}
-		
+		if (_health > _startingHealth)
+		{
+			_health = _startingHealth;
+		}
 		OnHealthChange?.Invoke(damage);
 	}
 	
@@ -82,15 +87,12 @@ public class Character : MonoBehaviour
 
 	public enum PowerUp 
 	 {
-		Sandals,Bread,Hammer,Fan
+		Bread,Hammer,Fan
 	 }
 	 public void ReceivePowerUp(PowerUp power)
 	{
 		switch (power)
 		{
-			case PowerUp.Sandals:
-				
-				break;
 			case PowerUp.Bread:
 				
 				break;
@@ -105,8 +107,8 @@ public class Character : MonoBehaviour
 		}
 	}
 
-	public void ModifySpeed(float modification)
+	public void ModifySpeed(float modification,float timer)
 	{
-		PlayerMovement.Speed += modification;
+		PlayerMovement.ModifySpeed(modification,timer);
 	}
 }
