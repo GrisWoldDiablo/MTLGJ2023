@@ -1,15 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.VersionControl;
-using UnityEditor;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
-using UnityEngine.UIElements;
-using UnityEngine.U2D;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
-using System.Linq;
 
 public enum EBiomeType
 {
@@ -111,7 +101,7 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	//called by asset on appropriate segment, maybe better to just contain this in the slice class directly
 	public void GenerateRandomObstacle(Vector2 SpawnPosition, Transform Parent)
 	{
-        if (disableObstacle)
+        if (disableObstacle || currentBiome.ObstacleObjectList.Length > 0)
         {
             return;
         }
