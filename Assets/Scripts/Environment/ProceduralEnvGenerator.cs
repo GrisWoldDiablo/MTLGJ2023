@@ -59,8 +59,10 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	[Header("Debug")]
 	[SerializeField]
 	bool disableObstacle = false;
+    [SerializeField]
+    float ySpawnModifier = -1.0f;
 
-	public int NumSlicesToSpawnOnRenew{ get => numSlicesToSpawnOnRenew; } //does this need to be exposed?
+    public int NumSlicesToSpawnOnRenew{ get => numSlicesToSpawnOnRenew; } //does this need to be exposed?
     public int NumSegmentsSinceLastObstacles { get => numSegmentsSinceLastObstacles; set => numSegmentsSinceLastObstacles = value; }
     public float RandomizedNumSegmentsBetweenObstacles { get => randomizedNumSegmentsBetweenObstacles;}
 
@@ -113,8 +115,12 @@ public class ProceduralEnvGenerator : MonoBehaviour
         {
             return;
         }
+
+		//lower obstacle a bit to compensate for overextending grass mesh
+		Vector2 adjustedVector = new Vector2(SpawnPosition.x, SpawnPosition.y - ySpawnModifier);
+
         RandomizeNumberSegmentsBetweenObstacles();
-        GameObject obstacle = Instantiate(GetRandomObstacle(), SpawnPosition, Quaternion.identity, Parent);
+        GameObject obstacle = Instantiate(GetRandomObstacle(), adjustedVector, Quaternion.identity, Parent);
     }
 
     private void GenerateEnvironmentSlice(EnvironmentAsset EnvironmentAsset)
