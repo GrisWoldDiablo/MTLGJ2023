@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: SpriteSheet Stalagmite
   m_EditorClassIdentifier: 
   _sprites:
-  - {fileID: 571602865, guid: d3bd64b5ad423ab429d5229ead0f9f62, type: 3}
-  - {fileID: 1641702608, guid: d3bd64b5ad423ab429d5229ead0f9f62, type: 3}
-  - {fileID: 137013280, guid: d3bd64b5ad423ab429d5229ead0f9f62, type: 3}
-  - {fileID: 1593015147, guid: d3bd64b5ad423ab429d5229ead0f9f62, type: 3}
-  - {fileID: 1593015147, guid: d3bd64b5ad423ab429d5229ead0f9f62, type: 3}
-  - {fileID: 1593015147, guid: d3bd64b5ad423ab429d5229ead0f9f62, type: 3}
+  - {fileID: -1866250881, guid: 9a7dd9eb900188c4abff8186e055b847, type: 3}
+  - {fileID: -1057161187, guid: 9a7dd9eb900188c4abff8186e055b847, type: 3}
+  - {fileID: -57784112, guid: 9a7dd9eb900188c4abff8186e055b847, type: 3}
+  - {fileID: -1981983824, guid: 9a7dd9eb900188c4abff8186e055b847, type: 3}
