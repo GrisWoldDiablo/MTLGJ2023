@@ -19,7 +19,9 @@ public class Biome
     [SerializeField] private GameObject[] obstacleObjectList;
 	[SerializeField] private GameObject parallax;
 
-	public EBiomeType BiomeType
+	[SerializeField] float distanceToSpawnNext = 1000.0f;
+
+    public EBiomeType BiomeType
 	{
 		get => biomeType;
 		set => biomeType = value;
@@ -46,6 +48,10 @@ public class Biome
     {
         get => biomeInitSlice;
     }
+    public float DistanceToSpawnNext 
+	{ 
+		get => distanceToSpawnNext;
+	}
 }
 
 public class ProceduralEnvGenerator : MonoBehaviour
@@ -55,12 +61,13 @@ public class ProceduralEnvGenerator : MonoBehaviour
 
 	[Header("EnvironmentLists")] [SerializeField]
 	List<Biome> biomeList = new List<Biome>();
+	private Biome currentBiome;
 
 	[SerializeField] private int numAssetsToSpawnOnLoad = 10;
 	[SerializeField] private int numSlicesToSpawnOnRenew = 5;
 	private Parallax parallax;
 
-	private Biome currentBiome;
+	private GameManager gm;
 
 	//keeps track of the X coordinate at which to spawn the next environment slice
 	private float currentSpawnPostitionX = 0.0f;
@@ -106,6 +113,20 @@ public class ProceduralEnvGenerator : MonoBehaviour
 			cheat_NEXTBIOME = false;
 			GetandAdvanceToNextBiome();
 		}
+
+		if (ShouldAdvanceBiome())
+		{
+            GetandAdvanceToNextBiome();
+        }
+    }
+
+	bool ShouldAdvanceBiome()
+	{
+		if(_currentBiomeIndex < biomeList.Count - 1 && gm.RunningDistance >= currentBiome.DistanceToSpawnNext)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	private void InitializeBiome()
@@ -228,6 +249,8 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	// Start is called before the first frame update
 	private void Start()
 	{
+		gm = GameManager.Get();
+
 		currentBiome = GetandAdvanceToNextBiome();
 
 		RandomizeNumberSegmentsBetweenObstacles();

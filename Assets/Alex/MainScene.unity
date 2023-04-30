@@ -131,10 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2035923024879712188, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
-      propertyPath: disableEruption
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2095912608864456826, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -177,10 +173,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2095912608864456826, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6590974928362709214, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}
-      propertyPath: disableObstacle
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6731130473350794274, guid: 1a8e76a5f8310b4459977e7c8905fc62, type: 3}

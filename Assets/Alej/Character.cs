@@ -62,7 +62,6 @@ public class Character : MonoBehaviour
     private PlayerMovement _playerMove;
     public PlayerMovement PlayerMovement => _playerMove;
 
-
     void Die()
 	{
 		//game manager end game
