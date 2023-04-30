@@ -15,7 +15,8 @@ public class Biome
 {
 	[SerializeField] EBiomeType biomeType;
 	[SerializeField] private EnvironmentAsset[] environmentObjectList;
-	[SerializeField] private GameObject[] obstacleObjectList;
+    [SerializeField] private EnvironmentAsset biomeInitSlice;
+    [SerializeField] private GameObject[] obstacleObjectList;
 	[SerializeField] private GameObject parallax;
 
 	public EBiomeType BiomeType
@@ -40,7 +41,11 @@ public class Biome
 	{
 		get => parallax;
 		set => parallax = value;
-	}
+    }
+    public EnvironmentAsset BiomeInitSlice
+    {
+        get => biomeInitSlice;
+    }
 }
 
 public class ProceduralEnvGenerator : MonoBehaviour
@@ -60,8 +65,6 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	//keeps track of the X coordinate at which to spawn the next environment slice
 	private float currentSpawnPostitionX = 0.0f;
 	private float spawnPositionY = 0.0f;
-
-	//these should be the same
 
 	private int expiredSlicesCount = 0;
 
@@ -105,7 +108,20 @@ public class ProceduralEnvGenerator : MonoBehaviour
 		}
 	}
 
-	private Biome GetandAdvanceToNextBiome()
+	private void InitializeBiome()
+	{
+        parallax = Instantiate(currentBiome.Parallax, Camera.main.transform);
+
+		//handle spawning of special slice if exists
+		if(currentBiome.BiomeInitSlice != null)
+		{
+            EnvironmentAsset slice = currentBiome.BiomeInitSlice;
+            GenerateEnvironmentSlice(slice);
+        }
+    }
+
+
+    private Biome GetandAdvanceToNextBiome()
 	{
 		_currentBiomeIndex++;
 		currentBiome = GetCurrentBiome();
@@ -114,7 +130,9 @@ public class ProceduralEnvGenerator : MonoBehaviour
 		{
 			Destroy(parallax);
 		}
-		parallax = Instantiate(currentBiome.Parallax, Camera.main.transform);
+
+		InitializeBiome();
+
 		return currentBiome;
 	}
 
@@ -143,7 +161,6 @@ public class ProceduralEnvGenerator : MonoBehaviour
 		int randomAssetIndex = Random.Range(0, currentBiome.ObstacleObjectList.Length);
 		return currentBiome.ObstacleObjectList[randomAssetIndex];
 	}
-
 	private void RandomizeNumberSegmentsBetweenObstacles()
 	{
 		randomizedNumSegmentsBetweenObstacles = Random.Range(minSegmentsBetweenObstacles, maxSegmentsBetweenObstacles);
@@ -152,7 +169,7 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	//called by asset on appropriate segment, maybe better to just contain this in the slice class directly
 	public void GenerateRandomObstacle(Vector2 SpawnPosition, Transform Parent)
 	{
-		if (disableObstacle || currentBiome.ObstacleObjectList.Length > 0)
+		if (disableObstacle || currentBiome.ObstacleObjectList.Length <= 0)
 		{
 			return;
 		}
