@@ -12,7 +12,11 @@ public class EnvironmentAsset : MonoBehaviour
 
 	private ProceduralEnvGenerator envGenerator;
 
-	private void Awake()
+	private bool dontSpawnObstacles = false;
+
+    public bool DontSpawnObstacles { get => dontSpawnObstacles; set => dontSpawnObstacles = value; }
+
+    private void Awake()
 	{
 		if (spriteRenderer == null)
 		{
@@ -24,6 +28,10 @@ public class EnvironmentAsset : MonoBehaviour
 
 	private void Start()
 	{
+		if (dontSpawnObstacles)
+		{
+			return;
+		}
 		DivideObstacleSegments();
 	}
 
@@ -73,7 +81,7 @@ public class EnvironmentAsset : MonoBehaviour
 	void Update()
 	{
 		// Check if any tiles have moved off the left side of the screen
-		float screenLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x - 10;
+		float screenLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x - 20;
 
 		if (transform.position.x < screenLeft)
 		{

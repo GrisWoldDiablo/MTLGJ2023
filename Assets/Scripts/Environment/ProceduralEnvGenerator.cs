@@ -128,6 +128,8 @@ public class ProceduralEnvGenerator : MonoBehaviour
 
 			Vector2 spawnPosition = new Vector2(oldSlice.transform.position.x, oldSlice.transform.position.y);
 			EnvironmentAsset newSlice = Instantiate(RandomEnvironmentSlice, spawnPosition, Quaternion.identity, gameObject.transform);
+			newSlice.DontSpawnObstacles = true;
+			
 			markedForAdd.Add(newSlice);
 			Destroy(oldSlice.gameObject);
         }
