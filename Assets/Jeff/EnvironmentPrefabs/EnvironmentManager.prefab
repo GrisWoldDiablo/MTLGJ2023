@@ -59,8 +59,8 @@ MonoBehaviour:
     - {fileID: 3394999792726553591, guid: 334cc50fd0e722947a278b419d5dd42b, type: 3}
     - {fileID: 3394999792726553591, guid: 14874b345f497b843a0ac480eb6c32fe, type: 3}
     parallax: {fileID: 5900863799802694701, guid: bfb12e1a836ba9e4cb2398039c033985, type: 3}
-    wallSpeedInBiome: 6.75
-    distanceToSpawnNext: 100
+    wallSpeedInBiome: 10
+    distanceToSpawnNext: 300
   - biomeType: 3
     environmentObjectList:
     - {fileID: 8971083833398317402, guid: c3ff573bd51064f44b2f96ed76b96d77, type: 3}
@@ -68,9 +68,10 @@ MonoBehaviour:
     obstacleObjectList:
     - {fileID: 6866674086465982657, guid: cf0f8f0598644a440823f63a490c761c, type: 3}
     - {fileID: 3394999792726553591, guid: 334cc50fd0e722947a278b419d5dd42b, type: 3}
+    - {fileID: 3394999792726553591, guid: 14874b345f497b843a0ac480eb6c32fe, type: 3}
     parallax: {fileID: 5900863799802694701, guid: 4ffc7fd974dccc54a918db74d66ff17e, type: 3}
     wallSpeedInBiome: 6.85
-    distanceToSpawnNext: 200
+    distanceToSpawnNext: 600
   - biomeType: 1
     environmentObjectList:
     - {fileID: 8971083833398317402, guid: 1ef84ea6b3b49f94b8cefb348a9180fb, type: 3}
@@ -81,7 +82,7 @@ MonoBehaviour:
     - {fileID: 6866674086465982657, guid: 2c8b23bb4f3385a489c5f40e702e706c, type: 3}
     parallax: {fileID: 5900863799802694701, guid: 0abd30bda70957b4e82e93453298e8dc, type: 3}
     wallSpeedInBiome: 6.95
-    distanceToSpawnNext: 300
+    distanceToSpawnNext: 1000
   - biomeType: 2
     environmentObjectList:
     - {fileID: 8971083833398317402, guid: 339d68e0cbf904c41ba3e74a558b5efd, type: 3}
@@ -91,8 +92,8 @@ MonoBehaviour:
     - {fileID: 7797186090377375619, guid: 303527e1826f4c74899781fab8951f8f, type: 3}
     - {fileID: 5738901331718316001, guid: 7dcca91b85ab508428b6e2c686f69dc1, type: 3}
     parallax: {fileID: 5900863799802694701, guid: 3f42921fb6821304c8e6564125eb3b94, type: 3}
-    wallSpeedInBiome: 7.05
-    distanceToSpawnNext: 1000
+    wallSpeedInBiome: 9
+    distanceToSpawnNext: 1500
   numAssetsToSpawnOnLoad: 25
   numSlicesToSpawnOnRenew: 5
   minSegmentsBetweenObstacles: 16
