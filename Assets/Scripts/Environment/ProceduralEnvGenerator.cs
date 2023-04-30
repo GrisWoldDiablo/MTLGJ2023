@@ -117,7 +117,7 @@ public class ProceduralEnvGenerator : MonoBehaviour
         }
 
 		//lower obstacle a bit to compensate for overextending grass mesh
-		Vector2 adjustedVector = new Vector2(SpawnPosition.x, SpawnPosition.y - ySpawnModifier);
+		Vector2 adjustedVector = new Vector2(SpawnPosition.x, SpawnPosition.y + ySpawnModifier);
 
         RandomizeNumberSegmentsBetweenObstacles();
         GameObject obstacle = Instantiate(GetRandomObstacle(), adjustedVector, Quaternion.identity, Parent);
