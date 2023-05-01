@@ -86,8 +86,6 @@ public class Character : MonoBehaviour
         
         if(damage < 0)
         {
-	        CharacterSFXManager.Get().PlayHurtSFX();
-	      
 	        if (HasHammer)
 	        {
 		        _hasHammer = false;
@@ -95,12 +93,14 @@ public class Character : MonoBehaviour
 	        }
             else
             {
-	             ApplyDamageStatusEffects();
+                CharacterSFXManager.Get().PlayHurtSFX();
+                ApplyDamageStatusEffects();
             }
         }
         
         _health += damage;
-        
+        OnHealthChange?.Invoke(damage);
+
         if (_health <= 0)
         {
             Die();
@@ -113,7 +113,6 @@ public class Character : MonoBehaviour
             _health = _startingHealth;
             return;
         }
-        OnHealthChange?.Invoke(damage);
     }
 
     private void ApplyDamageStatusEffects()
