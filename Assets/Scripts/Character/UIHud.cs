@@ -16,6 +16,7 @@ public class UIHud : MonoBehaviour
 	{
 		_character = FindObjectOfType<Character>();
 		_character.OnHealthChange += OnHealthChange;
+		_character.OnDie += OnDeath;
 		_runningDistance.text = "0.0m";
 	}
 
@@ -23,9 +24,17 @@ public class UIHud : MonoBehaviour
 	{
 		_runningDistance.text = $"{GameManager.Get().RunningDistance:F1}m";
 	}
+	private void OnDeath()
+	{
+		foreach(var health in _usedHealthObjects)
+		{
+            health.gameObject.SetActive(false);
+        }
+    }
 
 	private void OnHealthChange(int value)
 	{
+
 		for (int i = 0; i < Mathf.Abs(value); i++)
 		{
 			if (value > 0)

@@ -76,15 +76,14 @@ public class Character : MonoBehaviour
         CharacterSFXManager.Get().PlayDieSFX();
 	}
 
-
     public void ModifyHealth(int damage)
     {
         if (_isInvincible || IsDead )
         {
             return;
         }
-        
-        if(damage < 0)
+
+        if (damage < 0)
         {
 	        if (HasHammer)
 	        {
@@ -97,9 +96,10 @@ public class Character : MonoBehaviour
                 ApplyDamageStatusEffects();
             }
         }
-        
-        _health += damage;
+
         OnHealthChange?.Invoke(damage);
+
+        _health += damage;
 
         if (_health <= 0)
         {
