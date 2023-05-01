@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    private static Character _sInstance;
+
+    public static Character Get()
+    {
+        return _sInstance;
+    }
+
     public bool KILLME = false;
     [SerializeField] private int _startingHealth = 3;
     [SerializeField] private bool _isInvincible = false;
@@ -25,8 +32,19 @@ public class Character : MonoBehaviour
         get => _health;
         set => _health = value;
     }
+    private void Awake()
+    {
+        if (!_sInstance)
+        {
+            _sInstance = this;
+        }
+        else
+        {
+            DestroyImmediate(this);
+        }
+    }
 
-	private void Start()
+    private void Start()
 	{
 		_playerMove = GetComponentInChildren<PlayerMovement>();
 		ModifyHealth(_startingHealth);
@@ -77,8 +95,7 @@ public class Character : MonoBehaviour
 	        }
             else
             {
-	             ApplyStatusEffects();
-
+	             ApplyDamageStatusEffects();
             }
         }
         
@@ -99,20 +116,11 @@ public class Character : MonoBehaviour
         OnHealthChange?.Invoke(damage);
     }
 
-    private void ApplyStatusEffects()
+    private void ApplyDamageStatusEffects()
     {
         StartCoroutine(BlinkSprite());
-        StartCoroutine(SlowDown());
+        ModifySpeed(0.33f, 1.125f);
     }
-
-    private IEnumerator SlowDown()
-    {
-        float savedSpeed = _playerMove.Speed;
-        _playerMove.Speed = 3.0f;
-        yield return new WaitForSeconds(1.125f);
-        _playerMove.Speed = savedSpeed;
-    }
-
 
     [SerializeField] Color blinkColor;
     private IEnumerator BlinkSprite()
@@ -142,17 +150,16 @@ public class Character : MonoBehaviour
 
                 break;
             case PowerUp.Hammer:
-                //itemSlot.sprite = _possibleItems[0];
                 _hasHammer = true;
                 break;
             case PowerUp.Fan:
-
                 break;
         }
     }
 
-    public void ModifySpeed(float modification, float timer)
+    public void ModifySpeed(float ratio, float timer)
     {
-        PlayerMovement.ModifySpeed(modification, timer);
+        PlayerMovement.ModifySpeed(ratio, timer);
     }
+
 }

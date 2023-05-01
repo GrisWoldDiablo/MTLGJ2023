@@ -526,6 +526,10 @@ PrefabInstance:
       propertyPath: playerBody
       value: 
       objectReference: {fileID: 1694734336}
+    - target: {fileID: 1659848657142549706, guid: b4fc2bad581c18a4e993faf9ce1c0655, type: 3}
+      propertyPath: maxDistanceToPlayer
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5652548578179191194, guid: b4fc2bad581c18a4e993faf9ce1c0655, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -1123,6 +1127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5159819965176401074, guid: 67810d3664117814babe7144c5b70ba7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.94677734
+      objectReference: {fileID: 0}
     - target: {fileID: 6005006501871273269, guid: 67810d3664117814babe7144c5b70ba7, type: 3}
       propertyPath: m_Pivot.x
       value: 0

@@ -97,8 +97,8 @@ MonoBehaviour:
     distanceToSpawnNext: 1500
   numAssetsToSpawnOnLoad: 25
   numSlicesToSpawnOnRenew: 5
-  minSegmentsBetweenObstacles: 14
-  maxSegmentsBetweenObstacles: 28
+  minSegmentsBetweenObstacles: 18
+  maxSegmentsBetweenObstacles: 26
   disableObstacle: 0
   ySpawnModifier: -1
 --- !u!114 &2035923024879712188
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   batPrefab: {fileID: 3711392607649069977, guid: 959b93e69702ae244ac5ace5e2a2b999, type: 3}
   minTimeBetweenBats: 4
-  maxTimeBetweenBats: 6
+  maxTimeBetweenBats: 7
 --- !u!1001 &5948060557493773423
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,12 +12,14 @@ public class PowerUpSpawner : MonoBehaviour
     [SerializeField] private float _sandalsChance = 0.5f;
 
     private ProceduralEnvGenerator _generator;
+    private Character charRef;
+
     public GameObject SpawnPoint { set => spawnPoint = value; }
 
     // Start is called before the first frame update
     void Start()
     {
-      
+        charRef = GameManager.Get().Player;
         _generator =  Object.FindObjectOfType<ProceduralEnvGenerator>();
         _sandalsChance = _generator.CurrentBiomeIndex/(float)_generator.BiomeCount;
         if (_sandalsChance > 0.8)
@@ -40,14 +42,19 @@ public class PowerUpSpawner : MonoBehaviour
         
             if (r2 > _sandalsChance * 10)
             {
+                if (charRef.HasHammer)
+                {
+                    //maybe only spawn sandals when we have a hammer?
+                    return;
+                }
                 var item = Resources.Load<GameObject>("Hammer");
                 Instantiate(item, spawnPoint.transform);
+            
             }else {
                 var item = Resources.Load<GameObject>("Sandals"); 
                 Instantiate(item,spawnPoint.transform);
             }
         }
-        
     }
 
 }

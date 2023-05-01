@@ -33,7 +33,9 @@ public class PlayerMovement : MonoBehaviour
     private bool _isHit = false;
     public bool IsMovingForward => _forwardSpeed > 0.0f;
     public Vector2 Velocity => _body.velocity;
-
+    
+    private float _defaultSpeed;
+    public float DefaultSpeed => _defaultSpeed;
     public bool CanMove = true;
         
     public PlayerState GetPlayerState()
@@ -71,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         _standingColliderOffset = _boxCollider2D.offset;
         _slidingColliderSize = new Vector2(_standingColliderSize.x,_standingColliderSize.y / 2);
         _slidingColliderOffset = new Vector2(_boxCollider2D.offset.x,_boxCollider2D.offset.y * 2);
-
+        _defaultSpeed = Speed;
     }
 
     //Speed and time variables

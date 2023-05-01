@@ -36,12 +36,7 @@ public class GameManager : MonoBehaviour
 
 	public void StartGame()
 	{
-		// TODO logic start game.
-		Debug.Log("Start Game");
 		HasStarted = true;
-		
-		// Start level music loop
-		//MusicManager.Get().TransitionToLevelMusic();
 	}
 
 	public void IncrementRunningDistance(float value)
