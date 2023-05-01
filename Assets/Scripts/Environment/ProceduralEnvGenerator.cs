@@ -16,7 +16,6 @@ public class Biome
 {
 	[SerializeField] EBiomeType biomeType;
 	[SerializeField] private EnvironmentAsset[] environmentObjectList;
-	[SerializeField] private EnvironmentAsset biomeInitSlice;
 	[SerializeField] private GameObject[] obstacleObjectList;
 	[SerializeField] private GameObject parallax;
 	[SerializeField] private string textToDiplay = "";
@@ -46,11 +45,6 @@ public class Biome
 	{
 		get => parallax;
 		set => parallax = value;
-	}
-
-	public EnvironmentAsset BiomeInitSlice
-	{
-		get => biomeInitSlice;
 	}
 
 	public float DistanceToSpawnNext
@@ -215,14 +209,6 @@ public class ProceduralEnvGenerator : MonoBehaviour
 			UIManager.Get().SwapBiome(currentBiome.TextToDisplay);
 		}
 		parallax = newParallax;
-
-		//handle spawning of special slice if exists (can probably depreciate we have moved from this idea)
-		if (currentBiome.BiomeInitSlice != null)
-		{
-			EnvironmentAsset slice = currentBiome.BiomeInitSlice;
-			GenerateEnvironmentSlice(slice);
-		}
-
 
 	}
 
