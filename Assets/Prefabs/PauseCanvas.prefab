@@ -303,10 +303,10 @@ RectTransform:
   m_Father: {fileID: 2319281849937510174}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -55.059998}
-  m_SizeDelta: {x: 467.3988, y: 143.9058}
+  m_AnchorMin: {x: 0.164, y: 0.41429254}
+  m_AnchorMax: {x: 0.8297834, y: 0.8902767}
+  m_AnchoredPosition: {x: 2, y: -1}
+  m_SizeDelta: {x: 7.3988037, y: 4.9058075}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7519775708737332302
 CanvasRenderer:
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 103.6
+  m_fontSize: 107.47
   m_fontSizeBase: 36.26
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: -2.0402222}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -439,7 +439,7 @@ RectTransform:
   m_Children:
   - {fileID: 2319281849937510174}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -485,7 +485,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -678,10 +678,10 @@ RectTransform:
   m_Father: {fileID: 798618286772774281}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 125}
-  m_SizeDelta: {x: -1300, y: -750}
+  m_AnchorMin: {x: 0.33, y: 0.48031706}
+  m_AnchorMax: {x: 0.67700005, y: 0.76679915}
+  m_AnchoredPosition: {x: -6.5, y: -3.5}
+  m_SizeDelta: {x: 1, y: -7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1356446429442590850
 CanvasRenderer:

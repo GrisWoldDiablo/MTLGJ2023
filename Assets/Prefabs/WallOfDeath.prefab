@@ -9706,11 +9706,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   playerBody: {fileID: 0}
-  maxDistanceToPlayer: 25
+  maxDistanceToPlayer: 40
   _particleSystems:
   - {fileID: 5794471953484938515}
   - {fileID: 5196917272695848110}
-  speed: 7.05
 --- !u!212 &7162232378609799186
 SpriteRenderer:
   m_ObjectHideFlags: 0
