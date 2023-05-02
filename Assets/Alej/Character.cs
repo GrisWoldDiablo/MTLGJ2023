@@ -97,8 +97,6 @@ public class Character : MonoBehaviour
             }
         }
 
-        OnHealthChange?.Invoke(damage);
-
         _health += damage;
 
         if (_health <= 0)
@@ -113,6 +111,8 @@ public class Character : MonoBehaviour
             _health = _startingHealth;
             return;
         }
+
+        OnHealthChange?.Invoke(damage);
     }
 
     private void ApplyDamageStatusEffects()
