@@ -28,9 +28,10 @@ public class UIHud : MonoBehaviour
 
 	private void OnDeath()
 	{
-		foreach (var health in _usedHealthObjects)
+		while (_usedHealthObjects.TryPop(out var healthObject))
 		{
-			health.gameObject.SetActive(false);
+			healthObject.gameObject.SetActive(false);
+			_unusedHealthObjects.Push(healthObject);
 		}
 	}
 

@@ -55,7 +55,7 @@ public class Character : MonoBehaviour
 		if (KILLME || Input.GetKeyDown(KeyCode.P))
 		{
 			KILLME = false;
-			ModifyHealth(-_health);
+			Die();
 		}
 		if (HasHammer)
 		{
