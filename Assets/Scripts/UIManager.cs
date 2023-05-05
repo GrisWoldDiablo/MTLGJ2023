@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private UIGameover _gameover;
 	[SerializeField] private Character _character;
 	[SerializeField] private UISwapBiome _uiSwapBiome;
-	
+
 	public bool IsPause { get; private set; } = true;
 
 	private void Awake()
@@ -45,13 +45,17 @@ public class UIManager : MonoBehaviour
 		_mainCanvasGroup.alpha = 1.0f;
 		_pauseCanvasGroup.alpha = 0.0f;
 		_pauseCanvasGroup.blocksRaycasts = false;
-		
+
 		_gameoverGroup.alpha = 0.0f;
 		_gameoverGroup.blocksRaycasts = false;
 		_revertButton.onClick.AddListener(OnRevertButtonClicked);
 		_character.OnDie += OnCharacterDie;
 
+#if UNITY_WEBGL
+		_quitButton.gameObject.SetActive(false);
+#else
 		_quitButton.onClick.AddListener(OnQuitButtonClicked);
+#endif
 	}
 
 	private void OnQuitButtonClicked()
@@ -80,7 +84,7 @@ public class UIManager : MonoBehaviour
 		{
 			return;
 		}
-		
+
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			if (!IsPause)
