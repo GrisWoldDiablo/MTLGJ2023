@@ -217,9 +217,12 @@ public class ProceduralEnvGenerator : MonoBehaviour
 		_currentBiomeIndex++;
 		currentBiome = GetCurrentBiome();
 
+		// clear random set from previous biome.
+		randomObjects.Clear();
+
 		InitializeBiome();
 
-		OnBiomeChange.Invoke();
+		OnBiomeChange?.Invoke();
 
 		//broadcast we swapped biome
 		return currentBiome;
@@ -250,7 +253,7 @@ public class ProceduralEnvGenerator : MonoBehaviour
 	public GameObject GetRandomObstacle()
 	{
 
-		GameObject randomO = null;
+		GameObject randomObstacle;
 		if (randomObjects.Count == currentBiome.ObstacleObjectList.Length)
 		{
 			randomObjects.Clear();
@@ -259,11 +262,12 @@ public class ProceduralEnvGenerator : MonoBehaviour
 		do
 		{
 			int randomAssetIndex = Random.Range(0, currentBiome.ObstacleObjectList.Length);
-			randomO = currentBiome.ObstacleObjectList[randomAssetIndex];
-		} while (randomObjects.Contains(randomO.GetInstanceID()));
-		randomObjects.Add(randomO.GetInstanceID());
+			randomObstacle = currentBiome.ObstacleObjectList[randomAssetIndex];
+		} while (randomObjects.Contains(randomObstacle.GetInstanceID()));
 
-		return randomO;
+		randomObjects.Add(randomObstacle.GetInstanceID());
+
+		return randomObstacle;
 	}
 
 	private void RandomizeNumberSegmentsBetweenObstacles()
@@ -283,7 +287,11 @@ public class ProceduralEnvGenerator : MonoBehaviour
 		Vector2 adjustedVector = new Vector2(SpawnPosition.x, SpawnPosition.y + ySpawnModifier);
 
 		RandomizeNumberSegmentsBetweenObstacles();
-		GameObject obstacle = Instantiate(GetRandomObstacle(), adjustedVector, Quaternion.identity, Parent);
+		GameObject randomObstacle = GetRandomObstacle();
+		if (randomObstacle)
+		{
+			Instantiate(randomObstacle, adjustedVector, Quaternion.identity, Parent);
+		}
 	}
 
 	private void GenerateEnvironmentSlice(EnvironmentAsset EnvironmentAsset)

@@ -11,6 +11,7 @@ public class UIHud : MonoBehaviour
 	private Stack<GameObject> _usedHealthObjects = new();
 	private Stack<GameObject> _unusedHealthObjects = new();
 	private Character _character;
+	private int _currentHeath = 0;
 
 	private void Awake()
 	{
@@ -24,29 +25,29 @@ public class UIHud : MonoBehaviour
 	{
 		_runningDistance.text = $"{GameManager.Get().RunningDistance:F1}m";
 	}
+
 	private void OnDeath()
 	{
-		foreach(var health in _usedHealthObjects)
+		foreach (var health in _usedHealthObjects)
 		{
-            health.gameObject.SetActive(false);
-        }
-    }
+			health.gameObject.SetActive(false);
+		}
+	}
 
 	private void OnHealthChange(int value)
 	{
-
-		for (int i = 0; i < Mathf.Abs(value); i++)
+		int healthDifference = value - _currentHeath;
+		for (int i = 0; i < Mathf.Abs(healthDifference); i++)
 		{
-			if (value > 0)
+			if (healthDifference > 0)
 			{
-				if (_unusedHealthObjects.TryPop(out var healthObject))
+				if (!_unusedHealthObjects.TryPop(out var healthObject))
 				{
-					healthObject.gameObject.SetActive(true);
+					healthObject = Instantiate(_healthObject, _healthLayout.transform);
 				}
-				else
-				{
-					_usedHealthObjects.Push(Instantiate(_healthObject, _healthLayout.transform));
-				}
+
+				healthObject.gameObject.SetActive(true);
+				_usedHealthObjects.Push(healthObject);
 			}
 			else
 			{
@@ -57,5 +58,7 @@ public class UIHud : MonoBehaviour
 				}
 			}
 		}
+
+		_currentHeath = value;
 	}
 }

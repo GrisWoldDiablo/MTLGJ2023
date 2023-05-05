@@ -24,7 +24,7 @@ public class Character : MonoBehaviour
 
     [SerializeField] private bool _hasHammer = false;
     public bool HasHammer => _hasHammer;
-    public event Action<int> OnHealthChange;
+    public event Action<int> OnHealthChange; // Send current health
     public event Action OnDie;
 
     public int Health
@@ -98,21 +98,14 @@ public class Character : MonoBehaviour
         }
 
         _health += damage;
-
+		_health = Math.Clamp(_health, 0, _startingHealth);
+		
+        OnHealthChange?.Invoke(_health);
+		
         if (_health <= 0)
         {
             Die();
-            return;
         }
-       
-        
-        if (_health > _startingHealth)
-        {
-            _health = _startingHealth;
-            return;
-        }
-
-        OnHealthChange?.Invoke(damage);
     }
 
     private void ApplyDamageStatusEffects()
@@ -123,17 +116,15 @@ public class Character : MonoBehaviour
 
     [SerializeField] Color blinkColor;
     private IEnumerator BlinkSprite()
-    {
+	{
+		var originalColor = playerSprite.color;
         for (int i = 0; i < 2; i++)
         {
             playerSprite.color = blinkColor;
             yield return new WaitForSeconds(0.1f);
-            playerSprite.color = Color.white;
+            playerSprite.color = originalColor;
             yield return new WaitForSeconds(0.1f);
         }
-
-        playerSprite.color = Color.white;
-
     }
 
     public enum PowerUp
@@ -160,5 +151,4 @@ public class Character : MonoBehaviour
     {
         PlayerMovement.ModifySpeed(ratio, timer);
     }
-
 }

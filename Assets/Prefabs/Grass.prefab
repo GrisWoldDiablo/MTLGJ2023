@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 100
   m_Sprite: {fileID: 282818580, guid: 4eb641f25e0f9974394936ecfb95d11b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.74312437, b: 0.41037738, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spritesSheetScriptable: {fileID: 11400000, guid: 30736d5fa38a5b34194d5948099a4d93, type: 2}
+  _shouldAnimate: 0
+  _speed: 0.25
 --- !u!68 &9088661991904722043
 EdgeCollider2D:
   m_ObjectHideFlags: 0

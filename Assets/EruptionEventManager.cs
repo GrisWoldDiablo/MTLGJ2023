@@ -46,7 +46,8 @@ public class EruptionEventManager : MonoBehaviour
     private void OnBiomeChanged()
     {
         //destroy active eruptions as we switch biomes
-        foreach(var eruption in ActiveEruptions){
+        foreach(var eruption in ActiveEruptions)
+        {
             Destroy(eruption.gameObject);
         }
         ActiveEruptions.Clear();
@@ -105,7 +106,6 @@ public class EruptionEventManager : MonoBehaviour
         ProceduralEnvGenerator Gen = ProceduralEnvGenerator.Get();
 
         Gen.OnBiomeChange += OnBiomeChanged;
-
     }
 
     // Update is called once per frame
@@ -120,7 +120,6 @@ public class EruptionEventManager : MonoBehaviour
         {
             timeSinceLastEvent += Time.deltaTime;
         }
-
         else
         {
             SpawnEruptionEvent();
