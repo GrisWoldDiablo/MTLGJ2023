@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public enum PlayerState
@@ -8,7 +5,6 @@ public enum PlayerState
     Jump,
     Run,
     Slide,
-    RunFast
 }
 
 public class PlayerMovement : MonoBehaviour
@@ -37,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private float _defaultSpeed;
     public float DefaultSpeed => _defaultSpeed;
     public bool CanMove = true;
+    public bool IsRunningFast => _forwardSpeed > 1.2f;
         
     public PlayerState GetPlayerState()
     {
@@ -48,10 +45,6 @@ public class PlayerMovement : MonoBehaviour
         if (_isSliding)
         {
             return PlayerState.Slide;
-        }
-        if (_forwardSpeed > 1.2f)
-        {
-            return PlayerState.RunFast;
         }
         return PlayerState.Run;
     }

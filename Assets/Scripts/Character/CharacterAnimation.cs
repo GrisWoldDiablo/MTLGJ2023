@@ -45,23 +45,13 @@ public class CharacterAnimation : MonoBehaviour
 			{
 				_currentSprites = _character.HasHammer ? _walkBackSpritesHammer : _walkBackSprites;
 			}
-			_animationSpeed = 10f;
-			break;
-		case PlayerState.RunFast:
-			if (_playerMovement.IsMovingForward)
-			{
-				_currentSprites = _character.HasHammer ? _runSpritesHammer : _runSprites;
-			}
-			else
-			{
-				_currentSprites = _character.HasHammer ? _walkBackSpritesHammer : _walkBackSprites;
-			}
-			_animationSpeed = 20f;
 			break;
 		case PlayerState.Slide:
 			_currentSprites = _playerMovement.IsMovingForward ? _slideSprites : _walkBackSprites;
 			break;
 		}
+
+		_animationSpeed = _playerMovement.IsRunningFast ? 20f : 10f;
 	}
 
 	private IEnumerator Animate()
